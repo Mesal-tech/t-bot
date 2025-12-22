@@ -1,0 +1,536 @@
+2025-12-20 03:41:21,578 - INFO - Loading model from models/saved/universal_smc_model.pkl
+2025-12-20 03:41:29,020 - INFO - Connected to MT5 - Account: 297437818, Balance: $0.00
+2025-12-20 03:41:29,021 - INFO - ======================================================================
+2025-12-20 03:41:29,022 - INFO - ML SMC LIVE TRADING BOT STARTED
+2025-12-20 03:41:29,023 - INFO - ======================================================================
+2025-12-20 03:41:29,023 - INFO - Pairs: EURUSD
+2025-12-20 03:41:29,024 - INFO - TP/SL: 30/10 pips
+2025-12-20 03:41:29,025 - INFO - Min Probability: 0.65
+2025-12-20 03:41:29,044 - INFO - Risk per Trade: 1.0%
+2025-12-20 03:41:29,044 - INFO - Max Positions: 5
+2025-12-20 03:41:29,045 - INFO - ======================================================================
+2025-12-20 03:41:29,064 - ERROR - Failed to get bars for EURUSD: (-1, 'Terminal: Call failed')
+2025-12-20 03:41:29,067 - WARNING - Insufficient data for EURUSD
+2025-12-20 03:41:29,068 - INFO - Waiting for next bar...
+2025-12-20 03:42:29,070 - ERROR - Failed to get bars for EURUSD: (-1, 'Terminal: Call failed')
+2025-12-20 03:42:29,071 - WARNING - Insufficient data for EURUSD
+2025-12-20 03:42:29,072 - INFO - Waiting for next bar...
+2025-12-20 03:43:29,075 - ERROR - Failed to get bars for EURUSD: (-1, 'Terminal: Call failed')
+2025-12-20 03:43:29,077 - WARNING - Insufficient data for EURUSD
+2025-12-20 03:43:29,078 - INFO - Waiting for next bar...
+2025-12-20 03:44:29,085 - ERROR - Failed to get bars for EURUSD: (-1, 'Terminal: Call failed')
+2025-12-20 03:44:29,087 - WARNING - Insufficient data for EURUSD
+2025-12-20 03:44:29,089 - INFO - Waiting for next bar...
+2025-12-20 03:45:02,030 - INFO - Bot stopped by user
+2025-12-20 03:45:02,031 - INFO - Disconnected from MT5
+2025-12-20 03:45:02,032 - INFO - Bot stopped
+2025-12-20 03:45:33,269 - INFO - Loading model from models/saved/universal_smc_model.pkl
+2025-12-20 03:45:35,637 - INFO - Initializing MT5 from: C:\Program Files\MetaTrader 5\terminal64.exe
+2025-12-20 03:45:35,643 - INFO - Logging in to account 297437818 on server Exness-MT5Trial9
+2025-12-20 03:45:35,787 - INFO - Account: 297437818
+2025-12-20 03:45:35,798 - INFO - Balance: $0.00
+2025-12-20 03:45:35,803 - INFO - Server: Exness-MT5Trial9
+2025-12-20 03:45:35,804 - INFO - ======================================================================
+2025-12-20 03:45:35,805 - INFO - ML SMC LIVE TRADING BOT STARTED
+2025-12-20 03:45:35,805 - INFO - ======================================================================
+2025-12-20 03:45:35,806 - INFO - Pairs: EURUSD
+2025-12-20 03:45:35,806 - INFO - TP/SL: 30/10 pips
+2025-12-20 03:45:35,807 - INFO - Min Probability: 0.65
+2025-12-20 03:45:35,808 - INFO - Risk per Trade: 1.0%
+2025-12-20 03:45:35,813 - INFO - Max Positions: 5
+2025-12-20 03:45:35,815 - INFO - ======================================================================
+2025-12-20 03:45:35,817 - ERROR - Failed to get bars for EURUSD: (-1, 'Terminal: Call failed')
+2025-12-20 03:45:35,818 - WARNING - Insufficient data for EURUSD
+2025-12-20 03:45:35,819 - INFO - Waiting for next bar...
+2025-12-20 03:46:35,822 - ERROR - Failed to get bars for EURUSD: (-1, 'Terminal: Call failed')
+2025-12-20 03:46:35,824 - WARNING - Insufficient data for EURUSD
+2025-12-20 03:46:35,825 - INFO - Waiting for next bar...
+2025-12-20 03:47:35,829 - ERROR - Failed to get bars for EURUSD: (-1, 'Terminal: Call failed')
+2025-12-20 03:47:35,830 - WARNING - Insufficient data for EURUSD
+2025-12-20 03:47:35,831 - INFO - Waiting for next bar...
+2025-12-20 03:48:35,832 - ERROR - Failed to get bars for EURUSD: (-1, 'Terminal: Call failed')
+2025-12-20 03:48:35,857 - WARNING - Insufficient data for EURUSD
+2025-12-20 03:48:35,861 - INFO - Waiting for next bar...
+2025-12-20 03:49:35,863 - ERROR - Failed to get bars for EURUSD: (-1, 'Terminal: Call failed')
+2025-12-20 03:49:35,865 - WARNING - Insufficient data for EURUSD
+2025-12-20 03:49:35,866 - INFO - Waiting for next bar...
+2025-12-20 03:50:35,868 - ERROR - Failed to get bars for EURUSD: (-1, 'Terminal: Call failed')
+2025-12-20 03:50:35,868 - WARNING - Insufficient data for EURUSD
+2025-12-20 03:50:35,869 - INFO - Waiting for next bar...
+2025-12-20 03:51:35,870 - ERROR - Failed to get bars for EURUSD: (-1, 'Terminal: Call failed')
+2025-12-20 03:51:35,870 - WARNING - Insufficient data for EURUSD
+2025-12-20 03:51:35,873 - INFO - Waiting for next bar...
+2025-12-20 03:51:46,174 - INFO - Bot stopped by user
+2025-12-20 03:51:46,176 - INFO - Disconnected from MT5
+2025-12-20 03:51:46,178 - INFO - Bot stopped
+2025-12-20 03:52:07,416 - INFO - Loading model from models/saved/universal_smc_model.pkl
+2025-12-20 03:52:10,166 - INFO - Initializing MT5 from: C:\Program Files\MetaTrader 5\terminal64.exe
+2025-12-20 03:53:14,927 - ERROR - MT5 initialization failed: (-10005, 'IPC timeout')
+2025-12-20 03:53:14,928 - INFO - Trying to initialize without path...
+2025-12-20 03:54:20,848 - ERROR - MT5 initialization failed again: (-10005, 'IPC timeout')
+2025-12-20 03:54:20,850 - INFO - Please ensure MT5 terminal is installed and try running it manually first
+2025-12-20 03:54:20,851 - ERROR - Failed to connect to MT5
+2025-12-20 10:25:16,798 - INFO - Loading model from models/saved/universal_smc_model.pkl
+2025-12-20 10:25:23,751 - INFO - Initializing MT5 from: C:\Program Files\MetaTrader 5\terminal64.exe
+2025-12-20 10:25:23,773 - INFO - Logging in to account 297437818 on server Exness-MT5Trial9
+2025-12-20 10:25:23,775 - INFO - Connected to MT5 successfully
+2025-12-20 10:25:23,776 - INFO - Account: 297437818
+2025-12-20 10:25:23,778 - INFO - Balance: $0.00
+2025-12-20 10:25:23,779 - INFO - Server: Exness-MT5Trial9
+2025-12-20 10:25:23,780 - INFO - ======================================================================
+2025-12-20 10:25:23,781 - INFO - ML SMC LIVE TRADING BOT STARTED
+2025-12-20 10:25:23,782 - INFO - ======================================================================
+2025-12-20 10:25:23,783 - INFO - Pairs: EURUSD
+2025-12-20 10:25:23,783 - INFO - TP/SL: 30/10 pips
+2025-12-20 10:25:23,783 - INFO - Min Probability: 0.65
+2025-12-20 10:25:23,784 - INFO - Risk per Trade: 1.0%
+2025-12-20 10:25:23,784 - INFO - Max Positions: 5
+2025-12-20 10:25:23,784 - INFO - ======================================================================
+2025-12-20 10:25:23,785 - ERROR - Symbol EURUSD not found
+2025-12-20 10:25:23,786 - WARNING - Insufficient data for EURUSD
+2025-12-20 10:25:23,786 - INFO - Waiting for next bar...
+2025-12-20 10:26:23,788 - ERROR - Symbol EURUSD not found
+2025-12-20 10:26:23,793 - WARNING - Insufficient data for EURUSD
+2025-12-20 10:26:23,793 - INFO - Waiting for next bar...
+2025-12-20 10:27:23,796 - ERROR - Symbol EURUSD not found
+2025-12-20 10:27:23,797 - WARNING - Insufficient data for EURUSD
+2025-12-20 10:27:23,797 - INFO - Waiting for next bar...
+2025-12-20 10:28:23,798 - ERROR - Symbol EURUSD not found
+2025-12-20 10:28:23,800 - WARNING - Insufficient data for EURUSD
+2025-12-20 10:28:23,800 - INFO - Waiting for next bar...
+2025-12-20 10:29:23,801 - ERROR - Symbol EURUSD not found
+2025-12-20 10:29:23,802 - WARNING - Insufficient data for EURUSD
+2025-12-20 10:29:23,803 - INFO - Waiting for next bar...
+2025-12-20 10:30:23,805 - ERROR - Symbol EURUSD not found
+2025-12-20 10:30:23,806 - WARNING - Insufficient data for EURUSD
+2025-12-20 10:30:23,807 - INFO - Waiting for next bar...
+2025-12-20 10:31:23,809 - ERROR - Symbol EURUSD not found
+2025-12-20 10:31:23,812 - WARNING - Insufficient data for EURUSD
+2025-12-20 10:31:23,814 - INFO - Waiting for next bar...
+2025-12-20 10:32:23,818 - ERROR - Symbol EURUSD not found
+2025-12-20 10:32:23,820 - WARNING - Insufficient data for EURUSD
+2025-12-20 10:32:23,821 - INFO - Waiting for next bar...
+2025-12-20 10:33:23,823 - ERROR - Symbol EURUSD not found
+2025-12-20 10:33:23,824 - WARNING - Insufficient data for EURUSD
+2025-12-20 10:33:23,826 - INFO - Waiting for next bar...
+2025-12-20 10:34:23,828 - ERROR - Symbol EURUSD not found
+2025-12-20 10:34:23,830 - WARNING - Insufficient data for EURUSD
+2025-12-20 10:34:23,832 - INFO - Waiting for next bar...
+2025-12-20 10:35:23,835 - ERROR - Symbol EURUSD not found
+2025-12-20 10:35:23,838 - WARNING - Insufficient data for EURUSD
+2025-12-20 10:35:23,840 - INFO - Waiting for next bar...
+2025-12-20 10:36:23,842 - ERROR - Symbol EURUSD not found
+2025-12-20 10:36:23,843 - WARNING - Insufficient data for EURUSD
+2025-12-20 10:36:23,844 - INFO - Waiting for next bar...
+2025-12-20 10:37:23,845 - ERROR - Symbol EURUSD not found
+2025-12-20 10:37:23,846 - WARNING - Insufficient data for EURUSD
+2025-12-20 10:37:23,847 - INFO - Waiting for next bar...
+2025-12-20 10:53:54,247 - ERROR - Symbol EURUSD not found
+2025-12-20 10:53:54,248 - WARNING - Insufficient data for EURUSD
+2025-12-20 10:53:54,248 - INFO - Waiting for next bar...
+2025-12-20 10:54:54,250 - ERROR - Symbol EURUSD not found
+2025-12-20 10:54:54,251 - WARNING - Insufficient data for EURUSD
+2025-12-20 10:54:54,251 - INFO - Waiting for next bar...
+2025-12-20 11:38:18,854 - ERROR - Symbol EURUSD not found
+2025-12-20 11:38:18,856 - WARNING - Insufficient data for EURUSD
+2025-12-20 11:38:18,856 - INFO - Waiting for next bar...
+2025-12-20 11:39:18,858 - ERROR - Symbol EURUSD not found
+2025-12-20 11:39:18,860 - WARNING - Insufficient data for EURUSD
+2025-12-20 11:39:18,861 - INFO - Waiting for next bar...
+2025-12-20 11:39:21,000 - INFO - Bot stopped by user
+2025-12-20 11:39:21,036 - INFO - Disconnected from MT5
+2025-12-20 11:39:21,038 - INFO - Bot stopped
+2025-12-20 11:41:05,343 - INFO - Loading model from models/saved/universal_smc_model.pkl
+2025-12-20 11:41:10,657 - INFO - Initializing MT5 from: C:\Program Files\MetaTrader 5\terminal64.exe
+2025-12-20 11:41:10,667 - INFO - Logging in to account 297437818 on server Exness-MT5Trial9
+2025-12-20 11:41:10,667 - INFO - Connected to MT5 successfully
+2025-12-20 11:41:10,669 - INFO - Account: 297437818
+2025-12-20 11:41:10,669 - INFO - Balance: $0.00
+2025-12-20 11:41:10,670 - INFO - Server: Exness-MT5Trial9
+2025-12-20 11:41:10,670 - INFO - ======================================================================
+2025-12-20 11:41:10,670 - INFO - ML SMC LIVE TRADING BOT STARTED
+2025-12-20 11:41:10,671 - INFO - ======================================================================
+2025-12-20 11:41:10,671 - INFO - Pairs: EURUSDm
+2025-12-20 11:41:10,671 - INFO - TP/SL: 30/10 pips
+2025-12-20 11:41:10,672 - INFO - Min Probability: 0.65
+2025-12-20 11:41:10,672 - INFO - Risk per Trade: 1.0%
+2025-12-20 11:41:10,672 - INFO - Max Positions: 5
+2025-12-20 11:41:10,674 - INFO - ======================================================================
+2025-12-20 11:41:10,811 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-20 11:41:13,498 - ERROR - Error processing EURUSDm: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\t-bot\src\live_trading.py", line 353, in process_symbol
+    if np.isnan(X).any():
+       ~~~~~~~~^^^
+TypeError: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-12-20 11:41:13,527 - INFO - Waiting for next bar...
+2025-12-20 11:42:13,532 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-20 11:42:15,224 - ERROR - Error processing EURUSDm: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\t-bot\src\live_trading.py", line 353, in process_symbol
+    if np.isnan(X).any():
+       ~~~~~~~~^^^
+TypeError: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-12-20 11:42:15,227 - INFO - Waiting for next bar...
+2025-12-20 11:43:15,237 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-20 11:43:16,712 - ERROR - Error processing EURUSDm: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\t-bot\src\live_trading.py", line 353, in process_symbol
+    if np.isnan(X).any():
+       ~~~~~~~~^^^
+TypeError: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-12-20 11:43:16,713 - INFO - Waiting for next bar...
+2025-12-20 11:44:16,718 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-20 11:44:18,431 - ERROR - Error processing EURUSDm: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\t-bot\src\live_trading.py", line 353, in process_symbol
+    if np.isnan(X).any():
+       ~~~~~~~~^^^
+TypeError: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-12-20 11:44:18,433 - INFO - Waiting for next bar...
+2025-12-20 11:45:18,445 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-20 11:45:19,324 - ERROR - Error processing EURUSDm: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\t-bot\src\live_trading.py", line 353, in process_symbol
+    if np.isnan(X).any():
+       ~~~~~~~~^^^
+TypeError: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-12-20 11:45:19,326 - INFO - Waiting for next bar...
+2025-12-20 11:46:18,698 - INFO - Bot stopped by user
+2025-12-20 11:46:18,704 - INFO - Disconnected from MT5
+2025-12-20 11:46:18,705 - INFO - Bot stopped
+2025-12-21 17:29:40,056 - INFO - Loading model from models/saved/universal_smc_model.pkl
+2025-12-21 17:31:05,854 - INFO - Initializing MT5 from: C:\Program Files\MetaTrader 5\terminal64.exe
+2025-12-21 17:31:37,422 - INFO - Logging in to account 297437818 on server Exness-MT5Trial9
+2025-12-21 17:31:37,423 - INFO - Connected to MT5 successfully
+2025-12-21 17:31:37,424 - INFO - Account: 297437818
+2025-12-21 17:31:37,425 - INFO - Balance: $0.00
+2025-12-21 17:31:37,426 - INFO - Server: Exness-MT5Trial9
+2025-12-21 17:31:37,427 - INFO - ======================================================================
+2025-12-21 17:31:37,428 - INFO - ML SMC LIVE TRADING BOT STARTED
+2025-12-21 17:31:37,431 - INFO - ======================================================================
+2025-12-21 17:31:37,440 - INFO - Pairs: EURUSDm, GBPUSDm, USDJPYm, EURGBPm, GBPJPYm
+2025-12-21 17:31:37,460 - INFO - TP/SL: 30/10 pips
+2025-12-21 17:31:37,471 - INFO - Min Probability: 0.65
+2025-12-21 17:31:37,474 - INFO - Risk per Trade: 1.0%
+2025-12-21 17:31:37,476 - INFO - Max Positions: 5
+2025-12-21 17:31:37,480 - INFO - ======================================================================
+2025-12-21 17:31:37,656 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-21 17:31:40,684 - ERROR - Error processing EURUSDm: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\t-bot\src\live_trading.py", line 353, in process_symbol
+    if np.isnan(X).any():
+       ~~~~~~~~^^^
+TypeError: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-12-21 17:31:40,742 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-21 17:31:42,880 - ERROR - Error processing GBPUSDm: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\t-bot\src\live_trading.py", line 353, in process_symbol
+    if np.isnan(X).any():
+       ~~~~~~~~^^^
+TypeError: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-12-21 17:31:43,074 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-21 17:31:45,844 - ERROR - Error processing USDJPYm: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\t-bot\src\live_trading.py", line 353, in process_symbol
+    if np.isnan(X).any():
+       ~~~~~~~~^^^
+TypeError: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-12-21 17:31:46,052 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-21 17:31:47,866 - ERROR - Error processing EURGBPm: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\t-bot\src\live_trading.py", line 353, in process_symbol
+    if np.isnan(X).any():
+       ~~~~~~~~^^^
+TypeError: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-12-21 17:31:47,871 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-21 17:31:48,737 - ERROR - Error processing GBPJPYm: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\t-bot\src\live_trading.py", line 353, in process_symbol
+    if np.isnan(X).any():
+       ~~~~~~~~^^^
+TypeError: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-12-21 17:31:48,748 - INFO - Waiting for next bar...
+2025-12-21 17:32:48,752 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-21 17:32:50,524 - ERROR - Error processing EURUSDm: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\t-bot\src\live_trading.py", line 353, in process_symbol
+    if np.isnan(X).any():
+       ~~~~~~~~^^^
+TypeError: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-12-21 17:32:50,532 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-21 17:32:51,647 - ERROR - Error processing GBPUSDm: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\t-bot\src\live_trading.py", line 353, in process_symbol
+    if np.isnan(X).any():
+       ~~~~~~~~^^^
+TypeError: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-12-21 17:32:51,651 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-21 17:32:52,800 - ERROR - Error processing USDJPYm: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\t-bot\src\live_trading.py", line 353, in process_symbol
+    if np.isnan(X).any():
+       ~~~~~~~~^^^
+TypeError: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-12-21 17:32:53,052 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-21 17:32:54,222 - ERROR - Error processing EURGBPm: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\t-bot\src\live_trading.py", line 353, in process_symbol
+    if np.isnan(X).any():
+       ~~~~~~~~^^^
+TypeError: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-12-21 17:32:54,231 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-21 17:32:55,796 - ERROR - Error processing GBPJPYm: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\t-bot\src\live_trading.py", line 353, in process_symbol
+    if np.isnan(X).any():
+       ~~~~~~~~^^^
+TypeError: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-12-21 17:32:55,798 - INFO - Waiting for next bar...
+2025-12-21 17:33:27,928 - INFO - Bot stopped by user
+2025-12-21 17:33:27,936 - INFO - Disconnected from MT5
+2025-12-21 17:33:27,938 - INFO - Bot stopped
+2025-12-21 17:41:05,858 - INFO - Loading model from models/saved/universal_smc_model.pkl
+2025-12-21 17:41:53,302 - INFO - Initializing MT5 from: C:\Program Files\MetaTrader 5\terminal64.exe
+2025-12-21 17:41:53,332 - INFO - Logging in to account 297437818 on server Exness-MT5Trial9
+2025-12-21 17:41:53,334 - INFO - Connected to MT5 successfully
+2025-12-21 17:41:53,336 - INFO - Account: 297437818
+2025-12-21 17:41:53,337 - INFO - Balance: $0.00
+2025-12-21 17:41:53,339 - INFO - Server: Exness-MT5Trial9
+2025-12-21 17:41:53,342 - INFO - ======================================================================
+2025-12-21 17:41:53,356 - INFO - ML SMC LIVE TRADING BOT STARTED
+2025-12-21 17:41:53,367 - INFO - ======================================================================
+2025-12-21 17:41:53,368 - INFO - Pairs: EURUSDm, GBPUSDm, USDJPYm, EURGBPm, GBPJPYm
+2025-12-21 17:41:53,369 - INFO - TP/SL: 30/10 pips
+2025-12-21 17:41:53,369 - INFO - Min Probability: 0.65
+2025-12-21 17:41:53,370 - INFO - Risk per Trade: 1.0%
+2025-12-21 17:41:53,371 - INFO - Max Positions: 5
+2025-12-21 17:41:53,373 - INFO - ======================================================================
+2025-12-21 17:41:53,501 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-21 17:41:56,972 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-21 17:41:59,640 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-21 17:42:01,833 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-21 17:42:04,117 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-21 17:42:06,550 - INFO - Waiting for next bar...
+2025-12-21 17:43:06,560 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-21 17:43:09,118 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-21 17:43:11,455 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-21 17:43:13,758 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-21 17:43:16,706 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-21 17:43:19,770 - INFO - Waiting for next bar...
+2025-12-21 17:44:19,777 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-21 17:44:20,979 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-21 17:44:22,204 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-21 17:44:23,271 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-21 17:44:24,522 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-21 17:44:25,803 - INFO - Waiting for next bar...
+2025-12-21 17:45:25,812 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-21 17:45:30,403 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-21 17:45:33,400 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-21 17:45:36,093 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-21 17:45:39,414 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-21 17:45:42,179 - INFO - Waiting for next bar...
+2025-12-21 17:46:42,396 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-21 17:46:45,648 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-21 17:46:48,233 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-21 17:46:51,117 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-21 17:46:53,731 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-21 17:46:56,234 - INFO - Waiting for next bar...
+2025-12-21 17:47:56,260 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-21 17:48:02,310 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-21 17:48:06,005 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-21 17:48:11,471 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-21 17:48:15,084 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-21 17:48:18,364 - INFO - Waiting for next bar...
+2025-12-21 17:49:18,380 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-21 17:49:20,761 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-21 17:49:23,312 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-21 17:49:25,715 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-21 17:49:27,905 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-21 17:49:30,412 - INFO - Waiting for next bar...
+2025-12-21 17:50:30,418 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-21 17:50:35,174 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-21 17:50:38,028 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-21 17:50:40,394 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-21 17:50:43,273 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-21 17:50:45,484 - INFO - Waiting for next bar...
+2025-12-21 17:51:49,852 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-21 17:51:51,234 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-21 17:51:52,501 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-21 17:51:53,743 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-21 17:51:55,019 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-21 17:51:56,512 - INFO - Waiting for next bar...
+2025-12-22 09:04:46,697 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 09:04:51,561 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 09:05:02,391 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 09:05:09,780 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 09:05:19,019 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 09:05:31,860 - INFO - Waiting for next bar...
+2025-12-22 09:06:31,864 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 09:06:34,111 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 09:06:35,449 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 09:06:37,053 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 09:06:38,404 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 09:06:39,687 - INFO - Waiting for next bar...
+2025-12-22 09:07:39,823 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 09:07:41,358 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 09:07:44,529 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 09:07:45,992 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 09:07:47,795 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 09:07:49,221 - INFO - Waiting for next bar...
+2025-12-22 09:08:49,240 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 09:08:50,493 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 09:08:51,726 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 09:08:53,125 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 09:08:54,441 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 09:08:55,970 - INFO - Waiting for next bar...
+2025-12-22 09:09:55,973 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 09:09:57,385 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 09:09:58,656 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 09:10:01,221 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 09:10:03,738 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 09:10:12,823 - INFO - Waiting for next bar...
+2025-12-22 09:55:21,914 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 09:55:35,848 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 09:55:49,180 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 09:56:03,316 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 09:56:20,076 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 09:56:37,751 - INFO - Waiting for next bar...
+2025-12-22 09:56:41,245 - INFO - Bot stopped by user
+2025-12-22 09:56:41,359 - INFO - Disconnected from MT5
+2025-12-22 09:56:41,449 - INFO - Bot stopped
+2025-12-22 09:59:10,413 - INFO - Loading model from models/saved/universal_smc_model.pkl
+2025-12-22 09:59:24,801 - INFO - Initializing MT5 from: C:\Program Files\MetaTrader 5\terminal64.exe
+2025-12-22 09:59:24,850 - INFO - Logging in to account 297437818 on server Exness-MT5Trial9
+2025-12-22 09:59:24,917 - INFO - Connected to MT5 successfully
+2025-12-22 09:59:24,936 - INFO - Account: 297437818
+2025-12-22 09:59:24,939 - INFO - Balance: $0.00
+2025-12-22 09:59:24,941 - INFO - Server: Exness-MT5Trial9
+2025-12-22 09:59:24,943 - INFO - ======================================================================
+2025-12-22 09:59:24,954 - INFO - ML SMC LIVE TRADING BOT STARTED
+2025-12-22 09:59:24,960 - INFO - ======================================================================
+2025-12-22 09:59:24,986 - INFO - Pairs: EURUSDm, GBPUSDm, USDJPYm, EURGBPm, GBPJPYm
+2025-12-22 09:59:25,012 - INFO - TP/SL: 30/10 pips
+2025-12-22 09:59:25,012 - INFO - Min Probability: 0.65
+2025-12-22 09:59:25,018 - INFO - Risk per Trade: 1.0%
+2025-12-22 09:59:25,045 - INFO - Max Positions: 5
+2025-12-22 09:59:25,056 - INFO - ======================================================================
+2025-12-22 09:59:25,170 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 09:59:30,355 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 09:59:35,886 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 09:59:42,079 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 09:59:46,186 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 09:59:50,661 - INFO - Waiting for next bar...
+2025-12-22 10:00:50,674 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 10:00:53,936 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 10:00:56,764 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 10:00:59,732 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 10:01:02,863 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 10:01:06,149 - INFO - Waiting for next bar...
+2025-12-22 10:02:06,157 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 10:02:07,811 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 10:02:09,395 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 10:02:11,051 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 10:02:12,551 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 10:02:14,118 - INFO - Waiting for next bar...
+2025-12-22 10:03:14,130 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 10:03:15,814 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 10:03:18,484 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 10:03:21,133 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 10:03:23,687 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 10:03:25,850 - INFO - Waiting for next bar...
+2025-12-22 10:04:25,857 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 10:04:27,631 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 10:04:35,580 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 10:04:43,307 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 10:04:48,020 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 10:04:52,195 - INFO - Waiting for next bar...
+2025-12-22 10:05:52,203 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 10:05:55,051 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 10:05:58,137 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 10:06:01,045 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 10:06:04,069 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 10:06:08,304 - INFO - Waiting for next bar...
+2025-12-22 10:07:08,316 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 10:07:11,316 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 10:07:13,884 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 10:07:16,977 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 10:07:20,505 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 10:07:23,484 - INFO - Waiting for next bar...
+2025-12-22 10:08:23,499 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 10:08:26,067 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 10:08:29,186 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 10:08:33,039 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 10:08:35,882 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 10:08:39,768 - INFO - Waiting for next bar...
+2025-12-22 10:09:39,781 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 10:09:43,567 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 10:09:47,514 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 10:09:52,700 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 10:09:56,151 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 10:09:59,463 - INFO - Waiting for next bar...
+2025-12-22 10:10:59,476 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 10:11:06,982 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 10:11:15,633 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 10:11:24,791 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 10:11:30,900 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 10:11:39,014 - INFO - Waiting for next bar...
+2025-12-22 10:12:39,074 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 10:12:44,640 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 10:12:50,568 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 10:12:56,979 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 10:13:01,805 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 10:13:08,059 - INFO - Waiting for next bar...
+2025-12-22 10:14:08,066 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 10:14:10,891 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 10:14:13,095 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 10:14:16,150 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 10:14:18,832 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 10:14:21,306 - INFO - Waiting for next bar...
+2025-12-22 10:15:21,318 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 10:15:24,120 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 10:15:27,011 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 10:15:30,062 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 10:15:32,902 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 10:15:36,440 - INFO - Waiting for next bar...
+2025-12-22 10:15:55,219 - INFO - Bot stopped by user
+2025-12-22 10:15:55,242 - INFO - Disconnected from MT5
+2025-12-22 10:15:55,248 - INFO - Bot stopped
+2025-12-22 10:17:56,943 - INFO - Loading model from models/saved/universal_smc_model.pkl
+2025-12-22 10:19:46,073 - INFO - Initializing MT5 from: C:\Program Files\MetaTrader 5\terminal64.exe
+2025-12-22 10:19:47,993 - INFO - Logging in to account 297437818 on server Exness-MT5Trial9
+2025-12-22 10:19:48,012 - INFO - Connected to MT5 successfully
+2025-12-22 10:19:48,016 - INFO - Account: 297437818
+2025-12-22 10:19:48,103 - INFO - Balance: $1000.00
+2025-12-22 10:19:48,120 - INFO - Server: Exness-MT5Trial9
+2025-12-22 10:19:48,136 - INFO - ======================================================================
+2025-12-22 10:19:48,146 - INFO - ML SMC LIVE TRADING BOT STARTED
+2025-12-22 10:19:48,148 - INFO - ======================================================================
+2025-12-22 10:19:48,151 - INFO - Pairs: EURUSDm, GBPUSDm, USDJPYm, EURGBPm, GBPJPYm
+2025-12-22 10:19:48,153 - INFO - TP/SL: 30/10 pips
+2025-12-22 10:19:48,154 - INFO - Min Probability: 0.65
+2025-12-22 10:19:48,155 - INFO - Risk per Trade: 1.0%
+2025-12-22 10:19:48,156 - INFO - Max Positions: 5
+2025-12-22 10:19:48,157 - INFO - ======================================================================
+2025-12-22 10:19:48,371 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 10:19:59,880 - INFO - EURUSDm Predictions - NO_TRADE: 0.429, BUY: 0.283, SELL: 0.289
+2025-12-22 10:19:59,891 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 10:20:07,050 - INFO - GBPUSDm Predictions - NO_TRADE: 0.435, BUY: 0.280, SELL: 0.284
+2025-12-22 10:20:07,218 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 10:20:14,138 - INFO - USDJPYm Predictions - NO_TRADE: 0.320, BUY: 0.323, SELL: 0.357
+2025-12-22 10:20:14,145 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 10:20:16,497 - INFO - EURGBPm Predictions - NO_TRADE: 0.430, BUY: 0.275, SELL: 0.295
+2025-12-22 10:20:16,509 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 10:20:18,874 - INFO - GBPJPYm Predictions - NO_TRADE: 0.430, BUY: 0.278, SELL: 0.292
+2025-12-22 10:20:19,191 - INFO - Waiting for next bar...
+2025-12-22 10:21:19,206 - INFO - Retrieved 1000 bars for EURUSDm
+2025-12-22 10:21:20,560 - INFO - EURUSDm Predictions - NO_TRADE: 0.435, BUY: 0.280, SELL: 0.285
+2025-12-22 10:21:20,709 - INFO - Retrieved 1000 bars for GBPUSDm
+2025-12-22 10:21:22,217 - INFO - GBPUSDm Predictions - NO_TRADE: 0.434, BUY: 0.281, SELL: 0.285
+2025-12-22 10:21:22,413 - INFO - Retrieved 1000 bars for USDJPYm
+2025-12-22 10:21:23,345 - INFO - USDJPYm Predictions - NO_TRADE: 0.362, BUY: 0.301, SELL: 0.337
+2025-12-22 10:21:23,545 - INFO - Retrieved 1000 bars for EURGBPm
+2025-12-22 10:21:24,993 - INFO - EURGBPm Predictions - NO_TRADE: 0.422, BUY: 0.286, SELL: 0.292
+2025-12-22 10:21:24,997 - INFO - Retrieved 1000 bars for GBPJPYm
+2025-12-22 10:21:26,047 - INFO - GBPJPYm Predictions - NO_TRADE: 0.464, BUY: 0.265, SELL: 0.271
+2025-12-22 10:21:26,047 - INFO - Waiting for next bar...
