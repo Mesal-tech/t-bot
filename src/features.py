@@ -5,7 +5,7 @@ from smc import SmartMoneyConceptsFull
 class SMCFeatureGenerator:
     """
     Generate ML-ready features from raw OHLCV data using SMC analysis.
-    Produces 40+ features per bar for machine learning models.
+    Produces 30+ features per bar for machine learning models.
     """
     
     def __init__(self, swing_length=50, internal_length=5):

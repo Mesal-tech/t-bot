@@ -33,7 +33,7 @@ import pandas as pd
 class MLSMCPipeline:
     """Main pipeline orchestrator"""
     
-    def __init__(self, pairs=None, tp_pips=30, sl_pips=10, min_prob=0.65, model_type='rf'):
+    def __init__(self, pairs=None, tp_pips=40, sl_pips=10, min_prob=0.4, model_type='rf'):
         self.pairs = pairs or ['EURUSD', 'GBPUSD', 'USDJPY', 'EURGBPm', 'GBPJPYm']
         self.tp_pips = tp_pips
         self.sl_pips = sl_pips
@@ -141,7 +141,7 @@ class MLSMCPipeline:
             data_file = self.labels_dir / f'{pair}_labeled.csv'
             
             if not data_file.exists():
-                print(f"⚠️  Skipping {pair}: {data_file} not found")
+                print(f"Skipping {pair}: {data_file} not found")
                 continue
             
             print(f"\n{'='*60}")
@@ -198,8 +198,8 @@ Examples:
     parser.add_argument(
         '--tp-pips',
         type=int,
-        default=30,
-        help='Take profit in pips (default: 30)'
+        default=40,
+        help='Take profit in pips (default: 40)'
     )
     
     parser.add_argument(
@@ -212,8 +212,8 @@ Examples:
     parser.add_argument(
         '--min-prob',
         type=float,
-        default=0.65,
-        help='Minimum probability threshold for trades (default: 0.65)'
+        default=0.4,
+        help='Minimum probability threshold for trades (default: 0.4)'
     )
     
     parser.add_argument(

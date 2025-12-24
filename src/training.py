@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.preprocessing import StandardScaler
 from imblearn.over_sampling import SMOTE
 import joblib
 import warnings
@@ -22,6 +23,7 @@ class SMCModelTrainer:
         self.model_type = model_type
         self.use_smote = use_smote
         self.model = None
+        self.scaler = StandardScaler()  # Feature standardization
         self.feature_columns = None
         
     def train(self, df, validation_split=0.15):
@@ -61,7 +63,7 @@ class SMCModelTrainer:
                 X_train, y_train = smote.fit_resample(X_train, y_train)
                 print(f"After SMOTE: {dict(zip(*np.unique(y_train, return_counts=True)))}")
             else:
-                print("⚠️  Skipping SMOTE (insufficient samples per class)")
+                print("Skipping SMOTE (insufficient samples per class)")
         
         # Initialize model with overfitting prevention
         print(f"\nInitializing {self.model_type.upper()} model...")
@@ -93,7 +95,7 @@ class SMCModelTrainer:
         # Train
         print("\nTraining model...")
         self.model.fit(X_train, y_train)
-        print("✅ Training complete")
+        print("Training complete")
         
         # Evaluate
         print("\n" + "="*60)
@@ -118,10 +120,10 @@ class SMCModelTrainer:
         print(f"Gap:                 {train_acc - val_acc:.3f}")
         
         if train_acc - val_acc > 0.15:
-            print("\n⚠️  WARNING: Possible overfitting detected!")
+            print("\nWARNING: Possible overfitting detected!")
             print("Consider: reducing max_depth, increasing min_samples_leaf")
         else:
-            print("\n✅ Overfitting check passed")
+            print("\nOverfitting check passed")
         
         self._print_feature_importance()
         return self.model
@@ -147,11 +149,15 @@ class SMCModelTrainer:
         X = X[mask]
         y = y[mask]
         
+        # Standardize features (mean=0, std=1)
+        X = self.scaler.fit_transform(X)
+        
         print(f"\n{'='*60}")
         print("TRAINING DATA SUMMARY")
         print('='*60)
         print(f"Shape:    {X.shape}")
         print(f"Features: {len(self.feature_columns)}")
+        print(f"Scaled:   Mean={X.mean():.4f}, Std={X.std():.4f}")
         print(f"Labels:   {dict(zip(*np.unique(y, return_counts=True)))}")
         
         return X, y
@@ -200,9 +206,10 @@ class SMCModelTrainer:
         joblib.dump({
             'model': self.model,
             'feature_columns': self.feature_columns,
-            'model_type': self.model_type
+            'model_type': self.model_type,
+            'scaler': self.scaler  # Save scaler for live trading
         }, filepath)
-        print(f"\n✅ Model saved: {filepath}")
+        print(f"\nModel saved: {filepath}")
     
     @staticmethod
     def load_model(filepath):
@@ -211,6 +218,7 @@ class SMCModelTrainer:
         trainer = SMCModelTrainer(model_type=data['model_type'])
         trainer.model = data['model']
         trainer.feature_columns = data['feature_columns']
+        trainer.scaler = data.get('scaler', StandardScaler())  # Load scaler
         return trainer
 
 

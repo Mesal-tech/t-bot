@@ -9,7 +9,7 @@ class SMCBacktester:
     """
     
     def __init__(self, model_path=None, model=None, feature_columns=None, 
-                 min_probability=0.65, tp_pips=30, sl_pips=10):
+                 min_probability=0.4, tp_pips=40, sl_pips=10):
         """
         Args:
             model_path: Path to saved model file (or provide model directly)
@@ -28,9 +28,11 @@ class SMCBacktester:
             model_data = joblib.load(model_path)
             self.model = model_data['model']
             self.feature_columns = model_data['feature_columns']
+            self.scaler = model_data.get('scaler', None)  # Load scaler
         elif model and feature_columns:
             self.model = model
             self.feature_columns = feature_columns
+            self.scaler = None  # No scaler when model is passed directly
         else:
             raise ValueError("Must provide either model_path or (model + feature_columns)")
     
@@ -60,6 +62,13 @@ class SMCBacktester:
         
         # Extract features
         X = df_test[self.feature_columns].values
+        
+        # Standardize features using the same scaler from training
+        if self.scaler is not None:
+            X = self.scaler.transform(X)
+            print(f"Features scaled - Mean: {X.mean():.4f}, Std: {X.std():.4f}")
+        else:
+            print("WARNING: No scaler found! Features are NOT standardized.")
         
         # Predict probabilities
         print("\nGenerating predictions...")
@@ -163,7 +172,7 @@ class SMCBacktester:
         df_trades = pd.DataFrame(trades)
         
         if len(df_trades) == 0:
-            print("\n⚠️  No trades executed!")
+            print("\n  No trades executed!")
             return None
         
         wins = df_trades[df_trades['pnl_pips'] > 0]
@@ -252,12 +261,12 @@ class SMCBacktester:
         # Save trade log
         trades_path = f"{output_dir}/trade_log.csv"
         results['trades'].to_csv(trades_path, index=False)
-        print(f"\n✅ Trade log saved: {trades_path}")
+        print(f"\nTrade log saved: {trades_path}")
         
         # Save equity curve
         equity_path = f"{output_dir}/equity_curve.csv"
         pd.DataFrame({'equity': results['equity_curve']}).to_csv(equity_path, index=False)
-        print(f"✅ Equity curve saved: {equity_path}")
+        print(f"Equity curve saved: {equity_path}")
         
         # Save metrics
         metrics_path = f"{output_dir}/metrics.txt"
@@ -266,7 +275,7 @@ class SMCBacktester:
             f.write("="*60 + "\n")
             for key, value in results['metrics'].items():
                 f.write(f"{key}: {value}\n")
-        print(f"✅ Metrics saved: {metrics_path}")
+        print(f"Metrics saved: {metrics_path}")
 
 
 if __name__ == "__main__":
@@ -282,7 +291,7 @@ if __name__ == "__main__":
         df['timestamp'] = pd.to_datetime(df['timestamp'])
         
         # Backtest
-        backtester = SMCBacktester(model_path=model_path, min_probability=0.65)
+        backtester = SMCBacktester(model_path=model_path, min_probability=0.4)
         results = backtester.backtest(df, out_of_sample_pct=0.3)
         
         # Save results

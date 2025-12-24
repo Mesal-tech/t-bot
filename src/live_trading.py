@@ -249,7 +249,7 @@ class MT5Connector:
 class LiveTradingBot:
     """Live trading bot using trained ML model"""
     
-    def __init__(self, model_path, pairs, tp_pips=30, sl_pips=10, min_prob=0.65, 
+    def __init__(self, model_path, pairs, tp_pips=40, sl_pips=10, min_prob=0.4, 
                  risk_percent=1.0, max_positions=5):
         """
         Args:
@@ -274,6 +274,13 @@ class LiveTradingBot:
         model_data = joblib.load(model_path)
         self.model = model_data['model']
         self.feature_columns = model_data['feature_columns']
+        self.scaler = model_data.get('scaler', None)  # Load scaler
+        
+        if self.scaler is None:
+            logger.warning("No scaler found in model! Features will NOT be standardized.")
+            logger.warning("Consider retraining the model with the updated training.py")
+        else:
+            logger.info("Scaler loaded successfully")
         
         # Feature generator
         self.feature_gen = SMCFeatureGenerator()
@@ -336,8 +343,8 @@ class LiveTradingBot:
     def process_symbol(self, symbol):
         """Process a single symbol for trading signals"""
         try:
-            # Get historical data
-            df = self.mt5.get_bars(symbol, mt5.TIMEFRAME_M15, count=1000)
+            # Get historical data (10000 bars to match training)
+            df = self.mt5.get_bars(symbol, mt5.TIMEFRAME_M15, count=10000)
             if df is None or len(df) < 100:
                 logger.warning(f"Insufficient data for {symbol}")
                 return
@@ -362,6 +369,11 @@ class LiveTradingBot:
             if np.isnan(X).any():
                 logger.warning(f"NaN in features for {symbol}, skipping")
                 return
+            
+            # Standardize features using the same scaler from training
+            if self.scaler is not None:
+                X = self.scaler.transform(X)
+                logger.debug(f"{symbol} Features scaled - Mean: {X.mean():.4f}, Std: {X.std():.4f}")
             
             # Predict
             probas = self.model.predict_proba(X)[0]
@@ -502,9 +514,9 @@ if __name__ == "__main__":
     bot = LiveTradingBot(
         model_path=MODEL_PATH,
         pairs=PAIRS,
-        tp_pips=30,
+        tp_pips=40,
         sl_pips=10,
-        min_prob=0.65,
+        min_prob=0.4,
         risk_percent=1.0,
         max_positions=5
     )

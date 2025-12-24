@@ -2,9 +2,9 @@
 
 ## Trading Parameters
 PAIRS = ['EURUSDm', 'GBPUSDm', 'USDJPYm', 'EURGBPm', 'GBPJPYm']
-TP_PIPS = 30
+TP_PIPS = 40
 SL_PIPS = 10
-MIN_PROBABILITY = 0.65
+MIN_PROBABILITY = 0.40
 
 ## Risk Management
 RISK_PERCENT = 1.0  # Risk 1% of balance per trade
