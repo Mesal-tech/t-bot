@@ -1,0 +1,93 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
+
+# Firebase Service Account Keys
+*firebase*.json
+*serviceAccountKey*.json
+firebase-key.json
+
+# MT5 Data
+*.log
+
+# Logs
+logs/
+*.log
+train_logs.txt
+
+# Model Files (optional - uncomment if models are large)
+# models/saved/*.pkl
+# models/evaluation/
+
+# Data Files (optional - uncomment to exclude large datasets)
+# data/*.csv
+# data/*.csv.gz
+# data/processed/
+# data/labels/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Temporary Files
+*.tmp
+*.bak
+*.swp
+*~
+
+# FX-Tools (if cloned in same directory)
+FX-Tools/node_modules/
+FX-Tools/.env.local
+FX-Tools/dist/
+FX-Tools/build/

@@ -34,7 +34,7 @@ class MLSMCPipeline:
     """Main pipeline orchestrator"""
     
     def __init__(self, pairs=None, tp_pips=40, sl_pips=10, min_prob=0.4, model_type='rf'):
-        self.pairs = pairs or ['EURUSD', 'GBPUSD', 'USDJPY', 'EURGBPm', 'GBPJPYm']
+        self.pairs = pairs or ['EURUSDm', 'GBPUSDm', 'USDJPYm', 'EURGBPm', 'GBPJPYm', 'XAUUSDm', 'USDCHFm', 'AUDUSDm', 'USDCADm']
         self.tp_pips = tp_pips
         self.sl_pips = sl_pips
         self.min_prob = min_prob

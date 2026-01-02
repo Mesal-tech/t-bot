@@ -89,12 +89,13 @@ def main():
         symbols_to_fetch = [
             'EURUSDm', 
             'GBPUSDm', 
-            'XAUUSDm', 
+            'USDJPYm',
+            'EURGBPm',
             'GBPJPYm', 
-            'USDJPYm', 
-            'BTCUSDm', 
-            'ETHUSDm', 
-            'EURGBPm'
+            'XAUUSDm', 
+            'USDCHFm', 
+            'AUDUSDm',
+            'USDCADm'
         ]
 
         for i, symbol in enumerate(symbols_to_fetch, 1):

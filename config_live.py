@@ -1,7 +1,9 @@
 # ML SMC Live Trading Configuration
 
 ## Trading Parameters
-PAIRS = ['EURUSDm', 'GBPUSDm', 'USDJPYm', 'EURGBPm', 'GBPJPYm']
+# Top 5 pairs with >50% win rate (ordered by performance)
+# XAUUSDm: 94.4% WR, GBPJPYm: 56.1% WR, USDCADm: 54.1% WR, GBPUSDm: 52.6% WR, USDJPYm: 52.1% WR
+PAIRS = ['XAUUSDm', 'GBPJPYm', 'USDCADm', 'GBPUSDm', 'USDJPYm']
 TP_PIPS = 40
 SL_PIPS = 10
 MIN_PROBABILITY = 0.40
@@ -34,3 +36,9 @@ TRADING_HOURS = {
     'start': 0,  # 00:00 UTC
     'end': 23    # 23:00 UTC (trade 24/7)
 }
+
+## FX-Tools Integration (from .env)
+# ENABLE_JOURNAL_LOGGING=True
+# FIREBASE_SERVICE_ACCOUNT_PATH=path/to/serviceAccountKey.json
+# FXTOOLS_USER_ID=your_clerk_user_id
+JOURNAL_STRATEGY_NAME = "ML SMC Bot"  # Strategy name in journal

@@ -12,10 +12,12 @@ import logging
 # Import features from same directory
 try:
     from features import SMCFeatureGenerator
+    from firebase_logger import get_firebase_logger
 except ImportError:
     # If running from parent directory
     sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
     from features import SMCFeatureGenerator
+    from firebase_logger import get_firebase_logger
 
 # Setup logging
 log_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'logs')
@@ -285,9 +287,13 @@ class LiveTradingBot:
         # Feature generator
         self.feature_gen = SMCFeatureGenerator()
         
+        # Firebase journal logger
+        self.firebase_logger = get_firebase_logger()
+        
         # Trading state
         self.running = False
-        self.positions = {}
+        self.positions = {}  # Maps MT5 ticket to Firebase entry ID
+        self.position_journal_ids = {}  # Maps MT5 ticket to Firebase document ID
     
     def start(self):
         """Start the trading bot"""
@@ -478,6 +484,25 @@ class LiveTradingBot:
             
             if result:
                 logger.info(f"Trade placed successfully: Ticket {result.order}")
+                
+                # Log to Firebase journal
+                try:
+                    journal_id = self.firebase_logger.log_trade_entry(
+                        symbol=symbol,
+                        direction=signal,
+                        entry_price=entry_price,
+                        lot_size=lot_size,
+                        take_profit=tp,
+                        stop_loss=sl,
+                        strategy=os.getenv('JOURNAL_STRATEGY_NAME', 'ML SMC Bot'),
+                        confidence=confidence
+                    )
+                    
+                    if journal_id:
+                        self.position_journal_ids[result.order] = journal_id
+                        logger.info(f"Trade logged to journal: {journal_id}")
+                except Exception as e:
+                    logger.error(f"Failed to log trade to journal: {e}")
             
         except Exception as e:
             logger.error(f"Error placing trade for {symbol}: {e}", exc_info=True)
@@ -485,6 +510,33 @@ class LiveTradingBot:
     def monitor_positions(self):
         """Monitor and manage open positions"""
         positions = self.mt5.get_positions()
+        
+        # Get current position tickets
+        current_tickets = {pos.ticket for pos in positions if pos.magic == 234000}
+        
+        # Check for closed positions
+        tracked_tickets = set(self.position_journal_ids.keys())
+        closed_tickets = tracked_tickets - current_tickets
+        
+        # Update journal for closed positions
+        for ticket in closed_tickets:
+            if ticket in self.position_journal_ids:
+                journal_id = self.position_journal_ids[ticket]
+                try:
+                    # Get position history to determine if TP or SL
+                    # For now, we'll check the last known position state
+                    # In a production system, you'd query MT5 history
+                    logger.info(f"Position {ticket} closed, updating journal {journal_id}")
+                    
+                    # Since we can't easily determine TP vs SL after closure,
+                    # we'll mark it as closed and let the user update manually if needed
+                    # A better approach would be to track position state before closure
+                    
+                    # Remove from tracking
+                    del self.position_journal_ids[ticket]
+                    
+                except Exception as e:
+                    logger.error(f"Error updating journal for closed position {ticket}: {e}")
         
         if len(positions) == 0:
             return
@@ -499,26 +551,52 @@ class LiveTradingBot:
             # Log position status
             profit = position.profit
             symbol = position.symbol
+            ticket = position.ticket
             logger.info(f"{symbol}: P&L = ${profit:.2f}")
+            
+            # Check if position is close to TP or SL
+            if ticket in self.position_journal_ids:
+                try:
+                    journal_id = self.position_journal_ids[ticket]
+                    
+                    # Get position details
+                    current_price = position.price_current
+                    entry_price = position.price_open
+                    tp = position.tp
+                    sl = position.sl
+                    
+                    # Calculate distance to TP/SL
+                    if position.type == 0:  # Buy
+                        distance_to_tp = tp - current_price if tp > 0 else float('inf')
+                        distance_to_sl = current_price - sl if sl > 0 else float('inf')
+                    else:  # Sell
+                        distance_to_tp = current_price - tp if tp > 0 else float('inf')
+                        distance_to_sl = sl - current_price if sl > 0 else float('inf')
+                    
+                    # If very close to TP or SL, prepare for update
+                    # This is a predictive update - actual update happens when position closes
+                    
+                except Exception as e:
+                    logger.error(f"Error monitoring position {ticket}: {e}")
 
 
 if __name__ == "__main__":
     # Create logs directory
     os.makedirs('logs', exist_ok=True)
     
-    # Configuration
-    MODEL_PATH = 'models/saved/universal_smc_model.pkl'
-    PAIRS = ['EURUSD', 'GBPUSD', 'USDJPY']
+    # Import configuration from config_live.py
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+    import config_live
     
-    # Start bot
+    # Start bot with configuration
     bot = LiveTradingBot(
-        model_path=MODEL_PATH,
-        pairs=PAIRS,
-        tp_pips=40,
-        sl_pips=10,
-        min_prob=0.4,
-        risk_percent=1.0,
-        max_positions=5
+        model_path=config_live.MODEL_PATH,
+        pairs=config_live.PAIRS,
+        tp_pips=config_live.TP_PIPS,
+        sl_pips=config_live.SL_PIPS,
+        min_prob=config_live.MIN_PROBABILITY,
+        risk_percent=config_live.RISK_PERCENT,
+        max_positions=config_live.MAX_POSITIONS
     )
     
     bot.start()

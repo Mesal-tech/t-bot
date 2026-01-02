@@ -9,7 +9,7 @@ class SMCBacktester:
     """
     
     def __init__(self, model_path=None, model=None, feature_columns=None, 
-                 min_probability=0.4, tp_pips=40, sl_pips=10):
+                 min_probability=0.65, tp_pips=30, sl_pips=10):
         """
         Args:
             model_path: Path to saved model file (or provide model directly)
@@ -36,26 +36,35 @@ class SMCBacktester:
         else:
             raise ValueError("Must provide either model_path or (model + feature_columns)")
     
-    def backtest(self, df_labeled, out_of_sample_pct=0.3):
+    def backtest(self, df_labeled, out_of_sample_pct=0.3, n_bars=3000):
         """
         Run walk-forward backtest on out-of-sample data.
         
         Args:
             df_labeled: DataFrame with features and labels
-            out_of_sample_pct: Fraction of data to use for testing (default: last 30%)
+            out_of_sample_pct: Fraction of data to use for testing (ignored if n_bars is set)
+            n_bars: Number of bars to use for testing (default: 3000, uses last n bars)
             
         Returns:
             Dictionary with trades, equity_curve, and metrics
         """
-        # Use only out-of-sample data
-        split_idx = int(len(df_labeled) * (1 - out_of_sample_pct))
-        df_test = df_labeled.iloc[split_idx:].copy().reset_index(drop=True)
+        # Use last n_bars for testing (instead of percentage-based split)
+        if n_bars is not None:
+            # Take the last n_bars
+            df_test = df_labeled.iloc[-n_bars:].copy().reset_index(drop=True)
+        else:
+            # Fallback to percentage-based split
+            split_idx = int(len(df_labeled) * (1 - out_of_sample_pct))
+            df_test = df_labeled.iloc[split_idx:].copy().reset_index(drop=True)
         
         print(f"\n{'='*60}")
         print("BACKTESTING SETUP")
         print('='*60)
         print(f"Total data:       {len(df_labeled):,} bars")
-        print(f"Test data:        {len(df_test):,} bars ({out_of_sample_pct*100:.0f}%)")
+        if n_bars is not None:
+            print(f"Test data:        {len(df_test):,} bars (last {n_bars} bars)")
+        else:
+            print(f"Test data:        {len(df_test):,} bars ({out_of_sample_pct*100:.0f}%)")
         print(f"Date range:       {df_test['timestamp'].min()} to {df_test['timestamp'].max()}")
         print(f"Min probability:  {self.min_probability}")
         print(f"TP/SL:            {self.tp_pips}/{self.sl_pips} pips")
@@ -291,7 +300,7 @@ if __name__ == "__main__":
         df['timestamp'] = pd.to_datetime(df['timestamp'])
         
         # Backtest
-        backtester = SMCBacktester(model_path=model_path, min_probability=0.4)
+        backtester = SMCBacktester(model_path=model_path, min_probability=0.65)
         results = backtester.backtest(df, out_of_sample_pct=0.3)
         
         # Save results

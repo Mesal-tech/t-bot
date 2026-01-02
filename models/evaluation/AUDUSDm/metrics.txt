@@ -1,0 +1,11 @@
+BACKTEST METRICS
+============================================================
+total_trades: 111
+win_rate: 0.2972972972972973
+avg_win: 40.0
+avg_loss: -10.0
+profit_factor: 1.6923076923076923
+total_pnl: 540
+max_drawdown: 150
+sharpe: 3.3792455813688314
+avg_confidence: 0.49289971011862926
