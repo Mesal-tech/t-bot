@@ -2498,3 +2498,651 @@ TypeError: ufunc 'isnan' not supported for the input types, and the inputs could
 2026-01-02 01:06:07,063 - INFO - Bot stopped by user
 2026-01-02 01:06:07,100 - INFO - Disconnected from MT5
 2026-01-02 01:06:07,101 - INFO - Bot stopped
+2026-01-02 01:08:33,244 - INFO - Loading model from models/saved/universal_smc_model.pkl
+2026-01-02 01:10:16,437 - INFO - Scaler loaded successfully
+2026-01-02 01:10:16,522 - INFO - Firebase Journal Logger initialized successfully
+2026-01-02 01:10:16,523 - INFO - Logging trades for user: user_2x5Vz6jtaotDPQRjYuUS4ZLrDgw
+2026-01-02 01:10:16,523 - INFO - Initializing MT5 from: C:\Program Files\MetaTrader 5\terminal64.exe
+2026-01-02 01:10:16,586 - INFO - Logging in to account 297437818 on server Exness-MT5Trial9
+2026-01-02 01:10:16,637 - INFO - Connected to MT5 successfully
+2026-01-02 01:10:16,639 - INFO - Account: 297437818
+2026-01-02 01:10:16,640 - INFO - Balance: $1013.02
+2026-01-02 01:10:16,642 - INFO - Server: Exness-MT5Trial9
+2026-01-02 01:10:16,643 - INFO - ======================================================================
+2026-01-02 01:10:16,645 - INFO - ML SMC LIVE TRADING BOT STARTED
+2026-01-02 01:10:16,646 - INFO - ======================================================================
+2026-01-02 01:10:16,648 - INFO - Pairs: XAUUSDm, GBPJPYm, USDCADm, GBPUSDm, USDJPYm
+2026-01-02 01:10:16,650 - INFO - TP/SL: 40/10 pips
+2026-01-02 01:10:16,652 - INFO - Min Probability: 0.4
+2026-01-02 01:10:16,654 - INFO - Risk per Trade: 1.0%
+2026-01-02 01:10:16,655 - INFO - Max Positions: 5
+2026-01-02 01:10:16,658 - INFO - ======================================================================
+2026-01-02 01:10:16,796 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-02 01:10:29,631 - INFO - XAUUSDm Predictions - NO_TRADE: 0.767, BUY: 0.137, SELL: 0.096
+2026-01-02 01:10:29,637 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-02 01:10:41,034 - INFO - GBPJPYm Predictions - NO_TRADE: 0.276, BUY: 0.352, SELL: 0.373
+2026-01-02 01:10:41,039 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-02 01:10:52,777 - INFO - USDCADm Predictions - NO_TRADE: 0.307, BUY: 0.353, SELL: 0.340
+2026-01-02 01:10:52,782 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-02 01:11:01,097 - INFO - GBPUSDm Predictions - NO_TRADE: 0.294, BUY: 0.332, SELL: 0.374
+2026-01-02 01:11:01,102 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-02 01:11:09,446 - INFO - USDJPYm Predictions - NO_TRADE: 0.261, BUY: 0.358, SELL: 0.382
+2026-01-02 01:11:09,447 - INFO - Monitoring 3 open positions
+2026-01-02 01:11:09,448 - INFO - USDJPYm: P&L = $4.15
+2026-01-02 01:11:09,448 - INFO - GBPUSDm: P&L = $1.70
+2026-01-02 01:11:09,448 - INFO - GBPJPYm: P&L = $8.30
+2026-01-02 01:11:09,449 - INFO - Waiting for next bar...
+2026-01-02 01:12:09,480 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-02 01:12:20,747 - INFO - XAUUSDm Predictions - NO_TRADE: 0.760, BUY: 0.137, SELL: 0.103
+2026-01-02 01:12:20,752 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-02 01:12:30,527 - INFO - GBPJPYm Predictions - NO_TRADE: 0.276, BUY: 0.351, SELL: 0.374
+2026-01-02 01:12:30,532 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-02 01:12:40,866 - INFO - USDCADm Predictions - NO_TRADE: 0.462, BUY: 0.282, SELL: 0.256
+2026-01-02 01:12:40,871 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-02 01:12:51,454 - INFO - GBPUSDm Predictions - NO_TRADE: 0.286, BUY: 0.336, SELL: 0.378
+2026-01-02 01:12:51,460 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-02 01:13:01,873 - INFO - USDJPYm Predictions - NO_TRADE: 0.261, BUY: 0.358, SELL: 0.382
+2026-01-02 01:13:01,874 - INFO - Monitoring 3 open positions
+2026-01-02 01:13:01,874 - INFO - USDJPYm: P&L = $5.74
+2026-01-02 01:13:01,875 - INFO - GBPUSDm: P&L = $2.10
+2026-01-02 01:13:01,875 - INFO - GBPJPYm: P&L = $6.89
+2026-01-02 01:13:01,876 - INFO - Waiting for next bar...
+2026-01-02 01:14:01,901 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-02 01:14:14,510 - INFO - XAUUSDm Predictions - NO_TRADE: 0.765, BUY: 0.133, SELL: 0.103
+2026-01-02 01:14:14,514 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-02 01:14:24,481 - INFO - GBPJPYm Predictions - NO_TRADE: 0.276, BUY: 0.351, SELL: 0.374
+2026-01-02 01:14:24,488 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-02 01:14:33,705 - INFO - USDCADm Predictions - NO_TRADE: 0.305, BUY: 0.353, SELL: 0.342
+2026-01-02 01:14:33,710 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-02 01:14:44,896 - INFO - GBPUSDm Predictions - NO_TRADE: 0.294, BUY: 0.332, SELL: 0.374
+2026-01-02 01:14:44,904 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-02 01:14:57,827 - INFO - USDJPYm Predictions - NO_TRADE: 0.261, BUY: 0.358, SELL: 0.382
+2026-01-02 01:14:57,828 - INFO - Monitoring 3 open positions
+2026-01-02 01:14:57,828 - INFO - USDJPYm: P&L = $6.45
+2026-01-02 01:14:57,829 - INFO - GBPUSDm: P&L = $2.30
+2026-01-02 01:14:57,829 - INFO - GBPJPYm: P&L = $6.00
+2026-01-02 01:14:57,829 - INFO - Waiting for next bar...
+2026-01-02 01:15:57,836 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-02 01:16:07,626 - INFO - XAUUSDm Predictions - NO_TRADE: 0.779, BUY: 0.133, SELL: 0.088
+2026-01-02 01:16:07,631 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-02 01:16:26,070 - INFO - GBPJPYm Predictions - NO_TRADE: 0.271, BUY: 0.348, SELL: 0.381
+2026-01-02 01:16:26,079 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-02 01:16:38,745 - INFO - USDCADm Predictions - NO_TRADE: 0.481, BUY: 0.280, SELL: 0.239
+2026-01-02 01:16:38,754 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-02 01:16:53,095 - INFO - GBPUSDm Predictions - NO_TRADE: 0.475, BUY: 0.259, SELL: 0.266
+2026-01-02 01:16:53,209 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-02 01:17:07,482 - INFO - USDJPYm Predictions - NO_TRADE: 0.419, BUY: 0.281, SELL: 0.300
+2026-01-02 01:17:07,490 - INFO - Monitoring 3 open positions
+2026-01-02 01:17:07,490 - INFO - USDJPYm: P&L = $7.78
+2026-01-02 01:17:07,491 - INFO - GBPUSDm: P&L = $2.90
+2026-01-02 01:17:07,492 - INFO - GBPJPYm: P&L = $5.17
+2026-01-02 01:17:07,493 - INFO - Waiting for next bar...
+2026-01-02 01:18:07,525 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-02 01:18:31,997 - INFO - XAUUSDm Predictions - NO_TRADE: 0.757, BUY: 0.147, SELL: 0.096
+2026-01-02 01:18:32,009 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-02 01:18:57,497 - INFO - GBPJPYm Predictions - NO_TRADE: 0.268, BUY: 0.351, SELL: 0.381
+2026-01-02 01:18:58,291 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-02 01:19:18,625 - INFO - USDCADm Predictions - NO_TRADE: 0.459, BUY: 0.296, SELL: 0.245
+2026-01-02 01:19:18,645 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-02 01:19:37,988 - INFO - GBPUSDm Predictions - NO_TRADE: 0.305, BUY: 0.329, SELL: 0.366
+2026-01-02 01:19:37,995 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-02 01:19:56,452 - INFO - USDJPYm Predictions - NO_TRADE: 0.421, BUY: 0.282, SELL: 0.297
+2026-01-02 01:19:56,454 - INFO - Monitoring 3 open positions
+2026-01-02 01:19:56,455 - INFO - USDJPYm: P&L = $8.61
+2026-01-02 01:19:56,456 - INFO - GBPUSDm: P&L = $3.40
+2026-01-02 01:19:56,457 - INFO - GBPJPYm: P&L = $4.27
+2026-01-02 01:19:56,458 - INFO - Waiting for next bar...
+2026-01-02 01:20:56,493 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-02 01:21:17,974 - INFO - XAUUSDm Predictions - NO_TRADE: 0.762, BUY: 0.142, SELL: 0.096
+2026-01-02 01:21:17,986 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-02 01:21:36,983 - INFO - GBPJPYm Predictions - NO_TRADE: 0.268, BUY: 0.352, SELL: 0.380
+2026-01-02 01:21:37,009 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-02 01:22:00,049 - INFO - USDCADm Predictions - NO_TRADE: 0.322, BUY: 0.352, SELL: 0.326
+2026-01-02 01:22:00,072 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-02 01:22:19,540 - INFO - GBPUSDm Predictions - NO_TRADE: 0.301, BUY: 0.332, SELL: 0.367
+2026-01-02 01:22:19,549 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-02 01:22:39,150 - INFO - USDJPYm Predictions - NO_TRADE: 0.419, BUY: 0.283, SELL: 0.298
+2026-01-02 01:22:39,153 - INFO - Monitoring 3 open positions
+2026-01-02 01:22:39,154 - INFO - USDJPYm: P&L = $8.80
+2026-01-02 01:22:39,163 - INFO - GBPUSDm: P&L = $6.00
+2026-01-02 01:22:39,164 - INFO - GBPJPYm: P&L = $6.38
+2026-01-02 01:22:39,166 - INFO - Waiting for next bar...
+2026-01-02 01:23:39,210 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-02 01:23:58,981 - INFO - XAUUSDm Predictions - NO_TRADE: 0.762, BUY: 0.142, SELL: 0.096
+2026-01-02 01:24:00,019 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-02 01:24:20,718 - INFO - GBPJPYm Predictions - NO_TRADE: 0.268, BUY: 0.352, SELL: 0.380
+2026-01-02 01:24:20,738 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-02 01:24:43,669 - INFO - USDCADm Predictions - NO_TRADE: 0.322, BUY: 0.352, SELL: 0.327
+2026-01-02 01:24:43,685 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-02 01:25:01,873 - INFO - GBPUSDm Predictions - NO_TRADE: 0.298, BUY: 0.334, SELL: 0.368
+2026-01-02 01:25:01,882 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-02 01:25:20,881 - INFO - USDJPYm Predictions - NO_TRADE: 0.417, BUY: 0.285, SELL: 0.297
+2026-01-02 01:25:20,883 - INFO - Monitoring 3 open positions
+2026-01-02 01:25:20,884 - INFO - USDJPYm: P&L = $8.61
+2026-01-02 01:25:20,884 - INFO - GBPUSDm: P&L = $5.40
+2026-01-02 01:25:20,885 - INFO - GBPJPYm: P&L = $6.32
+2026-01-02 01:25:20,886 - INFO - Waiting for next bar...
+2026-01-02 01:26:20,920 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-02 01:26:42,845 - INFO - XAUUSDm Predictions - NO_TRADE: 0.764, BUY: 0.141, SELL: 0.095
+2026-01-02 01:26:42,869 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-02 01:27:03,289 - INFO - GBPJPYm Predictions - NO_TRADE: 0.270, BUY: 0.351, SELL: 0.379
+2026-01-02 01:27:03,297 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-02 01:27:22,416 - INFO - USDCADm Predictions - NO_TRADE: 0.323, BUY: 0.352, SELL: 0.325
+2026-01-02 01:27:22,438 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-02 01:27:41,744 - INFO - GBPUSDm Predictions - NO_TRADE: 0.298, BUY: 0.334, SELL: 0.368
+2026-01-02 01:27:41,752 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-02 01:27:58,816 - INFO - USDJPYm Predictions - NO_TRADE: 0.429, BUY: 0.278, SELL: 0.293
+2026-01-02 01:27:58,818 - INFO - Monitoring 3 open positions
+2026-01-02 01:27:58,819 - INFO - USDJPYm: P&L = $9.51
+2026-01-02 01:27:58,820 - INFO - GBPUSDm: P&L = $5.10
+2026-01-02 01:27:58,820 - INFO - GBPJPYm: P&L = $5.04
+2026-01-02 01:27:58,821 - INFO - Waiting for next bar...
+2026-01-02 01:28:58,846 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-02 01:29:19,035 - INFO - XAUUSDm Predictions - NO_TRADE: 0.760, BUY: 0.143, SELL: 0.097
+2026-01-02 01:29:19,046 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-02 01:29:39,513 - INFO - GBPJPYm Predictions - NO_TRADE: 0.268, BUY: 0.352, SELL: 0.380
+2026-01-02 01:29:39,566 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-02 01:30:00,588 - INFO - USDCADm Predictions - NO_TRADE: 0.352, BUY: 0.338, SELL: 0.311
+2026-01-02 01:30:00,606 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-02 01:30:22,723 - INFO - GBPUSDm Predictions - NO_TRADE: 0.298, BUY: 0.334, SELL: 0.368
+2026-01-02 01:30:22,757 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-02 01:30:43,818 - INFO - USDJPYm Predictions - NO_TRADE: 0.258, BUY: 0.355, SELL: 0.387
+2026-01-02 01:30:43,820 - INFO - Monitoring 3 open positions
+2026-01-02 01:30:43,826 - INFO - USDJPYm: P&L = $7.91
+2026-01-02 01:30:43,834 - INFO - GBPUSDm: P&L = $3.40
+2026-01-02 01:30:43,846 - INFO - GBPJPYm: P&L = $5.23
+2026-01-02 01:30:43,848 - INFO - Waiting for next bar...
+2026-01-02 01:31:43,897 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-02 01:32:06,394 - INFO - XAUUSDm Predictions - NO_TRADE: 0.750, BUY: 0.133, SELL: 0.117
+2026-01-02 01:32:06,432 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-02 01:32:19,788 - INFO - GBPJPYm Predictions - NO_TRADE: 0.264, BUY: 0.351, SELL: 0.385
+2026-01-02 01:32:19,809 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-02 01:32:30,826 - INFO - USDCADm Predictions - NO_TRADE: 0.321, BUY: 0.355, SELL: 0.323
+2026-01-02 01:32:30,831 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-02 01:32:43,196 - INFO - GBPUSDm Predictions - NO_TRADE: 0.481, BUY: 0.269, SELL: 0.250
+2026-01-02 01:32:43,211 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-02 01:33:00,325 - INFO - USDJPYm Predictions - NO_TRADE: 0.257, BUY: 0.358, SELL: 0.384
+2026-01-02 01:33:00,328 - INFO - Monitoring 3 open positions
+2026-01-02 01:33:00,329 - INFO - USDJPYm: P&L = $7.34
+2026-01-02 01:33:00,330 - INFO - GBPUSDm: P&L = $2.70
+2026-01-02 01:33:00,331 - INFO - GBPJPYm: P&L = $5.74
+2026-01-02 01:33:00,332 - INFO - Waiting for next bar...
+2026-01-02 01:34:00,360 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-02 01:34:12,832 - INFO - XAUUSDm Predictions - NO_TRADE: 0.752, BUY: 0.143, SELL: 0.105
+2026-01-02 01:34:12,840 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-02 01:34:23,229 - INFO - GBPJPYm Predictions - NO_TRADE: 0.264, BUY: 0.351, SELL: 0.385
+2026-01-02 01:34:23,244 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-02 01:34:33,122 - INFO - USDCADm Predictions - NO_TRADE: 0.320, BUY: 0.357, SELL: 0.323
+2026-01-02 01:34:33,147 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-02 01:34:44,872 - INFO - GBPUSDm Predictions - NO_TRADE: 0.485, BUY: 0.267, SELL: 0.248
+2026-01-02 01:34:44,886 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-02 01:34:55,509 - INFO - USDJPYm Predictions - NO_TRADE: 0.257, BUY: 0.358, SELL: 0.384
+2026-01-02 01:34:55,510 - INFO - Monitoring 3 open positions
+2026-01-02 01:34:55,510 - INFO - USDJPYm: P&L = $6.51
+2026-01-02 01:34:55,511 - INFO - GBPUSDm: P&L = $2.70
+2026-01-02 01:34:55,511 - INFO - GBPJPYm: P&L = $6.51
+2026-01-02 01:34:55,512 - INFO - Waiting for next bar...
+2026-01-02 01:35:55,541 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-02 01:36:16,366 - INFO - XAUUSDm Predictions - NO_TRADE: 0.772, BUY: 0.129, SELL: 0.099
+2026-01-02 01:36:16,385 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-02 01:36:35,950 - INFO - GBPJPYm Predictions - NO_TRADE: 0.264, BUY: 0.351, SELL: 0.385
+2026-01-02 01:36:35,971 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-02 01:36:52,142 - INFO - USDCADm Predictions - NO_TRADE: 0.317, BUY: 0.360, SELL: 0.323
+2026-01-02 01:36:52,149 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-02 01:37:59,889 - INFO - GBPUSDm Predictions - NO_TRADE: 0.488, BUY: 0.266, SELL: 0.246
+2026-01-02 01:38:00,343 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-02 01:38:09,121 - INFO - USDJPYm Predictions - NO_TRADE: 0.260, BUY: 0.357, SELL: 0.383
+2026-01-02 01:38:09,141 - INFO - Monitoring 3 open positions
+2026-01-02 01:38:09,143 - INFO - USDJPYm: P&L = $4.09
+2026-01-02 01:38:09,144 - INFO - GBPUSDm: P&L = $0.60
+2026-01-02 01:38:09,147 - INFO - GBPJPYm: P&L = $7.47
+2026-01-02 01:38:09,147 - INFO - Waiting for next bar...
+2026-01-02 01:39:13,098 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-02 01:39:22,895 - INFO - XAUUSDm Predictions - NO_TRADE: 0.761, BUY: 0.138, SELL: 0.100
+2026-01-02 01:39:22,900 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-02 01:39:31,050 - INFO - GBPJPYm Predictions - NO_TRADE: 0.265, BUY: 0.350, SELL: 0.385
+2026-01-02 01:39:31,136 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-02 01:39:38,610 - INFO - USDCADm Predictions - NO_TRADE: 0.320, BUY: 0.355, SELL: 0.325
+2026-01-02 01:39:38,620 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-02 01:39:48,015 - INFO - GBPUSDm Predictions - NO_TRADE: 0.488, BUY: 0.267, SELL: 0.244
+2026-01-02 01:39:48,021 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-02 01:39:56,288 - INFO - USDJPYm Predictions - NO_TRADE: 0.257, BUY: 0.358, SELL: 0.384
+2026-01-02 01:39:56,289 - INFO - Monitoring 3 open positions
+2026-01-02 01:39:56,290 - INFO - USDJPYm: P&L = $4.98
+2026-01-02 01:39:56,290 - INFO - GBPUSDm: P&L = $1.60
+2026-01-02 01:39:56,290 - INFO - GBPJPYm: P&L = $7.47
+2026-01-02 01:39:56,291 - INFO - Waiting for next bar...
+2026-01-02 01:40:56,315 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-02 01:41:14,296 - INFO - XAUUSDm Predictions - NO_TRADE: 0.750, BUY: 0.142, SELL: 0.108
+2026-01-02 01:41:14,306 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-02 01:41:30,716 - INFO - GBPJPYm Predictions - NO_TRADE: 0.264, BUY: 0.351, SELL: 0.385
+2026-01-02 01:41:30,725 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-02 01:41:49,267 - INFO - USDCADm Predictions - NO_TRADE: 0.320, BUY: 0.355, SELL: 0.325
+2026-01-02 01:41:50,542 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-02 01:42:08,605 - INFO - GBPUSDm Predictions - NO_TRADE: 0.488, BUY: 0.265, SELL: 0.246
+2026-01-02 01:42:08,625 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-02 01:42:26,359 - INFO - USDJPYm Predictions - NO_TRADE: 0.257, BUY: 0.358, SELL: 0.384
+2026-01-02 01:42:26,361 - INFO - Monitoring 3 open positions
+2026-01-02 01:42:26,362 - INFO - USDJPYm: P&L = $5.81
+2026-01-02 01:42:26,363 - INFO - GBPUSDm: P&L = $2.10
+2026-01-02 01:42:26,364 - INFO - GBPJPYm: P&L = $6.57
+2026-01-02 01:42:26,365 - INFO - Waiting for next bar...
+2026-01-02 01:43:26,387 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-02 01:43:44,076 - INFO - XAUUSDm Predictions - NO_TRADE: 0.754, BUY: 0.143, SELL: 0.104
+2026-01-02 01:43:44,084 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-02 01:44:01,955 - INFO - GBPJPYm Predictions - NO_TRADE: 0.264, BUY: 0.351, SELL: 0.385
+2026-01-02 01:44:01,982 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-02 01:44:19,382 - INFO - USDCADm Predictions - NO_TRADE: 0.320, BUY: 0.355, SELL: 0.325
+2026-01-02 01:44:19,390 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-02 01:44:35,815 - INFO - GBPUSDm Predictions - NO_TRADE: 0.489, BUY: 0.265, SELL: 0.245
+2026-01-02 01:44:35,824 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-02 01:44:54,071 - INFO - USDJPYm Predictions - NO_TRADE: 0.257, BUY: 0.358, SELL: 0.384
+2026-01-02 01:44:54,073 - INFO - Monitoring 3 open positions
+2026-01-02 01:44:54,073 - INFO - USDJPYm: P&L = $5.74
+2026-01-02 01:44:54,074 - INFO - GBPUSDm: P&L = $1.70
+2026-01-02 01:44:54,075 - INFO - GBPJPYm: P&L = $6.45
+2026-01-02 01:44:54,076 - INFO - Waiting for next bar...
+2026-01-02 01:45:54,103 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-02 01:46:11,680 - INFO - XAUUSDm Predictions - NO_TRADE: 0.764, BUY: 0.137, SELL: 0.099
+2026-01-02 01:46:11,688 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-02 01:46:28,709 - INFO - GBPJPYm Predictions - NO_TRADE: 0.419, BUY: 0.283, SELL: 0.298
+2026-01-02 01:46:28,736 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-02 01:46:46,281 - INFO - USDCADm Predictions - NO_TRADE: 0.514, BUY: 0.266, SELL: 0.221
+2026-01-02 01:46:46,302 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-02 01:47:05,527 - INFO - GBPUSDm Predictions - NO_TRADE: 0.321, BUY: 0.328, SELL: 0.350
+2026-01-02 01:47:05,545 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-02 01:47:23,708 - INFO - USDJPYm Predictions - NO_TRADE: 0.257, BUY: 0.358, SELL: 0.384
+2026-01-02 01:47:23,709 - INFO - Monitoring 3 open positions
+2026-01-02 01:47:23,710 - INFO - USDJPYm: P&L = $2.81
+2026-01-02 01:47:23,712 - INFO - GBPUSDm: P&L = $0.00
+2026-01-02 01:47:23,713 - INFO - GBPJPYm: P&L = $8.43
+2026-01-02 01:47:23,714 - INFO - Waiting for next bar...
+2026-01-02 01:48:23,727 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-02 08:34:34,092 - INFO - XAUUSDm Predictions - NO_TRADE: 0.760, BUY: 0.139, SELL: 0.101
+2026-01-02 08:34:34,112 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-04 15:13:52,425 - INFO - Loading model from models/saved/universal_smc_model.pkl
+2026-01-04 15:13:56,941 - INFO - Scaler loaded successfully
+2026-01-04 15:13:57,334 - INFO - Firebase Journal Logger initialized successfully
+2026-01-04 15:13:57,335 - INFO - Logging trades for user: user_2x5Vz6jtaotDPQRjYuUS4ZLrDgw
+2026-01-04 15:13:57,335 - INFO - Loading sentence transformer model...
+2026-01-04 15:13:57,339 - INFO - Use pytorch device_name: cpu
+2026-01-04 15:13:57,339 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-04 15:14:08,021 - INFO - Signal parser initialized
+2026-01-04 15:14:08,022 - INFO - Telegram Copy Trader initialized for channels: ['@ahmedfreesignals', '@tbot_007', '@kelvin_talent', '@JamorTrading', '@Attahxfxacademy', '@firepipsignals']
+2026-01-04 15:14:08,025 - INFO - Initializing MT5 from: C:\Program Files\MetaTrader 5\terminal64.exe
+2026-01-04 15:14:21,728 - INFO - Logging in to account 297437818 on server Exness-MT5Trial9
+2026-01-04 15:14:21,736 - INFO - Connected to MT5 successfully
+2026-01-04 15:14:21,737 - INFO - Account: 297437818
+2026-01-04 15:14:21,738 - INFO - Balance: $1015.74
+2026-01-04 15:14:21,738 - INFO - Server: Exness-MT5Trial9
+2026-01-04 15:14:21,739 - INFO - ======================================================================
+2026-01-04 15:14:21,740 - INFO - ML SMC LIVE TRADING BOT STARTED
+2026-01-04 15:14:21,742 - INFO - ======================================================================
+2026-01-04 15:14:21,743 - INFO - Pairs: XAUUSDm, GBPJPYm, USDCADm, GBPUSDm, USDJPYm
+2026-01-04 15:14:21,743 - INFO - TP/SL: 40/10 pips
+2026-01-04 15:14:21,744 - INFO - Min Probability: 0.4
+2026-01-04 15:14:21,744 - INFO - Risk per Trade: 5.0%
+2026-01-04 15:14:21,745 - INFO - Max Positions: 50
+2026-01-04 15:14:21,745 - INFO - Min Prob Increase for Multi-Position: 10%
+2026-01-04 15:14:21,746 - INFO - Copy Trading: ENABLED (Risk: 10.0%, Max: 25)
+2026-01-04 15:14:21,747 - INFO - ======================================================================
+2026-01-04 15:14:21,756 - INFO - Telegram copy trader started in background
+2026-01-04 15:14:21,815 - INFO - Starting Telegram Copy Trader...
+2026-01-04 15:14:22,044 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-04 15:14:22,552 - INFO - Connecting to 149.154.167.51:443/TcpFull...
+2026-01-04 15:14:25,522 - INFO - Connection to 149.154.167.51:443/TcpFull complete!
+2026-01-04 15:14:39,043 - INFO - XAUUSDm Predictions - NO_TRADE: 0.662, BUY: 0.191, SELL: 0.148
+2026-01-04 15:14:39,047 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-04 15:14:47,812 - INFO - GBPJPYm Predictions - NO_TRADE: 0.271, BUY: 0.379, SELL: 0.350
+2026-01-04 15:14:47,945 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-04 15:14:53,826 - INFO - Phone migrated to 5
+2026-01-04 15:14:54,030 - INFO - Reconnecting to new data center 5
+2026-01-04 15:14:54,466 - INFO - Disconnecting from 149.154.167.51:443/TcpFull...
+2026-01-04 15:14:54,554 - INFO - Disconnection from 149.154.167.51:443/TcpFull complete!
+2026-01-04 15:14:54,562 - INFO - Connecting to 91.108.56.200:443/TcpFull...
+2026-01-04 15:14:56,040 - INFO - USDCADm Predictions - NO_TRADE: 0.431, BUY: 0.310, SELL: 0.259
+2026-01-04 15:14:56,044 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-04 15:14:57,479 - INFO - Connection to 91.108.56.200:443/TcpFull complete!
+2026-01-04 15:15:04,315 - INFO - GBPUSDm Predictions - NO_TRADE: 0.320, BUY: 0.341, SELL: 0.339
+2026-01-04 15:15:04,365 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-04 15:15:11,820 - INFO - USDJPYm Predictions - NO_TRADE: 0.247, BUY: 0.375, SELL: 0.378
+2026-01-04 15:15:11,821 - INFO - Monitoring 1 open positions
+2026-01-04 15:15:11,821 - INFO - USDJPYm: P&L = $5.99
+2026-01-04 15:15:11,821 - INFO - Waiting for next bar...
+2026-01-04 15:16:11,845 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-04 15:16:19,549 - INFO - XAUUSDm Predictions - NO_TRADE: 0.678, BUY: 0.185, SELL: 0.136
+2026-01-04 15:16:19,555 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-04 15:16:27,087 - INFO - GBPJPYm Predictions - NO_TRADE: 0.271, BUY: 0.379, SELL: 0.350
+2026-01-04 15:16:27,104 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-04 15:16:35,976 - INFO - USDCADm Predictions - NO_TRADE: 0.302, BUY: 0.344, SELL: 0.354
+2026-01-04 15:16:35,980 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-04 15:16:43,353 - INFO - GBPUSDm Predictions - NO_TRADE: 0.320, BUY: 0.341, SELL: 0.339
+2026-01-04 15:16:43,359 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-04 15:16:50,492 - INFO - USDJPYm Predictions - NO_TRADE: 0.247, BUY: 0.375, SELL: 0.378
+2026-01-04 15:16:50,493 - INFO - Monitoring 1 open positions
+2026-01-04 15:16:50,494 - INFO - USDJPYm: P&L = $5.99
+2026-01-04 15:16:50,494 - INFO - Waiting for next bar...
+2026-01-04 15:17:50,515 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-04 15:17:59,685 - INFO - Bot stopped by user
+2026-01-04 15:17:59,685 - ERROR - Telegram copy trader error: 
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\t-bot\src\live_trading.py", line 365, in _run_telegram_copy_trader
+    self.stop()
+    ~~~~~~~~~^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\HP\Documents\t-bot\src\telegram_copy_trader.py", line 83, in start
+    await self.client.start()
+  File "C:\Users\HP\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\auth.py", line 189, in _start
+    value = code_callback()
+  File "C:\Users\HP\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\auth.py", line 102, in code_callback
+    return input('Please enter the code you received: ')
+EOFError
+2026-01-04 15:17:59,688 - INFO - Stopping Telegram Copy Trader...
+2026-01-04 15:18:00,151 - INFO - Disconnecting from 91.108.56.200:443/TcpFull...
+2026-01-04 15:18:00,153 - INFO - <class 'RuntimeError'> during disconnect: Task <Task pending name='Task-15' coro=<TelegramBaseClient._disconnect_coro() running at C:\Users\HP\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\telegrambaseclient.py:720> cb=[shield.<locals>._inner_done_callback() at C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py:958]> got Future <Future pending> attached to a different loop
+2026-01-04 15:18:00,154 - INFO - Disconnection from 91.108.56.200:443/TcpFull complete!
+2026-01-04 15:18:00,188 - INFO - Telegram Copy Trader stopped
+2026-01-04 15:18:00,191 - INFO - Disconnected from MT5
+2026-01-04 15:18:00,192 - INFO - Bot stopped
+2026-01-04 15:18:00,455 - ERROR - Task was destroyed but it is pending!
+task: <Task cancelling name='Task-8' coro=<Connection._send_loop() running at C:\Users\HP\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\network\connection\connection.py:322> wait_for=<Future cancelled>>
+2026-01-04 15:18:00,456 - ERROR - Task was destroyed but it is pending!
+task: <Task cancelling name='Task-9' coro=<Connection._recv_loop() running at C:\Users\HP\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\network\connection\connection.py:341> wait_for=<Future cancelled>>
+2026-01-04 15:18:00,457 - ERROR - Task was destroyed but it is pending!
+task: <Task cancelling name='Task-10' coro=<MTProtoSender._send_loop() running at C:\Users\HP\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\network\mtprotosender.py:470> wait_for=<Future cancelled>>
+2026-01-04 15:18:00,457 - ERROR - Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<MTProtoSender._recv_loop() running at C:\Users\HP\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\network\mtprotosender.py:513> wait_for=<Future cancelled>>
+2026-01-04 15:18:00,458 - ERROR - Task was destroyed but it is pending!
+task: <Task cancelling name='Task-12' coro=<UpdateMethods._update_loop() running at C:\Users\HP\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\updates.py:454> wait_for=<Future cancelled>>
+2026-01-04 15:18:00,458 - ERROR - Task was destroyed but it is pending!
+task: <Task cancelling name='Task-13' coro=<UpdateMethods._keepalive_loop() running at C:\Users\HP\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\updates.py:490> wait_for=<Future cancelled>>
+2026-01-04 15:19:21,322 - INFO - Loading model from models/saved/universal_smc_model.pkl
+2026-01-04 15:19:21,558 - INFO - Scaler loaded successfully
+2026-01-04 15:19:21,613 - INFO - Firebase Journal Logger initialized successfully
+2026-01-04 15:19:21,614 - INFO - Logging trades for user: user_2x5Vz6jtaotDPQRjYuUS4ZLrDgw
+2026-01-04 15:19:21,614 - INFO - Loading sentence transformer model...
+2026-01-04 15:19:21,616 - INFO - Use pytorch device_name: cpu
+2026-01-04 15:19:21,617 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-04 15:19:30,162 - INFO - Signal parser initialized
+2026-01-04 15:19:30,162 - INFO - Telegram Copy Trader initialized for channels: ['@ahmedfreesignals', '@tbot_007', '@kelvin_talent', '@JamorTrading', '@Attahxfxacademy', '@firepipsignals']
+2026-01-04 15:19:30,191 - INFO - Initializing MT5 from: C:\Program Files\MetaTrader 5\terminal64.exe
+2026-01-04 15:19:30,192 - INFO - Logging in to account 297437818 on server Exness-MT5Trial9
+2026-01-04 15:19:30,193 - INFO - Connected to MT5 successfully
+2026-01-04 15:19:30,194 - INFO - Account: 297437818
+2026-01-04 15:19:30,194 - INFO - Balance: $1015.74
+2026-01-04 15:19:30,194 - INFO - Server: Exness-MT5Trial9
+2026-01-04 15:19:30,195 - INFO - ======================================================================
+2026-01-04 15:19:30,195 - INFO - ML SMC LIVE TRADING BOT STARTED
+2026-01-04 15:19:30,196 - INFO - ======================================================================
+2026-01-04 15:19:30,198 - INFO - Pairs: XAUUSDm, GBPJPYm, USDCADm, GBPUSDm, USDJPYm
+2026-01-04 15:19:30,199 - INFO - TP/SL: 40/10 pips
+2026-01-04 15:19:30,199 - INFO - Min Probability: 0.4
+2026-01-04 15:19:30,199 - INFO - Risk per Trade: 5.0%
+2026-01-04 15:19:30,200 - INFO - Max Positions: 50
+2026-01-04 15:19:30,200 - INFO - Min Prob Increase for Multi-Position: 10%
+2026-01-04 15:19:30,201 - INFO - Copy Trading: ENABLED (Risk: 10.0%, Max: 25)
+2026-01-04 15:19:30,201 - INFO - ======================================================================
+2026-01-04 15:19:30,202 - INFO - Starting Telegram copy trader (please complete authentication)...
+2026-01-04 15:19:30,203 - INFO - Waiting for Telegram authentication to complete...
+2026-01-04 15:19:30,205 - INFO - Starting Telegram Copy Trader...
+2026-01-04 15:19:30,213 - INFO - Connecting to 91.108.56.200:443/TcpFull...
+2026-01-04 15:19:30,516 - INFO - Connection to 91.108.56.200:443/TcpFull complete!
+2026-01-04 15:19:35,205 - INFO - Telegram copy trader running in background
+2026-01-04 15:19:35,208 - INFO - Starting ML SMC market monitoring...
+2026-01-04 15:19:35,238 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-04 15:19:42,527 - INFO - XAUUSDm Predictions - NO_TRADE: 0.678, BUY: 0.185, SELL: 0.136
+2026-01-04 15:19:42,532 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-04 15:19:42,994 - INFO - Phone migrated to 4
+2026-01-04 15:19:43,412 - INFO - Reconnecting to new data center 4
+2026-01-04 15:19:45,830 - INFO - Disconnecting from 91.108.56.200:443/TcpFull...
+2026-01-04 15:19:45,865 - INFO - Disconnection from 91.108.56.200:443/TcpFull complete!
+2026-01-04 15:19:45,877 - INFO - Connecting to 149.154.167.92:443/TcpFull...
+2026-01-04 15:19:48,825 - INFO - Connection to 149.154.167.92:443/TcpFull complete!
+2026-01-04 15:19:51,270 - INFO - GBPJPYm Predictions - NO_TRADE: 0.271, BUY: 0.379, SELL: 0.350
+2026-01-04 15:19:51,276 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-04 15:19:58,380 - INFO - USDCADm Predictions - NO_TRADE: 0.302, BUY: 0.344, SELL: 0.354
+2026-01-04 15:19:58,385 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-04 15:20:05,715 - INFO - GBPUSDm Predictions - NO_TRADE: 0.320, BUY: 0.341, SELL: 0.339
+2026-01-04 15:20:05,719 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-04 15:20:13,006 - INFO - USDJPYm Predictions - NO_TRADE: 0.247, BUY: 0.375, SELL: 0.378
+2026-01-04 15:20:13,007 - INFO - Monitoring 1 open positions
+2026-01-04 15:20:13,007 - INFO - USDJPYm: P&L = $5.99
+2026-01-04 15:20:13,007 - INFO - Waiting for next bar...
+2026-01-04 15:21:13,032 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-04 15:21:20,116 - INFO - XAUUSDm Predictions - NO_TRADE: 0.678, BUY: 0.185, SELL: 0.136
+2026-01-04 15:21:20,121 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-04 15:21:26,904 - INFO - GBPJPYm Predictions - NO_TRADE: 0.271, BUY: 0.379, SELL: 0.350
+2026-01-04 15:21:26,907 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-04 15:21:32,870 - INFO - Telegram client started
+2026-01-04 15:21:33,197 - INFO - Monitoring channel: XM Trading Academy (@ahmedfreesignals)
+2026-01-04 15:21:33,532 - INFO - Monitoring channel: T-bot (@tbot_007)
+2026-01-04 15:21:33,922 - INFO - Monitoring channel: TRADING ARENA (@kelvin_talent)
+2026-01-04 15:21:35,108 - INFO - Monitoring channel: Attahx Forex Academy (@Attahxfxacademy)
+2026-01-04 15:21:35,329 - INFO - Monitoring channel: FirePips Forex Academy (Jeffforex) (@firepipsignals)
+2026-01-04 15:21:35,351 - INFO - Telegram Copy Trader is running
+2026-01-04 15:21:35,638 - INFO - USDCADm Predictions - NO_TRADE: 0.302, BUY: 0.344, SELL: 0.354
+2026-01-04 15:21:35,643 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-04 15:21:43,868 - INFO - GBPUSDm Predictions - NO_TRADE: 0.320, BUY: 0.341, SELL: 0.339
+2026-01-04 15:21:43,872 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-04 15:21:52,737 - INFO - USDJPYm Predictions - NO_TRADE: 0.247, BUY: 0.375, SELL: 0.378
+2026-01-04 15:21:52,738 - INFO - Monitoring 1 open positions
+2026-01-04 15:21:52,739 - INFO - USDJPYm: P&L = $5.99
+2026-01-04 15:21:52,739 - INFO - Waiting for next bar...
+2026-01-04 15:22:52,759 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-04 15:23:02,010 - INFO - XAUUSDm Predictions - NO_TRADE: 0.678, BUY: 0.185, SELL: 0.136
+2026-01-04 15:23:02,016 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-04 15:23:09,700 - INFO - GBPJPYm Predictions - NO_TRADE: 0.271, BUY: 0.379, SELL: 0.350
+2026-01-04 15:23:09,704 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-04 15:23:17,856 - INFO - USDCADm Predictions - NO_TRADE: 0.302, BUY: 0.344, SELL: 0.354
+2026-01-04 15:23:17,863 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-04 15:23:24,703 - INFO - GBPUSDm Predictions - NO_TRADE: 0.320, BUY: 0.341, SELL: 0.339
+2026-01-04 15:23:24,707 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-04 15:23:31,445 - INFO - USDJPYm Predictions - NO_TRADE: 0.247, BUY: 0.375, SELL: 0.378
+2026-01-04 15:23:31,446 - INFO - Monitoring 1 open positions
+2026-01-04 15:23:31,446 - INFO - USDJPYm: P&L = $5.99
+2026-01-04 15:23:31,447 - INFO - Waiting for next bar...
+2026-01-04 15:24:31,474 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-04 15:24:38,698 - INFO - XAUUSDm Predictions - NO_TRADE: 0.678, BUY: 0.185, SELL: 0.136
+2026-01-04 15:24:38,702 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-04 15:24:44,028 - INFO - New message from T-bot: XAUUSD
+
+BUY
+
+SL: 4433.27
+
+TP: LEAVE IT OPEN...
+2026-01-04 15:24:45,987 - INFO - Parsed CLOSE signal: {'type': 'CLOSE', 'symbol': 'XAUUSD', 'reply_to_id': None, 'raw_message': 'XAUUSD\n\nBUY\n\nSL: 4433.27\n\nTP: LEAVE IT OPEN'}
+2026-01-04 15:24:45,988 - INFO - Closing all XAUUSD positions
+2026-01-04 15:24:46,113 - INFO - GBPJPYm Predictions - NO_TRADE: 0.271, BUY: 0.379, SELL: 0.350
+2026-01-04 15:24:46,117 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-04 15:24:55,296 - INFO - USDCADm Predictions - NO_TRADE: 0.302, BUY: 0.344, SELL: 0.354
+2026-01-04 15:24:55,301 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-04 15:25:03,617 - INFO - GBPUSDm Predictions - NO_TRADE: 0.320, BUY: 0.341, SELL: 0.339
+2026-01-04 15:25:03,626 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-04 15:25:11,456 - INFO - USDJPYm Predictions - NO_TRADE: 0.247, BUY: 0.375, SELL: 0.378
+2026-01-04 15:25:11,457 - INFO - Monitoring 1 open positions
+2026-01-04 15:25:11,457 - INFO - USDJPYm: P&L = $5.99
+2026-01-04 15:25:11,458 - INFO - Waiting for next bar...
+2026-01-04 15:26:11,466 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-04 15:26:18,894 - INFO - XAUUSDm Predictions - NO_TRADE: 0.678, BUY: 0.185, SELL: 0.136
+2026-01-04 15:26:18,897 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-04 15:26:26,041 - INFO - GBPJPYm Predictions - NO_TRADE: 0.271, BUY: 0.379, SELL: 0.350
+2026-01-04 15:26:26,047 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-04 15:26:32,863 - INFO - USDCADm Predictions - NO_TRADE: 0.302, BUY: 0.344, SELL: 0.354
+2026-01-04 15:26:32,867 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-04 15:26:40,703 - INFO - GBPUSDm Predictions - NO_TRADE: 0.320, BUY: 0.341, SELL: 0.339
+2026-01-04 15:26:40,708 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-04 15:26:47,501 - INFO - New message from T-bot: BUY BTCUSD...
+2026-01-04 15:26:47,901 - INFO - USDJPYm Predictions - NO_TRADE: 0.247, BUY: 0.375, SELL: 0.378
+2026-01-04 15:26:48,564 - INFO - Monitoring 1 open positions
+2026-01-04 15:26:48,565 - INFO - USDJPYm: P&L = $5.99
+2026-01-04 15:26:48,566 - INFO - Waiting for next bar...
+2026-01-04 15:26:48,740 - INFO - Parsed SELL signal for BTCUSD: {'type': 'ENTRY', 'direction': 'SELL', 'symbol': 'BTCUSD', 'entry_price': None, 'order_type': 'MARKET', 'tp_levels': [], 'sl': None, 'reply_to_id': None, 'raw_message': 'BUY BTCUSD'}
+2026-01-04 15:26:48,740 - INFO - Processing SELL signal for BTCUSD
+2026-01-04 15:26:48,741 - INFO - Normalized symbol: BTCUSDm
+2026-01-04 15:26:49,703 - INFO - Placing SELL order: BTCUSDm 0.01 lots, TP: None, SL: None
+2026-01-04 15:26:49,733 - ERROR - Order failed: 10027 - AutoTrading disabled by client
+2026-01-04 15:27:16,429 - INFO - New message from T-bot: XAUUSD
+
+BUY
+
+SL: 4433.27
+
+TP: LEAVE IT OPEN...
+2026-01-04 15:27:16,519 - INFO - Parsed CLOSE signal: {'type': 'CLOSE', 'symbol': 'XAUUSD', 'reply_to_id': None, 'raw_message': 'XAUUSD\n\nBUY\n\nSL: 4433.27\n\nTP: LEAVE IT OPEN'}
+2026-01-04 15:27:16,519 - INFO - Closing all XAUUSD positions
+2026-01-04 15:27:35,096 - INFO - New message from T-bot: XAUUSD
+
+BUY...
+2026-01-04 15:27:35,147 - INFO - Parsed BUY signal for XAUUSD: {'type': 'ENTRY', 'direction': 'BUY', 'symbol': 'XAUUSD', 'entry_price': None, 'order_type': 'MARKET', 'tp_levels': [], 'sl': None, 'reply_to_id': None, 'raw_message': 'XAUUSD\n\nBUY'}
+2026-01-04 15:27:35,148 - INFO - Processing BUY signal for XAUUSD
+2026-01-04 15:27:35,149 - INFO - Normalized symbol: XAUUSDm
+2026-01-04 15:27:35,150 - INFO - Placing BUY order: XAUUSDm 0.01 lots, TP: None, SL: None
+2026-01-04 15:27:35,415 - ERROR - Order failed: 10018 - Market closed
+2026-01-04 15:27:44,863 - INFO - New message from T-bot: BUY BTCUSD...
+2026-01-04 15:27:44,924 - INFO - Parsed SELL signal for BTCUSD: {'type': 'ENTRY', 'direction': 'SELL', 'symbol': 'BTCUSD', 'entry_price': None, 'order_type': 'MARKET', 'tp_levels': [], 'sl': None, 'reply_to_id': None, 'raw_message': 'BUY BTCUSD'}
+2026-01-04 15:27:44,926 - INFO - Processing SELL signal for BTCUSD
+2026-01-04 15:27:44,927 - INFO - Normalized symbol: BTCUSDm
+2026-01-04 15:27:44,929 - INFO - Placing SELL order: BTCUSDm 0.01 lots, TP: None, SL: None
+2026-01-04 15:27:45,176 - INFO - Order placed: BTCUSDm 1 0.01 lots @ 91224.06
+2026-01-04 15:27:45,176 - INFO - Executed market order, ticket: 2138380659
+2026-01-04 15:27:48,584 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-04 15:27:56,191 - INFO - XAUUSDm Predictions - NO_TRADE: 0.678, BUY: 0.185, SELL: 0.136
+2026-01-04 15:27:56,196 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-04 15:28:03,974 - INFO - GBPJPYm Predictions - NO_TRADE: 0.271, BUY: 0.379, SELL: 0.350
+2026-01-04 15:28:03,979 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-04 15:28:11,524 - INFO - USDCADm Predictions - NO_TRADE: 0.302, BUY: 0.344, SELL: 0.354
+2026-01-04 15:28:11,530 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-04 15:28:19,639 - INFO - GBPUSDm Predictions - NO_TRADE: 0.320, BUY: 0.341, SELL: 0.339
+2026-01-04 15:28:19,645 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-04 15:28:26,794 - INFO - USDJPYm Predictions - NO_TRADE: 0.247, BUY: 0.375, SELL: 0.378
+2026-01-04 15:28:26,795 - INFO - Monitoring 2 open positions
+2026-01-04 15:28:26,796 - INFO - USDJPYm: P&L = $5.99
+2026-01-04 15:28:26,797 - INFO - BTCUSDm: P&L = $-0.08
+2026-01-04 15:28:26,797 - INFO - Waiting for next bar...
+2026-01-04 15:29:26,808 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-04 15:29:35,624 - INFO - XAUUSDm Predictions - NO_TRADE: 0.678, BUY: 0.185, SELL: 0.136
+2026-01-04 15:29:35,630 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-04 15:29:44,531 - INFO - GBPJPYm Predictions - NO_TRADE: 0.271, BUY: 0.379, SELL: 0.350
+2026-01-04 15:29:44,535 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-04 15:29:52,683 - INFO - USDCADm Predictions - NO_TRADE: 0.302, BUY: 0.344, SELL: 0.354
+2026-01-04 15:29:52,689 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-04 15:30:01,205 - INFO - GBPUSDm Predictions - NO_TRADE: 0.320, BUY: 0.341, SELL: 0.339
+2026-01-04 15:30:01,209 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-04 15:30:09,568 - INFO - USDJPYm Predictions - NO_TRADE: 0.247, BUY: 0.375, SELL: 0.378
+2026-01-04 15:30:09,569 - INFO - Monitoring 1 open positions
+2026-01-04 15:30:09,570 - INFO - USDJPYm: P&L = $5.99
+2026-01-04 15:30:09,571 - INFO - Waiting for next bar...
+2026-01-04 15:30:17,699 - INFO - Bot stopped by user
+2026-01-04 15:30:17,711 - INFO - Stopping Telegram Copy Trader...
+2026-01-04 15:30:17,996 - INFO - Disconnecting from 149.154.167.92:443/TcpFull...
+2026-01-04 15:30:17,998 - INFO - Disconnection from 149.154.167.92:443/TcpFull complete!
+2026-01-04 15:30:18,028 - INFO - Telegram Copy Trader stopped
+2026-01-04 15:30:18,030 - INFO - Disconnected from MT5
+2026-01-04 15:30:18,030 - INFO - Bot stopped
+2026-01-04 15:31:10,089 - INFO - Loading model from models/saved/universal_smc_model.pkl
+2026-01-04 15:31:10,969 - INFO - Scaler loaded successfully
+2026-01-04 15:31:11,025 - INFO - Firebase Journal Logger initialized successfully
+2026-01-04 15:31:11,026 - INFO - Logging trades for user: user_2x5Vz6jtaotDPQRjYuUS4ZLrDgw
+2026-01-04 15:31:11,026 - INFO - Loading sentence transformer model...
+2026-01-04 15:31:11,028 - INFO - Use pytorch device_name: cpu
+2026-01-04 15:31:11,028 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-04 15:31:22,078 - INFO - Signal parser initialized
+2026-01-04 15:31:22,078 - INFO - Telegram Copy Trader initialized for channels: ['@ahmedfreesignals', '@tbot_007', '@kelvin_talent', '@JamorTrading', '@Attahxfxacademy', '@firepipsignals']
+2026-01-04 15:31:22,078 - INFO - Initializing MT5 from: C:\Program Files\MetaTrader 5\terminal64.exe
+2026-01-04 15:31:22,080 - INFO - Logging in to account 297437818 on server Exness-MT5Trial9
+2026-01-04 15:31:22,081 - INFO - Connected to MT5 successfully
+2026-01-04 15:31:22,081 - INFO - Account: 297437818
+2026-01-04 15:31:22,081 - INFO - Balance: $1015.83
+2026-01-04 15:31:22,082 - INFO - Server: Exness-MT5Trial9
+2026-01-04 15:31:22,082 - INFO - ======================================================================
+2026-01-04 15:31:22,082 - INFO - ML SMC LIVE TRADING BOT STARTED
+2026-01-04 15:31:22,082 - INFO - ======================================================================
+2026-01-04 15:31:22,082 - INFO - Pairs: XAUUSDm, GBPJPYm, USDCADm, GBPUSDm, USDJPYm
+2026-01-04 15:31:22,082 - INFO - TP/SL: 40/10 pips
+2026-01-04 15:31:22,082 - INFO - Min Probability: 0.4
+2026-01-04 15:31:22,082 - INFO - Risk per Trade: 5.0%
+2026-01-04 15:31:22,082 - INFO - Max Positions: 50
+2026-01-04 15:31:22,082 - INFO - Min Prob Increase for Multi-Position: 10%
+2026-01-04 15:31:22,082 - INFO - Copy Trading: ENABLED (Risk: 10.0%, Max: 25)
+2026-01-04 15:31:22,082 - INFO - ======================================================================
+2026-01-04 15:31:22,082 - INFO - Starting Telegram copy trader (please complete authentication)...
+2026-01-04 15:31:22,084 - INFO - Waiting 5 minutes for Telegram authentication to complete...
+2026-01-04 15:31:22,084 - INFO - Please enter your phone number and verification code when prompted.
+2026-01-04 15:31:22,085 - INFO - Starting Telegram Copy Trader...
+2026-01-04 15:31:22,092 - INFO - Connecting to 149.154.167.92:443/TcpFull...
+2026-01-04 15:31:22,342 - INFO - Connection to 149.154.167.92:443/TcpFull complete!
+2026-01-04 15:31:24,700 - INFO - Telegram client started
+2026-01-04 15:31:24,904 - INFO - Monitoring channel: XM Trading Academy (@ahmedfreesignals)
+2026-01-04 15:31:25,115 - INFO - Monitoring channel: T-bot (@tbot_007)
+2026-01-04 15:31:25,316 - INFO - Monitoring channel: TRADING ARENA (@kelvin_talent)
+2026-01-04 15:31:25,932 - INFO - Monitoring channel: Attahx Forex Academy (@Attahxfxacademy)
+2026-01-04 15:31:27,475 - INFO - Monitoring channel: FirePips Forex Academy (Jeffforex) (@firepipsignals)
+2026-01-04 15:31:27,876 - INFO - Telegram Copy Trader is running
+2026-01-04 15:33:03,667 - INFO - Bot stopped by user
+2026-01-04 15:33:03,673 - INFO - Stopping Telegram Copy Trader...
+2026-01-04 15:33:03,674 - INFO - Disconnecting from 149.154.167.92:443/TcpFull...
+2026-01-04 15:33:03,677 - INFO - <class 'RuntimeError'> during disconnect: Task <Task pending name='Task-9' coro=<TelegramBaseClient._disconnect_coro() running at C:\Users\HP\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\telegrambaseclient.py:720> cb=[shield.<locals>._inner_done_callback() at C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py:958]> got Future <Future pending> attached to a different loop
+2026-01-04 15:33:03,679 - INFO - Disconnection from 149.154.167.92:443/TcpFull complete!
+2026-01-04 15:33:03,684 - INFO - Not disconnecting (already have no connection)
+2026-01-04 15:34:27,733 - INFO - Loading model from models/saved/universal_smc_model.pkl
+2026-01-04 15:34:28,304 - INFO - Scaler loaded successfully
+2026-01-04 15:34:28,354 - INFO - Firebase Journal Logger initialized successfully
+2026-01-04 15:34:28,354 - INFO - Logging trades for user: user_2x5Vz6jtaotDPQRjYuUS4ZLrDgw
+2026-01-04 15:34:28,354 - INFO - Loading sentence transformer model...
+2026-01-04 15:34:28,356 - INFO - Use pytorch device_name: cpu
+2026-01-04 15:34:28,357 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-04 15:34:37,642 - INFO - Signal parser initialized
+2026-01-04 15:34:37,642 - INFO - Telegram Copy Trader initialized for channels: ['@ahmedfreesignals', '@tbot_007', '@kelvin_talent', '@JamorTrading', '@Attahxfxacademy', '@firepipsignals']
+2026-01-04 15:34:37,642 - INFO - Initializing MT5 from: C:\Program Files\MetaTrader 5\terminal64.exe
+2026-01-04 15:34:37,643 - INFO - Logging in to account 297437818 on server Exness-MT5Trial9
+2026-01-04 15:34:37,644 - INFO - Connected to MT5 successfully
+2026-01-04 15:34:37,644 - INFO - Account: 297437818
+2026-01-04 15:34:37,644 - INFO - Balance: $1015.83
+2026-01-04 15:34:37,644 - INFO - Server: Exness-MT5Trial9
+2026-01-04 15:34:37,644 - INFO - ======================================================================
+2026-01-04 15:34:37,644 - INFO - ML SMC LIVE TRADING BOT STARTED
+2026-01-04 15:34:37,645 - INFO - ======================================================================
+2026-01-04 15:34:37,645 - INFO - Pairs: XAUUSDm, GBPJPYm, USDCADm, GBPUSDm, USDJPYm
+2026-01-04 15:34:37,645 - INFO - TP/SL: 40/10 pips
+2026-01-04 15:34:37,645 - INFO - Min Probability: 0.4
+2026-01-04 15:34:37,645 - INFO - Risk per Trade: 5.0%
+2026-01-04 15:34:37,645 - INFO - Max Positions: 50
+2026-01-04 15:34:37,645 - INFO - Min Prob Increase for Multi-Position: 10%
+2026-01-04 15:34:37,645 - INFO - Copy Trading: ENABLED (Risk: 10.0%, Max: 25)
+2026-01-04 15:34:37,645 - INFO - ======================================================================
+2026-01-04 15:34:37,646 - INFO - Starting Telegram copy trader (please complete authentication)...
+2026-01-04 15:34:37,646 - INFO - Waiting 5 minutes for Telegram authentication to complete...
+2026-01-04 15:34:37,647 - INFO - Please enter your phone number and verification code when prompted.
+2026-01-04 15:34:37,648 - INFO - Starting Telegram Copy Trader...
+2026-01-04 15:34:37,652 - INFO - Connecting to 149.154.167.92:443/TcpFull...
+2026-01-04 15:34:37,805 - INFO - Connection to 149.154.167.92:443/TcpFull complete!
+2026-01-04 15:34:39,775 - INFO - Telegram client started
+2026-01-04 15:34:39,971 - INFO - Monitoring channel: XM Trading Academy (@ahmedfreesignals)
+2026-01-04 15:34:40,160 - INFO - Monitoring channel: T-bot (@tbot_007)
+2026-01-04 15:34:40,383 - INFO - Monitoring channel: TRADING ARENA (@kelvin_talent)
+2026-01-04 15:34:40,585 - INFO - Monitoring channel: FarmingPips  (@JamorTrading)
+2026-01-04 15:34:40,804 - INFO - Monitoring channel: Attahx Forex Academy (@Attahxfxacademy)
+2026-01-04 15:34:41,103 - INFO - Monitoring channel: FirePips Forex Academy (Jeffforex) (@firepipsignals)
+2026-01-04 15:34:41,104 - INFO - Telegram Copy Trader is running
+2026-01-04 15:39:37,647 - INFO - Telegram copy trader running in background
+2026-01-04 15:39:37,648 - INFO - Starting ML SMC market monitoring...
+2026-01-04 15:39:37,660 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-04 15:39:47,241 - INFO - XAUUSDm Predictions - NO_TRADE: 0.678, BUY: 0.185, SELL: 0.136
+2026-01-04 15:39:47,247 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-04 15:39:52,023 - WARNING - Server closed the connection: [WinError 64] The specified network name is no longer available
+2026-01-04 15:39:52,056 - INFO - Connection closed while receiving data: [WinError 64] The specified network name is no longer available
+2026-01-04 15:39:52,086 - INFO - Closing current connection to begin reconnect...
+2026-01-04 15:39:52,092 - INFO - <class 'ConnectionResetError'> during disconnect: [WinError 64] The specified network name is no longer available
+2026-01-04 15:39:52,108 - INFO - Connecting to 149.154.167.92:443/TcpFull...
+2026-01-04 15:39:52,357 - INFO - Connection to 149.154.167.92:443/TcpFull complete!
+2026-01-04 15:39:54,907 - INFO - GBPJPYm Predictions - NO_TRADE: 0.271, BUY: 0.379, SELL: 0.350
+2026-01-04 15:39:54,913 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-04 15:39:58,523 - INFO - Bot stopped by user
+2026-01-04 15:39:58,525 - INFO - Stopping Telegram Copy Trader...
+2026-01-04 15:39:58,525 - INFO - Disconnecting from 149.154.167.92:443/TcpFull...
+2026-01-04 15:39:58,525 - INFO - <class 'RuntimeError'> during disconnect: Task <Task pending name='Task-15' coro=<TelegramBaseClient._disconnect_coro() running at C:\Users\HP\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\telegrambaseclient.py:720> cb=[shield.<locals>._inner_done_callback() at C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py:958]> got Future <Future pending> attached to a different loop
+2026-01-04 15:39:58,526 - INFO - Disconnection from 149.154.167.92:443/TcpFull complete!
+2026-01-04 15:39:58,526 - INFO - Not disconnecting (already have no connection)

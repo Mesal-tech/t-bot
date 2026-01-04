@@ -39,9 +39,9 @@ venv.bak/
 .DS_Store
 
 # Environment Variables & Secrets
-.env
-.env.local
-.env.*.local
+#.env
+#.env.local
+#.env.*.local
 
 # Firebase Service Account Keys
 *firebase*.json

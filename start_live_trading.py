@@ -72,6 +72,27 @@ def main():
     )
     
     parser.add_argument(
+        '--min-prob-increase',
+        type=float,
+        default=config.MIN_PROB_INCREASE,
+        help='Minimum probability increase for additional positions on same pair'
+    )
+    
+    parser.add_argument(
+        '--enable-copy-trading',
+        action='store_true',
+        default=config.ENABLE_COPY_TRADING,
+        help='Enable Telegram copy trading'
+    )
+    
+    parser.add_argument(
+        '--copy-risk-percent',
+        type=float,
+        default=config.COPY_TRADING_RISK_PERCENT,
+        help='Risk per copy trade as % of balance'
+    )
+    
+    parser.add_argument(
         '--dry-run',
         action='store_true',
         help='Test mode - no real orders'
@@ -92,6 +113,11 @@ def main():
     print(f"Min Probability: {args.min_prob}")
     print(f"Risk per Trade: {args.risk_percent}%")
     print(f"Max Positions: {args.max_positions}")
+    print(f"Min Prob Increase for Multi-Position: {args.min_prob_increase*100:.0f}%")
+    if args.enable_copy_trading:
+        print(f"Copy Trading: ENABLED (Risk: {args.copy_risk_percent}%)")
+    else:
+        print("Copy Trading: DISABLED")
     print(f"Mode: {'DRY RUN (Testing)' if args.dry_run else 'LIVE TRADING'}")
     print("="*70)
     
@@ -115,7 +141,11 @@ def main():
         sl_pips=args.sl_pips,
         min_prob=args.min_prob,
         risk_percent=args.risk_percent,
-        max_positions=args.max_positions
+        max_positions=args.max_positions,
+        min_prob_increase=args.min_prob_increase,
+        enable_copy_trading=args.enable_copy_trading,
+        copy_risk_percent=args.copy_risk_percent,
+        copy_max_positions=config.COPY_TRADING_MAX_POSITIONS
     )
     
     # Start trading
