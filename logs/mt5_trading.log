@@ -3186,3 +3186,297 @@ BUY...
 2026-01-04 15:44:13,696 - INFO - Monitoring channel: Attahx Forex Academy (@Attahxfxacademy)
 2026-01-04 15:44:14,507 - INFO - Monitoring channel: FirePips Forex Academy (Jeffforex) (@firepipsignals)
 2026-01-04 15:44:14,508 - INFO - Telegram Copy Trader is running
+2026-01-04 15:49:09,647 - INFO - Telegram copy trader running in background
+2026-01-04 15:49:09,647 - INFO - Starting ML SMC market monitoring...
+2026-01-04 15:49:10,727 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-04 15:49:29,906 - INFO - XAUUSDm Predictions - NO_TRADE: 0.678, BUY: 0.185, SELL: 0.136
+2026-01-04 15:49:29,933 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-04 15:49:43,576 - INFO - GBPJPYm Predictions - NO_TRADE: 0.271, BUY: 0.379, SELL: 0.350
+2026-01-04 15:49:43,651 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-04 15:49:51,510 - INFO - USDCADm Predictions - NO_TRADE: 0.302, BUY: 0.344, SELL: 0.354
+2026-01-04 15:49:51,556 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-04 15:49:59,866 - INFO - GBPUSDm Predictions - NO_TRADE: 0.320, BUY: 0.341, SELL: 0.339
+2026-01-04 15:50:00,007 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-04 15:50:01,767 - INFO - New message from T-bot: BUY BTCUSD...
+2026-01-04 15:50:06,243 - INFO - Parsed SELL signal for BTCUSD: {'type': 'ENTRY', 'direction': 'SELL', 'symbol': 'BTCUSD', 'entry_price': None, 'order_type': 'MARKET', 'tp_levels': [], 'sl': None, 'reply_to_id': None, 'raw_message': 'BUY BTCUSD'}
+2026-01-04 15:50:06,250 - INFO - Processing SELL signal for BTCUSD
+2026-01-04 15:50:06,265 - INFO - Normalized symbol: BTCUSDm
+2026-01-04 15:50:06,281 - INFO - Balance: $1015.83, Risk Amount (10%): $101.58
+2026-01-04 15:50:06,289 - WARNING - No SL provided, using minimum lot size
+2026-01-04 15:50:06,315 - INFO - Placing SELL order: BTCUSDm 0.01 lots, TP: None, SL: None
+2026-01-04 15:50:07,320 - INFO - Order placed: BTCUSDm 1 0.01 lots @ 91214.36
+2026-01-04 15:50:12,811 - INFO - USDJPYm Predictions - NO_TRADE: 0.247, BUY: 0.375, SELL: 0.378
+2026-01-04 15:50:12,827 - INFO - Monitoring 2 open positions
+2026-01-04 15:50:12,827 - INFO - USDJPYm: P&L = $5.99
+2026-01-04 15:50:12,827 - INFO - BTCUSDm: P&L = $-0.28
+2026-01-04 15:50:12,827 - INFO - Waiting for next bar...
+2026-01-04 15:51:12,849 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-04 15:51:20,910 - INFO - XAUUSDm Predictions - NO_TRADE: 0.678, BUY: 0.185, SELL: 0.136
+2026-01-04 15:51:20,915 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-04 15:51:27,938 - INFO - GBPJPYm Predictions - NO_TRADE: 0.271, BUY: 0.379, SELL: 0.350
+2026-01-04 15:51:27,942 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-04 15:51:34,748 - INFO - USDCADm Predictions - NO_TRADE: 0.302, BUY: 0.344, SELL: 0.354
+2026-01-04 15:51:34,754 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-04 15:51:41,593 - INFO - GBPUSDm Predictions - NO_TRADE: 0.320, BUY: 0.341, SELL: 0.339
+2026-01-04 15:51:41,598 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-04 15:51:49,200 - INFO - USDJPYm Predictions - NO_TRADE: 0.247, BUY: 0.375, SELL: 0.378
+2026-01-04 15:51:49,201 - INFO - Monitoring 2 open positions
+2026-01-04 15:51:49,201 - INFO - USDJPYm: P&L = $5.99
+2026-01-04 15:51:49,201 - INFO - BTCUSDm: P&L = $-0.47
+2026-01-04 15:51:49,201 - INFO - Waiting for next bar...
+2026-01-04 15:52:49,234 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-04 15:52:56,729 - INFO - XAUUSDm Predictions - NO_TRADE: 0.678, BUY: 0.185, SELL: 0.136
+2026-01-04 15:52:56,735 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-04 15:53:04,615 - INFO - GBPJPYm Predictions - NO_TRADE: 0.271, BUY: 0.379, SELL: 0.350
+2026-01-04 15:53:04,626 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-04 15:53:11,592 - INFO - USDCADm Predictions - NO_TRADE: 0.302, BUY: 0.344, SELL: 0.354
+2026-01-04 15:53:11,597 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-04 15:53:19,424 - INFO - GBPUSDm Predictions - NO_TRADE: 0.320, BUY: 0.341, SELL: 0.339
+2026-01-04 15:53:19,431 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-04 15:53:26,604 - INFO - USDJPYm Predictions - NO_TRADE: 0.247, BUY: 0.375, SELL: 0.378
+2026-01-04 15:53:26,605 - INFO - Monitoring 1 open positions
+2026-01-04 15:53:26,605 - INFO - USDJPYm: P&L = $5.99
+2026-01-04 15:53:26,605 - INFO - Waiting for next bar...
+2026-01-04 15:54:26,626 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-04 15:54:34,780 - INFO - XAUUSDm Predictions - NO_TRADE: 0.678, BUY: 0.185, SELL: 0.136
+2026-01-04 15:54:34,786 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-04 15:54:44,719 - INFO - GBPJPYm Predictions - NO_TRADE: 0.271, BUY: 0.379, SELL: 0.350
+2026-01-04 15:54:44,723 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-04 15:54:53,666 - INFO - USDCADm Predictions - NO_TRADE: 0.302, BUY: 0.344, SELL: 0.354
+2026-01-04 15:54:53,672 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-04 15:55:03,222 - INFO - GBPUSDm Predictions - NO_TRADE: 0.320, BUY: 0.341, SELL: 0.339
+2026-01-04 15:55:03,226 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-04 15:55:10,526 - INFO - USDJPYm Predictions - NO_TRADE: 0.247, BUY: 0.375, SELL: 0.378
+2026-01-04 15:55:10,526 - INFO - Monitoring 1 open positions
+2026-01-04 15:55:10,526 - INFO - USDJPYm: P&L = $5.99
+2026-01-04 15:55:10,526 - INFO - Waiting for next bar...
+2026-01-04 15:55:31,227 - INFO - Bot stopped by user
+2026-01-04 15:55:31,232 - INFO - Stopping Telegram Copy Trader...
+2026-01-04 15:55:31,233 - INFO - Disconnecting from 149.154.167.92:443/TcpFull...
+2026-01-04 15:55:31,236 - INFO - <class 'RuntimeError'> during disconnect: Task <Task pending name='Task-25' coro=<TelegramBaseClient._disconnect_coro() running at C:\Users\HP\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\telegrambaseclient.py:720> cb=[shield.<locals>._inner_done_callback() at C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py:958]> got Future <Future pending> attached to a different loop
+2026-01-04 15:55:31,238 - INFO - Disconnection from 149.154.167.92:443/TcpFull complete!
+2026-01-04 15:55:31,240 - INFO - Not disconnecting (already have no connection)
+2026-01-04 15:55:31,262 - INFO - Telegram Copy Trader stopped
+2026-01-04 15:55:31,264 - INFO - Disconnected from MT5
+2026-01-04 15:55:31,264 - INFO - Bot stopped
+2026-01-04 15:57:17,330 - INFO - Loading model from models/saved/universal_smc_model.pkl
+2026-01-04 15:57:18,272 - INFO - Scaler loaded successfully
+2026-01-04 15:57:19,518 - INFO - Firebase Journal Logger initialized successfully
+2026-01-04 15:57:19,548 - INFO - Logging trades for user: user_2x5Vz6jtaotDPQRjYuUS4ZLrDgw
+2026-01-04 15:57:19,550 - INFO - Loading sentence transformer model...
+2026-01-04 15:57:19,575 - INFO - Use pytorch device_name: cpu
+2026-01-04 15:57:19,575 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-04 15:57:36,623 - INFO - Signal parser initialized
+2026-01-04 15:57:36,623 - INFO - Telegram Copy Trader initialized for channels: ['@ahmedfreesignals', '@tbot_007', '@kelvin_talent', '@JamorTrading', '@Attahxfxacademy', '@firepipsignals']
+2026-01-04 15:57:36,623 - INFO - Initializing MT5 from: C:\Program Files\MetaTrader 5\terminal64.exe
+2026-01-04 15:57:36,640 - INFO - Logging in to account 297437818 on server Exness-MT5Trial9
+2026-01-04 15:57:36,674 - INFO - Connected to MT5 successfully
+2026-01-04 15:57:36,674 - INFO - Account: 297437818
+2026-01-04 15:57:36,674 - INFO - Balance: $1015.42
+2026-01-04 15:57:36,674 - INFO - Server: Exness-MT5Trial9
+2026-01-04 15:57:36,674 - INFO - ======================================================================
+2026-01-04 15:57:36,674 - INFO - ML SMC LIVE TRADING BOT STARTED
+2026-01-04 15:57:36,675 - INFO - ======================================================================
+2026-01-04 15:57:36,675 - INFO - Pairs: XAUUSDm, GBPJPYm, USDCADm, GBPUSDm, USDJPYm
+2026-01-04 15:57:36,675 - INFO - TP/SL: 40/10 pips
+2026-01-04 15:57:36,675 - INFO - Min Probability: 0.4
+2026-01-04 15:57:36,675 - INFO - Risk per Trade: 5.0%
+2026-01-04 15:57:36,675 - INFO - Max Positions: 50
+2026-01-04 15:57:36,675 - INFO - Min Prob Increase for Multi-Position: 10%
+2026-01-04 15:57:36,675 - INFO - Copy Trading: ENABLED (Risk: 10.0%, Max: 25)
+2026-01-04 15:57:36,675 - INFO - ======================================================================
+2026-01-04 15:57:36,675 - INFO - Starting Telegram copy trader (please complete authentication)...
+2026-01-04 15:57:36,676 - INFO - Waiting 5 minutes for Telegram authentication to complete...
+2026-01-04 15:57:36,676 - INFO - Please enter your phone number and verification code when prompted.
+2026-01-04 15:57:36,692 - INFO - Starting Telegram Copy Trader...
+2026-01-04 15:57:36,815 - INFO - Connecting to 149.154.167.92:443/TcpFull...
+2026-01-04 15:57:36,977 - INFO - Connection to 149.154.167.92:443/TcpFull complete!
+2026-01-04 15:57:40,329 - INFO - Telegram client started
+2026-01-04 15:59:04,640 - WARNING - Server closed the connection: [WinError 121] The semaphore timeout period has expired
+2026-01-04 15:59:04,644 - INFO - Connection closed while receiving data: [WinError 121] The semaphore timeout period has expired
+2026-01-04 15:59:04,645 - INFO - Closing current connection to begin reconnect...
+2026-01-04 15:59:04,646 - INFO - <class 'OSError'> during disconnect: [WinError 121] The semaphore timeout period has expired
+2026-01-04 15:59:04,647 - INFO - Connecting to 149.154.167.92:443/TcpFull...
+2026-01-04 15:59:04,850 - INFO - Connection to 149.154.167.92:443/TcpFull complete!
+2026-01-04 15:59:24,848 - INFO - Bot stopped by user
+2026-01-04 15:59:24,851 - INFO - Stopping Telegram Copy Trader...
+2026-01-04 15:59:24,851 - INFO - Disconnecting from 149.154.167.92:443/TcpFull...
+2026-01-04 15:59:24,852 - INFO - <class 'RuntimeError'> during disconnect: Task <Task pending name='Task-15' coro=<TelegramBaseClient._disconnect_coro() running at C:\Users\HP\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\telegrambaseclient.py:720> cb=[shield.<locals>._inner_done_callback() at C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py:958]> got Future <Future pending> attached to a different loop
+2026-01-04 15:59:24,853 - INFO - Disconnection from 149.154.167.92:443/TcpFull complete!
+2026-01-04 16:00:24,060 - INFO - Loading model from models/saved/universal_smc_model.pkl
+2026-01-04 16:00:24,745 - INFO - Scaler loaded successfully
+2026-01-04 16:00:24,975 - INFO - Firebase Journal Logger initialized successfully
+2026-01-04 16:00:24,975 - INFO - Logging trades for user: user_2x5Vz6jtaotDPQRjYuUS4ZLrDgw
+2026-01-04 16:00:24,975 - INFO - Loading sentence transformer model...
+2026-01-04 16:00:24,987 - INFO - Use pytorch device_name: cpu
+2026-01-04 16:00:24,987 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-04 16:00:34,983 - INFO - Signal parser initialized
+2026-01-04 16:00:34,983 - INFO - Telegram Copy Trader initialized for channels: ['@ahmedfreesignals', '@tbot_007', '@kelvin_talent', '@JamorTrading', '@Attahxfxacademy', '@firepipsignals']
+2026-01-04 16:00:34,984 - INFO - Initializing MT5 from: C:\Program Files\MetaTrader 5\terminal64.exe
+2026-01-04 16:00:35,008 - INFO - Logging in to account 297437818 on server Exness-MT5Trial9
+2026-01-04 16:00:35,008 - INFO - Connected to MT5 successfully
+2026-01-04 16:00:35,009 - INFO - Account: 297437818
+2026-01-04 16:00:35,009 - INFO - Balance: $1015.42
+2026-01-04 16:00:35,009 - INFO - Server: Exness-MT5Trial9
+2026-01-04 16:00:35,009 - INFO - ======================================================================
+2026-01-04 16:00:35,009 - INFO - ML SMC LIVE TRADING BOT STARTED
+2026-01-04 16:00:35,009 - INFO - ======================================================================
+2026-01-04 16:00:35,009 - INFO - Pairs: XAUUSDm, GBPJPYm, USDCADm, GBPUSDm, USDJPYm
+2026-01-04 16:00:35,010 - INFO - TP/SL: 40/10 pips
+2026-01-04 16:00:35,010 - INFO - Min Probability: 0.4
+2026-01-04 16:00:35,010 - INFO - Risk per Trade: 5.0%
+2026-01-04 16:00:35,010 - INFO - Max Positions: 50
+2026-01-04 16:00:35,010 - INFO - Min Prob Increase for Multi-Position: 10%
+2026-01-04 16:00:35,010 - INFO - Copy Trading: ENABLED (Risk: 10.0%, Max: 25)
+2026-01-04 16:00:35,010 - INFO - ======================================================================
+2026-01-04 16:00:35,010 - INFO - Starting Telegram copy trader (please complete authentication)...
+2026-01-04 16:00:35,018 - INFO - Waiting 5 minutes for Telegram authentication to complete...
+2026-01-04 16:00:35,019 - INFO - Please enter your phone number and verification code when prompted.
+2026-01-04 16:00:35,039 - INFO - Starting Telegram Copy Trader...
+2026-01-04 16:00:35,102 - INFO - Connecting to 149.154.167.92:443/TcpFull...
+2026-01-04 16:00:35,275 - INFO - Connection to 149.154.167.92:443/TcpFull complete!
+2026-01-04 16:00:36,795 - INFO - Telegram client started
+2026-01-04 16:00:37,025 - INFO - Monitoring channel: XM Trading Academy (@ahmedfreesignals)
+2026-01-04 16:00:37,212 - INFO - Monitoring channel: T-bot (@tbot_007)
+2026-01-04 16:00:37,435 - INFO - Monitoring channel: TRADING ARENA (@kelvin_talent)
+2026-01-04 16:00:37,723 - INFO - Monitoring channel: FarmingPips  (@JamorTrading)
+2026-01-04 16:00:37,960 - INFO - Monitoring channel: Attahx Forex Academy (@Attahxfxacademy)
+2026-01-04 16:00:38,911 - INFO - Monitoring channel: FirePips Forex Academy (Jeffforex) (@firepipsignals)
+2026-01-04 16:00:38,911 - INFO - Telegram Copy Trader is running
+2026-01-04 16:04:00,114 - INFO - New message from T-bot: Sell BTC 
+
+Entry: 91345.09
+
+Tp: 91126.54
+
+SL: 91372.53...
+2026-01-04 16:04:00,331 - INFO - Detected direction: SELL from text: Sell BTC 
+
+Entry: 91345.09
+
+Tp: 91126.54
+
+SL: 9137...
+2026-01-04 16:04:00,333 - WARNING - Could not extract pair from: Sell BTC 
+
+Entry: 91345.09
+
+Tp: 91126.54
+
+SL: 91372.53
+2026-01-04 16:05:35,020 - INFO - Telegram copy trader running in background
+2026-01-04 16:05:35,021 - INFO - Starting ML SMC market monitoring...
+2026-01-04 16:05:35,774 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-04 16:05:56,554 - INFO - XAUUSDm Predictions - NO_TRADE: 0.678, BUY: 0.185, SELL: 0.136
+2026-01-04 16:05:56,572 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-04 16:05:59,355 - INFO - New message from XM Trading Academy: 2 Trades hits SL 
+
+1 still running 
+
+Happens like that sometimes...
+2026-01-04 16:06:03,723 - INFO - GBPJPYm Predictions - NO_TRADE: 0.271, BUY: 0.379, SELL: 0.350
+2026-01-04 16:06:04,456 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-04 16:06:10,503 - INFO - New message from T-bot: Sell BTC 
+
+Entry: 91345.09
+
+Tp: 91126.54
+
+SL: 91372.53...
+2026-01-04 16:06:11,272 - INFO - Detected direction: SELL from text: Sell BTC 
+
+Entry: 91345.09
+
+Tp: 91126.54
+
+SL: 9137...
+2026-01-04 16:06:11,273 - WARNING - Could not extract pair from: Sell BTC 
+
+Entry: 91345.09
+
+Tp: 91126.54
+
+SL: 91372.53
+2026-01-04 16:06:11,318 - INFO - USDCADm Predictions - NO_TRADE: 0.302, BUY: 0.344, SELL: 0.354
+2026-01-04 16:06:11,323 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-04 16:06:18,809 - INFO - GBPUSDm Predictions - NO_TRADE: 0.320, BUY: 0.341, SELL: 0.339
+2026-01-04 16:06:19,312 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-04 16:06:26,276 - INFO - USDJPYm Predictions - NO_TRADE: 0.247, BUY: 0.375, SELL: 0.378
+2026-01-04 16:06:26,276 - INFO - Monitoring 1 open positions
+2026-01-04 16:06:26,276 - INFO - USDJPYm: P&L = $5.99
+2026-01-04 16:06:26,277 - INFO - Waiting for next bar...
+2026-01-04 16:06:28,249 - INFO - New message from T-bot: Sell BTCUSD
+
+Entry: 91345.09
+
+Tp: 91126.54
+
+SL: 91372.53...
+2026-01-04 16:06:28,822 - INFO - Detected direction: SELL from text: Sell BTCUSD
+
+Entry: 91345.09
+
+Tp: 91126.54
+
+SL: 91...
+2026-01-04 16:06:28,826 - INFO - Parsed SELL signal for BTCUSD: {'type': 'ENTRY', 'direction': 'SELL', 'symbol': 'BTCUSD', 'entry_price': None, 'order_type': 'MARKET', 'tp_levels': [91126.54], 'sl': 91372.53, 'reply_to_id': None, 'raw_message': 'Sell BTCUSD\n\nEntry: 91345.09\n\nTp: 91126.54\n\nSL: 91372.53'}
+2026-01-04 16:06:28,827 - INFO - Processing SELL signal for BTCUSD
+2026-01-04 16:06:28,827 - INFO - Normalized symbol: BTCUSDm
+2026-01-04 16:06:28,829 - INFO - Balance: $1015.42, Risk Amount (10%): $101.54
+2026-01-04 16:06:28,829 - INFO - SL Distance: 91.11000, SL in pips: 9111.0
+2026-01-04 16:06:28,830 - INFO - Calculated lot size before rounding: 101733.0474
+2026-01-04 16:06:28,830 - INFO - Final lot size: 100.00
+2026-01-04 16:06:28,830 - INFO - Placing SELL order: BTCUSDm 100.0 lots, TP: 91126.54, SL: 91372.53
+2026-01-04 16:06:28,933 - ERROR - Order failed: 10019 - No money
+2026-01-04 16:06:46,398 - INFO - New message from T-bot: Buy btcusd...
+2026-01-04 16:06:46,458 - INFO - Detected direction: BUY from text: Buy btcusd...
+2026-01-04 16:06:46,459 - INFO - Parsed BUY signal for BTCUSD: {'type': 'ENTRY', 'direction': 'BUY', 'symbol': 'BTCUSD', 'entry_price': None, 'order_type': 'MARKET', 'tp_levels': [], 'sl': None, 'reply_to_id': None, 'raw_message': 'Buy btcusd'}
+2026-01-04 16:06:46,459 - INFO - Processing BUY signal for BTCUSD
+2026-01-04 16:06:46,459 - INFO - Normalized symbol: BTCUSDm
+2026-01-04 16:06:46,460 - INFO - Balance: $1015.42, Risk Amount (10%): $101.54
+2026-01-04 16:06:46,460 - WARNING - No SL provided, using minimum lot size
+2026-01-04 16:06:46,460 - INFO - Placing BUY order: BTCUSDm 0.01 lots, TP: None, SL: None
+2026-01-04 16:06:47,700 - INFO - Order placed: BTCUSDm 0 0.01 lots @ 91306.04000000001
+2026-01-04 16:06:47,700 - WARNING - COPY TRADE OPENED: Ticket 2138411343 from Telegram
+2026-01-04 16:07:11,029 - INFO - New message from T-bot: Sel btcusd...
+2026-01-04 16:07:26,291 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-04 16:07:35,826 - INFO - XAUUSDm Predictions - NO_TRADE: 0.678, BUY: 0.185, SELL: 0.136
+2026-01-04 16:07:35,830 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-04 16:07:40,925 - INFO - New message from T-bot: Sell BTC USD...
+2026-01-04 16:07:43,931 - INFO - Detected direction: SELL from text: Sell BTC USD...
+2026-01-04 16:07:43,932 - INFO - Parsed SELL signal for BTCUSD: {'type': 'ENTRY', 'direction': 'SELL', 'symbol': 'BTCUSD', 'entry_price': None, 'order_type': 'MARKET', 'tp_levels': [], 'sl': None, 'reply_to_id': None, 'raw_message': 'Sell BTC USD'}
+2026-01-04 16:07:43,932 - INFO - Processing SELL signal for BTCUSD
+2026-01-04 16:07:43,932 - INFO - Normalized symbol: BTCUSDm
+2026-01-04 16:07:43,934 - INFO - Balance: $1015.42, Risk Amount (10%): $101.54
+2026-01-04 16:07:43,934 - WARNING - No SL provided, using minimum lot size
+2026-01-04 16:07:43,937 - INFO - Placing SELL order: BTCUSDm 0.01 lots, TP: None, SL: None
+2026-01-04 16:07:44,251 - INFO - Order placed: BTCUSDm 1 0.01 lots @ 91288.27
+2026-01-04 16:07:44,251 - WARNING - COPY TRADE OPENED: Ticket 2138411953 from Telegram
+2026-01-04 16:07:44,350 - INFO - GBPJPYm Predictions - NO_TRADE: 0.271, BUY: 0.379, SELL: 0.350
+2026-01-04 16:07:44,354 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-04 16:07:53,150 - INFO - USDCADm Predictions - NO_TRADE: 0.302, BUY: 0.344, SELL: 0.354
+2026-01-04 16:07:53,158 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-04 16:07:59,953 - INFO - GBPUSDm Predictions - NO_TRADE: 0.320, BUY: 0.341, SELL: 0.339
+2026-01-04 16:07:59,957 - INFO - Retrieved 10000 bars for USDJPYm
+2026-01-04 16:08:06,609 - INFO - USDJPYm Predictions - NO_TRADE: 0.247, BUY: 0.375, SELL: 0.378
+2026-01-04 16:08:06,610 - INFO - Monitoring 3 open positions
+2026-01-04 16:08:06,610 - INFO - USDJPYm: P&L = $5.99
+2026-01-04 16:08:06,610 - INFO - BTCUSDm: P&L = $-0.17
+2026-01-04 16:08:06,610 - INFO - BTCUSDm: P&L = $-0.19
+2026-01-04 16:08:06,610 - INFO - Waiting for next bar...
+2026-01-04 16:09:06,630 - INFO - Retrieved 10000 bars for XAUUSDm
+2026-01-04 16:09:13,895 - INFO - XAUUSDm Predictions - NO_TRADE: 0.678, BUY: 0.185, SELL: 0.136
+2026-01-04 16:09:13,901 - INFO - Retrieved 10000 bars for GBPJPYm
+2026-01-04 16:09:20,934 - INFO - GBPJPYm Predictions - NO_TRADE: 0.271, BUY: 0.379, SELL: 0.350
+2026-01-04 16:09:20,958 - INFO - Retrieved 10000 bars for USDCADm
+2026-01-04 16:09:28,941 - INFO - USDCADm Predictions - NO_TRADE: 0.302, BUY: 0.344, SELL: 0.354
+2026-01-04 16:09:28,945 - INFO - Retrieved 10000 bars for GBPUSDm
+2026-01-04 16:09:33,664 - INFO - Bot stopped by user
+2026-01-04 16:09:33,670 - INFO - Stopping Telegram Copy Trader...
+2026-01-04 16:09:33,671 - INFO - Disconnecting from 149.154.167.92:443/TcpFull...
+2026-01-04 16:09:33,673 - INFO - <class 'RuntimeError'> during disconnect: Task <Task pending name='Task-36' coro=<TelegramBaseClient._disconnect_coro() running at C:\Users\HP\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\telegrambaseclient.py:720> cb=[shield.<locals>._inner_done_callback() at C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py:958]> got Future <Future pending> attached to a different loop
+2026-01-04 16:09:33,674 - INFO - Disconnection from 149.154.167.92:443/TcpFull complete!
+2026-01-04 16:09:33,676 - INFO - Not disconnecting (already have no connection)
+2026-01-04 16:09:33,702 - ERROR - Error stopping copy trader: Cannot operate on a closed database.
+2026-01-04 16:09:33,718 - INFO - Disconnected from MT5
+2026-01-04 16:09:33,718 - INFO - Bot stopped

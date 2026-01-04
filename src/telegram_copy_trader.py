@@ -319,6 +319,9 @@ class TelegramCopyTrader:
                     # Ensure within limits
                     lot_size = max(symbol_info['volume_min'], min(lot_size, symbol_info['volume_max']))
                     
+                    # Cap at maximum 1.0 lot for copy trading
+                    lot_size = min(lot_size, 1.0)
+                    
                     logger.info(f"Final lot size: {lot_size:.2f}")
             else:
                 # No SL provided, use fixed percentage of balance
