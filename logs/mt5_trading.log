@@ -3146,3 +3146,43 @@ BUY...
 2026-01-04 15:39:58,525 - INFO - <class 'RuntimeError'> during disconnect: Task <Task pending name='Task-15' coro=<TelegramBaseClient._disconnect_coro() running at C:\Users\HP\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\telegrambaseclient.py:720> cb=[shield.<locals>._inner_done_callback() at C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py:958]> got Future <Future pending> attached to a different loop
 2026-01-04 15:39:58,526 - INFO - Disconnection from 149.154.167.92:443/TcpFull complete!
 2026-01-04 15:39:58,526 - INFO - Not disconnecting (already have no connection)
+2026-01-04 15:43:52,900 - INFO - Loading model from models/saved/universal_smc_model.pkl
+2026-01-04 15:43:54,423 - INFO - Scaler loaded successfully
+2026-01-04 15:43:54,670 - INFO - Firebase Journal Logger initialized successfully
+2026-01-04 15:43:54,670 - INFO - Logging trades for user: user_2x5Vz6jtaotDPQRjYuUS4ZLrDgw
+2026-01-04 15:43:54,670 - INFO - Loading sentence transformer model...
+2026-01-04 15:43:54,676 - INFO - Use pytorch device_name: cpu
+2026-01-04 15:43:54,676 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-04 15:44:09,641 - INFO - Signal parser initialized
+2026-01-04 15:44:09,641 - INFO - Telegram Copy Trader initialized for channels: ['@ahmedfreesignals', '@tbot_007', '@kelvin_talent', '@JamorTrading', '@Attahxfxacademy', '@firepipsignals']
+2026-01-04 15:44:09,641 - INFO - Initializing MT5 from: C:\Program Files\MetaTrader 5\terminal64.exe
+2026-01-04 15:44:09,643 - INFO - Logging in to account 297437818 on server Exness-MT5Trial9
+2026-01-04 15:44:09,643 - INFO - Connected to MT5 successfully
+2026-01-04 15:44:09,643 - INFO - Account: 297437818
+2026-01-04 15:44:09,644 - INFO - Balance: $1015.83
+2026-01-04 15:44:09,644 - INFO - Server: Exness-MT5Trial9
+2026-01-04 15:44:09,644 - INFO - ======================================================================
+2026-01-04 15:44:09,644 - INFO - ML SMC LIVE TRADING BOT STARTED
+2026-01-04 15:44:09,644 - INFO - ======================================================================
+2026-01-04 15:44:09,644 - INFO - Pairs: XAUUSDm, GBPJPYm, USDCADm, GBPUSDm, USDJPYm
+2026-01-04 15:44:09,644 - INFO - TP/SL: 40/10 pips
+2026-01-04 15:44:09,644 - INFO - Min Probability: 0.4
+2026-01-04 15:44:09,644 - INFO - Risk per Trade: 5.0%
+2026-01-04 15:44:09,644 - INFO - Max Positions: 50
+2026-01-04 15:44:09,644 - INFO - Min Prob Increase for Multi-Position: 10%
+2026-01-04 15:44:09,645 - INFO - Copy Trading: ENABLED (Risk: 10.0%, Max: 25)
+2026-01-04 15:44:09,645 - INFO - ======================================================================
+2026-01-04 15:44:09,645 - INFO - Starting Telegram copy trader (please complete authentication)...
+2026-01-04 15:44:09,646 - INFO - Waiting 5 minutes for Telegram authentication to complete...
+2026-01-04 15:44:09,646 - INFO - Please enter your phone number and verification code when prompted.
+2026-01-04 15:44:09,657 - INFO - Starting Telegram Copy Trader...
+2026-01-04 15:44:09,667 - INFO - Connecting to 149.154.167.92:443/TcpFull...
+2026-01-04 15:44:09,898 - INFO - Connection to 149.154.167.92:443/TcpFull complete!
+2026-01-04 15:44:12,670 - INFO - Telegram client started
+2026-01-04 15:44:12,880 - INFO - Monitoring channel: XM Trading Academy (@ahmedfreesignals)
+2026-01-04 15:44:13,080 - INFO - Monitoring channel: T-bot (@tbot_007)
+2026-01-04 15:44:13,266 - INFO - Monitoring channel: TRADING ARENA (@kelvin_talent)
+2026-01-04 15:44:13,486 - INFO - Monitoring channel: FarmingPips  (@JamorTrading)
+2026-01-04 15:44:13,696 - INFO - Monitoring channel: Attahx Forex Academy (@Attahxfxacademy)
+2026-01-04 15:44:14,507 - INFO - Monitoring channel: FirePips Forex Academy (Jeffforex) (@firepipsignals)
+2026-01-04 15:44:14,508 - INFO - Telegram Copy Trader is running

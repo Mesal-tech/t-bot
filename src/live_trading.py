@@ -259,7 +259,7 @@ class MT5Connector:
             logger.error(f"Failed to close position: {result.retcode}")
             return False
         
-        logger.warning(f"✅ POSITION CLOSED: {symbol} {volume} lots")
+        logger.warning(f"POSITION CLOSED: {symbol} {volume} lots")
         return True
 
 
@@ -569,7 +569,7 @@ class LiveTradingBot:
                 order_type = mt5.ORDER_TYPE_SELL
             
             # Place order
-            logger.warning(f"📊 PLACING {signal} ORDER: {symbol} {lot_size} lots @ {entry_price:.5f}, SL: {sl:.5f}, TP: {tp:.5f}")
+            logger.warning(f"PLACING {signal} ORDER: {symbol} {lot_size} lots @ {entry_price:.5f}, SL: {sl:.5f}, TP: {tp:.5f}")
             
             result = self.mt5.place_order(
                 symbol=symbol,
@@ -581,7 +581,7 @@ class LiveTradingBot:
             )
             
             if result:
-                logger.warning(f"🔔 TRADE OPENED: Ticket {result.order}")
+                logger.warning(f"TRADE OPENED: Ticket {result.order}")
                 
                 # Store position probability and source for multi-position logic
                 self.position_probabilities[result.order] = confidence

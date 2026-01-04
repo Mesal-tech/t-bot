@@ -165,7 +165,7 @@ class TelegramCopyTrader:
                 if ticket:
                     self.active_signals[message_id] = signal
                     self.signal_tickets[message_id] = ticket
-                    logger.warning(f"🔔 COPY TRADE OPENED: Ticket {ticket} from Telegram")
+                    logger.warning(f"COPY TRADE OPENED: Ticket {ticket} from Telegram")
             else:
                 # For limit orders, would need to place pending order
                 # For now, log and skip (can be implemented later)
@@ -184,7 +184,7 @@ class TelegramCopyTrader:
             if reply_to_id and reply_to_id in self.signal_tickets:
                 ticket = self.signal_tickets[reply_to_id]
                 if ticket:
-                    logger.warning(f"✅ COPY TRADE CLOSED: Position {ticket} (reply to message {reply_to_id})")
+                    logger.warning(f"COPY TRADE CLOSED: Position {ticket} (reply to message {reply_to_id})")
                     self._close_position_by_ticket(ticket)
                     del self.signal_tickets[reply_to_id]
                     if reply_to_id in self.active_signals:
@@ -192,12 +192,12 @@ class TelegramCopyTrader:
             
             # If symbol specified, close all positions for that symbol
             elif symbol:
-                logger.warning(f"✅ CLOSING ALL {symbol} COPY TRADES")
+                logger.warning(f"CLOSING ALL {symbol} COPY TRADES")
                 self._close_positions_by_symbol(symbol)
             
             # Otherwise, close all copy trade positions
             else:
-                logger.warning("✅ CLOSING ALL COPY TRADES")
+                logger.warning("CLOSING ALL COPY TRADES")
                 for ticket in list(self.signal_tickets.values()):
                     if ticket:
                         self._close_position_by_ticket(ticket)

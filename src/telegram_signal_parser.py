@@ -116,7 +116,20 @@ class TelegramSignalParser:
     
     def _parse_entry_signal(self, text: str, signal_type: str, reply_to_id: Optional[int]) -> Optional[Dict]:
         """Parse BUY/SELL entry signal"""
-        direction = 'BUY' if signal_type == 'buy_signal' else 'SELL'
+        # Override NLP classification with explicit keyword detection
+        text_lower = text.lower()
+        
+        # Check for explicit BUY keywords
+        if any(word in text_lower for word in ['buy', 'long', 'bullish']):
+            direction = 'BUY'
+        # Check for explicit SELL keywords
+        elif any(word in text_lower for word in ['sell', 'short', 'bearish']):
+            direction = 'SELL'
+        else:
+            # Fall back to NLP classification
+            direction = 'BUY' if signal_type == 'buy_signal' else 'SELL'
+        
+        logger.info(f"Detected direction: {direction} from text: {text[:50]}...")
         
         # Extract pair
         pair = self._extract_pair(text)
