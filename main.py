@@ -33,12 +33,13 @@ import pandas as pd
 class MLSMCPipeline:
     """Main pipeline orchestrator"""
     
-    def __init__(self, pairs=None, tp_pips=40, sl_pips=10, min_prob=0.4, model_type='rf'):
+    def __init__(self, pairs=None, tp_pips=40, sl_pips=10, min_prob=0.4, model_type='rf', train_mode='universal'):
         self.pairs = pairs or ['EURUSDm', 'GBPUSDm', 'USDJPYm', 'EURGBPm', 'GBPJPYm', 'XAUUSDm', 'USDCHFm', 'AUDUSDm', 'USDCADm']
         self.tp_pips = tp_pips
         self.sl_pips = sl_pips
         self.min_prob = min_prob
         self.model_type = model_type
+        self.train_mode = train_mode
         
         # Paths
         self.data_dir = Path('data')
@@ -58,23 +59,23 @@ class MLSMCPipeline:
         print("="*70)
         
         # Phase 1: Features
-        print("\n" + "🔧 PHASE 1: FEATURE ENGINEERING")
+        print("\n" + "PHASE 1: FEATURE ENGINEERING")
         self.generate_features()
         
         # Phase 2: Labels
-        print("\n" + "🏷️  PHASE 2: LABEL GENERATION")
+        print("\n" + "PHASE 2: LABEL GENERATION")
         self.generate_labels()
         
         # Phase 3: Training
-        print("\n" + "🤖 PHASE 3: MODEL TRAINING")
+        print("\n" + "PHASE 3: MODEL TRAINING")
         self.train_model()
         
         # Phase 4: Backtesting
-        print("\n" + "📈 PHASE 4: BACKTESTING")
+        print("\n" + "PHASE 4: BACKTESTING")
         self.backtest_model()
         
         print("\n" + "="*70)
-        print("✅ PIPELINE COMPLETE!")
+        print("PIPELINE COMPLETE!")
         print("="*70)
         print(f"\nResults saved to: {self.eval_dir}")
         
@@ -85,7 +86,7 @@ class MLSMCPipeline:
             output_file = self.processed_dir / f'{pair}_features.csv'
             
             if not input_file.exists():
-                print(f"⚠️  Skipping {pair}: {input_file} not found")
+                print(f"Skipping {pair}: {input_file} not found")
                 continue
             
             print(f"\nProcessing {pair}...")
@@ -98,7 +99,7 @@ class MLSMCPipeline:
             output_file = self.labels_dir / f'{pair}_labeled.csv'
             
             if not input_file.exists():
-                print(f"⚠️  Skipping {pair}: {input_file} not found")
+                print(f"Skipping {pair}: {input_file} not found")
                 continue
             
             print(f"\nLabeling {pair}...")
@@ -111,33 +112,65 @@ class MLSMCPipeline:
             )
     
     def train_model(self):
-        """Train universal model on all pairs"""
-        # Collect labeled files
-        labeled_files = []
-        for pair in self.pairs:
-            file = self.labels_dir / f'{pair}_labeled.csv'
-            if file.exists():
-                labeled_files.append(str(file))
-        
-        if not labeled_files:
-            print("❌ No labeled data found!")
-            return
-        
-        output_path = self.models_dir / 'universal_smc_model.pkl'
-        
-        print(f"\nTraining on {len(labeled_files)} pairs...")
-        train_universal_model(labeled_files, str(output_path), model_type=self.model_type)
+        """Train model(s) on labeled data"""
+        if self.train_mode == 'individual':
+            print(f"\n{'='*60}")
+            print("TRAINING INDIVIDUAL MODELS")
+            print('='*60)
+            
+            for pair in self.pairs:
+                input_file = self.labels_dir / f'{pair}_labeled.csv'
+                output_file = self.models_dir / f'{pair}_model.pkl'
+                
+                if not input_file.exists():
+                    print(f"Skipping {pair}: {input_file} not found")
+                    continue
+                
+                print(f"\nTraining model for {pair}...")
+                
+                # Load data
+                df = pd.read_csv(input_file)
+                df['timestamp'] = pd.to_datetime(df['timestamp'])
+                
+                # Train
+                trainer = SMCModelTrainer(model_type=self.model_type, use_smote=True)
+                trainer.train(df, validation_split=0.15)
+                trainer.save_model(str(output_file))
+                
+        else:
+            # Universal model logic
+            # Collect labeled files
+            labeled_files = []
+            for pair in self.pairs:
+                file = self.labels_dir / f'{pair}_labeled.csv'
+                if file.exists():
+                    labeled_files.append(str(file))
+            
+            if not labeled_files:
+                print("No labeled data found!")
+                return
+            
+            output_path = self.models_dir / 'universal_smc_model.pkl'
+            
+            print(f"\nTraining on {len(labeled_files)} pairs...")
+            train_universal_model(labeled_files, str(output_path), model_type=self.model_type)
     
     def backtest_model(self):
         """Backtest trained model"""
-        model_path = self.models_dir / 'universal_smc_model.pkl'
-        
-        if not model_path.exists():
-            print(f"❌ Model not found: {model_path}")
-            return
+        print(f"\nBacktesting in {self.train_mode} mode...")
         
         # Backtest on each pair
         for pair in self.pairs:
+            # Determine model path
+            if self.train_mode == 'individual':
+                model_path = self.models_dir / f'{pair}_model.pkl'
+            else:
+                model_path = self.models_dir / 'universal_smc_model.pkl'
+            
+            if not model_path.exists():
+                print(f"Model not found for {pair}: {model_path}")
+                continue
+            
             data_file = self.labels_dir / f'{pair}_labeled.csv'
             
             if not data_file.exists():
@@ -145,7 +178,7 @@ class MLSMCPipeline:
                 continue
             
             print(f"\n{'='*60}")
-            print(f"BACKTESTING {pair}")
+            print(f"BACKTESTING {pair} ({self.train_mode} model)")
             print('='*60)
             
             # Load data
@@ -218,9 +251,16 @@ Examples:
     
     parser.add_argument(
         '--model-type',
-        choices=['rf', 'gbc'],
+        choices=['rf', 'gbc', 'xgb'],
         default='rf',
-        help='Model type: rf (Random Forest) or gbc (Gradient Boosting)'
+        help='Model type: rf (Random Forest), gbc (Gradient Boosting), or xgb (XGBoost)'
+    )
+    
+    parser.add_argument(
+        '--train-mode',
+        choices=['universal', 'individual'],
+        default='universal',
+        help='Training mode: universal (one model for all) or individual (one model per pair)'
     )
     
     args = parser.parse_args()
@@ -231,7 +271,8 @@ Examples:
         tp_pips=args.tp_pips,
         sl_pips=args.sl_pips,
         min_prob=args.min_prob,
-        model_type=args.model_type
+        model_type=args.model_type,
+        train_mode=args.train_mode
     )
     
     # Execute requested mode

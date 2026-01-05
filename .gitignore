@@ -47,6 +47,11 @@ venv.bak/
 *firebase*.json
 *serviceAccountKey*.json
 firebase-key.json
+# !firebase-key.json
+
+# Telegram Sessions
+*.session
+*.session-journal
 
 # MT5 Data
 *.log

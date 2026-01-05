@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from xgboost import XGBClassifier
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.preprocessing import StandardScaler
@@ -17,7 +18,7 @@ class SMCModelTrainer:
     def __init__(self, model_type='rf', use_smote=True):
         """
         Args:
-            model_type: 'rf' (Random Forest) or 'gbc' (Gradient Boosting)
+            model_type: 'rf' (Random Forest), 'gbc' (Gradient Boosting), or 'xgb' (XGBoost)
             use_smote: Whether to apply SMOTE for class balancing
         """
         self.model_type = model_type
@@ -90,6 +91,20 @@ class SMCModelTrainer:
                 subsample=0.8,
                 random_state=42,
                 verbose=0
+            )
+        elif self.model_type == 'xgb':
+            self.model = XGBClassifier(
+                n_estimators=200,
+                learning_rate=0.05,
+                max_depth=6,
+                min_child_weight=3,
+                subsample=0.8,
+                colsample_bytree=0.8,
+                objective='multi:softprob',
+                num_class=3,
+                random_state=42,
+                n_jobs=-1,
+                verbosity=0
             )
         
         # Train

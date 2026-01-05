@@ -141,9 +141,60 @@ class SMCFeatureGenerator:
         features['close'] = df['close']
         features['timestamp'] = df['timestamp']
         
-        print(f"✅ Generated {len(features.columns)} features for {len(features)} bars")
+        print(f"Generated {len(features.columns)} features for {len(features)} bars")
+        
+        # Add Technical Indicators
+        features = self._add_technical_indicators(df, features)
         
         return features
+    
+    def _add_technical_indicators(self, df, features):
+        """Add technical indicators to features DataFrame"""
+        close = df['close']
+        high = df['high']
+        low = df['low']
+        
+        # 1. RSI (Relative Strength Index)
+        delta = close.diff()
+        gain = (delta.where(delta > 0, 0)).ewm(alpha=1/14, adjust=False).mean()
+        loss = (-delta.where(delta < 0, 0)).ewm(alpha=1/14, adjust=False).mean()
+        rs = gain / loss
+        features['rsi_14'] = 100 - (100 / (1 + rs))
+        features['rsi_overbought'] = (features['rsi_14'] > 70).astype(int)
+        features['rsi_oversold'] = (features['rsi_14'] < 30).astype(int)
+        
+        # 2. MACD (Moving Average Convergence Divergence)
+        exp12 = close.ewm(span=12, adjust=False).mean()
+        exp26 = close.ewm(span=26, adjust=False).mean()
+        features['macd'] = exp12 - exp26
+        features['macd_signal'] = features['macd'].ewm(span=9, adjust=False).mean()
+        features['macd_hist'] = features['macd'] - features['macd_signal']
+        
+        # 3. Bollinger Bands
+        bb_window = 20
+        bb_ma = close.rolling(bb_window).mean()
+        bb_std = close.rolling(bb_window).std()
+        features['bb_upper'] = bb_ma + (bb_std * 2)
+        features['bb_lower'] = bb_ma - (bb_std * 2)
+        # %B Indicator (position within bands)
+        features['bb_position'] = (close - features['bb_lower']) / (features['bb_upper'] - features['bb_lower'] + 1e-10)
+        # Band Width (volatility)
+        features['bb_width'] = (features['bb_upper'] - features['bb_lower']) / bb_ma
+        
+        # 4. Stochastic Oscillator
+        stoch_k = 14
+        low_min = low.rolling(stoch_k).min()
+        high_max = high.rolling(stoch_k).max()
+        features['stoch_k'] = 100 * ((close - low_min) / (high_max - low_min + 1e-10))
+        features['stoch_d'] = features['stoch_k'].rolling(3).mean()
+        
+        # 5. Simple Moving Averages & Trends
+        features['sma_50'] = close.rolling(50).mean()
+        features['sma_200'] = close.rolling(200).mean()
+        features['above_sma200'] = (close > features['sma_200']).astype(int)
+        features['sma_cross'] = (features['sma_50'] > features['sma_200']).astype(int)
+        
+        return features.fillna(0)  # Handle initial NaNs for technicals
     
     def _calculate_atr(self, df, period=14):
         """Calculate Average True Range"""
@@ -184,7 +235,7 @@ def process_pair_features(pair_name, input_path, output_path):
     
     # Save
     features.to_csv(output_path, index=False)
-    print(f"✅ Saved to {output_path}")
+    print(f"Saved to {output_path}")
     
     return features
 

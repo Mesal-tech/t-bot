@@ -78,7 +78,14 @@ class TelegramSignalParser:
         signal_type = self._classify_message(message_text)
         
         if signal_type == 'unknown':
-            return None
+            # Fallback: Check for strong keywords if NLP failed
+            text_lower = message_text.lower()
+            has_direction = any(w in text_lower for w in ['buy', 'sell', 'long', 'short'])
+            if has_direction and self._extract_pair(message_text):
+                logger.info("NLP classification uncertain, but strong keywords found. Treating as entry signal.")
+                signal_type = 'buy_signal'  # Direction will be re-detected in _parse_entry_signal
+            else:
+                return None
         
         # Extract information based on type
         if signal_type in ['buy_signal', 'sell_signal']:

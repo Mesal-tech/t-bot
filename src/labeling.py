@@ -172,7 +172,7 @@ def label_pair_data(pair_name, input_path, output_path, tp_pips=30, sl_pips=10):
     
     # Save
     labeled.to_csv(output_path, index=False)
-    print(f"\n✅ Saved to {output_path}")
+    print(f"\nSaved to {output_path}")
     
     return labeled
 

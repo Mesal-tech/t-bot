@@ -271,7 +271,7 @@ class LiveTradingBot:
                  enable_copy_trading=True, copy_risk_percent=2.0, copy_max_positions=25):
         """
         Args:
-            model_path: Path to trained model
+            model_path: Path to universal model (used as base/fallback)
             pairs: List of symbols to trade
             tp_pips: Take profit in pips
             sl_pips: Stop loss in pips
@@ -295,18 +295,44 @@ class LiveTradingBot:
         self.copy_risk_percent = copy_risk_percent
         self.copy_max_positions = copy_max_positions
         
-        # Load model
-        logger.info(f"Loading model from {model_path}")
-        model_data = joblib.load(model_path)
-        self.model = model_data['model']
-        self.feature_columns = model_data['feature_columns']
-        self.scaler = model_data.get('scaler', None)  # Load scaler
+        self.feature_columns = None
         
-        if self.scaler is None:
-            logger.warning("No scaler found in model! Features will NOT be standardized.")
-            logger.warning("Consider retraining the model with the updated training.py")
-        else:
-            logger.info("Scaler loaded successfully")
+        # Load models
+        self.models = {}
+        self.universal_model = None
+        self.scalers = {}
+        self.universal_scaler = None
+        
+        # Check if individual models exist
+        models_dir = os.path.dirname(model_path)
+        for pair in self.pairs:
+            pair_model_path = os.path.join(models_dir, f'{pair}_model.pkl')
+            if os.path.exists(pair_model_path):
+                logger.info(f"Loading specific model for {pair} from {pair_model_path}")
+                try:
+                    model_data = joblib.load(pair_model_path)
+                    self.models[pair] = model_data['model']
+                    self.scalers[pair] = model_data.get('scaler', None)
+                    # We assume feature columns are standard across models
+                    if self.feature_columns is None:
+                        self.feature_columns = model_data['feature_columns']
+                except Exception as e:
+                    logger.error(f"Failed to load model for {pair}: {e}")
+        
+        # Load universal model as fallback
+        if os.path.exists(model_path):
+            logger.info(f"Loading universal model from {model_path}")
+            model_data = joblib.load(model_path)
+            self.universal_model = model_data['model']
+            self.universal_scaler = model_data.get('scaler', None)
+            if self.feature_columns is None:
+                self.feature_columns = model_data['feature_columns']
+        
+        if not self.models and not self.universal_model:
+            logger.error("No models loaded! Please train models first.")
+            raise ValueError("No models found")
+            
+        logger.info(f"Loaded {len(self.models)} specific models and universal fallback: {self.universal_model is not None}")
         
         # Feature generator
         self.feature_gen = SMCFeatureGenerator()
@@ -448,13 +474,26 @@ class LiveTradingBot:
                 logger.warning(f"NaN in features for {symbol}, skipping")
                 return
             
+            # Select model and scaler
+            if symbol in self.models:
+                model = self.models[symbol]
+                scaler = self.scalers.get(symbol)
+                logger.debug(f"Using specific model for {symbol}")
+            elif self.universal_model:
+                model = self.universal_model
+                scaler = self.universal_scaler
+                logger.debug(f"Using universal model for {symbol}")
+            else:
+                logger.warning(f"No model available for {symbol}, skipping")
+                return
+
             # Standardize features using the same scaler from training
-            if self.scaler is not None:
-                X = self.scaler.transform(X)
+            if scaler is not None:
+                X = scaler.transform(X)
                 logger.debug(f"{symbol} Features scaled - Mean: {X.mean():.4f}, Std: {X.std():.4f}")
             
             # Predict
-            probas = self.model.predict_proba(X)[0]
+            probas = model.predict_proba(X)[0]
             prob_no_trade = probas[0]
             prob_buy = probas[1] if len(probas) > 1 else 0
             prob_sell = probas[2] if len(probas) > 2 else 0

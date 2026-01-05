@@ -97,8 +97,24 @@ def main():
         action='store_true',
         help='Test mode - no real orders'
     )
+
+    parser.add_argument(
+        '--verbose',
+        action='store_true',
+        help='Enable detailed logging (INFO level) to console'
+    )
     
     args = parser.parse_args()
+
+    # Configure logging based on verbose flag
+    if args.verbose:
+        import logging
+        root_logger = logging.getLogger()
+        for handler in root_logger.handlers:
+             # Check if it's a StreamHandler (console) and not FileHandler
+            if isinstance(handler, logging.StreamHandler) and not isinstance(handler, logging.FileHandler):
+                handler.setLevel(logging.INFO)
+                print("Detailed logging enabled (INFO level) - You will see Telegram signal logs")
     
     # Create logs directory
     os.makedirs('logs', exist_ok=True)
