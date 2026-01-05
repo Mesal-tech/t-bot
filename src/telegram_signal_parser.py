@@ -56,6 +56,17 @@ class TelegramSignalParser:
             'XAUUSDm', 'XAGUSDm', 'BTCUSDm', 'ETHUSDm'
         ]
         
+        # Symbol Aliases
+        self.aliases = {
+            'GOLD': 'XAUUSD',
+            'SILVER': 'XAGUSD',
+            'NAS100': 'USTEC', # Common alias for Nasdaq
+            'US30': 'US30',    # Dow Jones
+            'GER30': 'DE30',   # DAX
+            'BTC': 'BTCUSD',
+            'ETH': 'ETHUSD'
+        }
+        
         logger.info("Signal parser initialized")
     
     def parse_message(self, message_text: str, reply_to_id: Optional[int] = None) -> Optional[Dict]:
@@ -88,7 +99,7 @@ class TelegramSignalParser:
                 return None
         
         # Extract information based on type
-        if signal_type in ['buy_signal', 'sell_signal']:
+        if signal_type in ['buy_signal', 'sell_signal', 'market_order', 'limit_order']:
             return self._parse_entry_signal(message_text, signal_type, reply_to_id)
         elif signal_type == 'close_signal':
             return self._parse_close_signal(message_text, reply_to_id)
@@ -217,6 +228,15 @@ class TelegramSignalParser:
     def _extract_pair(self, text: str) -> Optional[str]:
         """Extract currency pair from text"""
         text_upper = text.upper()
+        
+        # Check aliases first
+        for alias, pair in self.aliases.items():
+            if alias in text_upper:
+                # Need to be careful not to match substrings inappropriately
+                # e.g., 'ETC' in 'BTC' (not an issue here but good practice)
+                pattern = f"\\b{alias}\\b"
+                if re.search(pattern, text_upper):
+                    return pair
         
         # Check known pairs
         for pair in self.known_pairs:

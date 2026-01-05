@@ -28,14 +28,14 @@ class SMCFeatureGenerator:
         """
         df = df.copy()
         
-        print("Analyzing SMC structure...")
+        # print("Analyzing SMC structure...")
         smc_df = self.smc.analyze(df)
         
         # Initialize features DataFrame
         features = pd.DataFrame(index=df.index)
         
         # ===== 1. SMC STRUCTURE FEATURES =====
-        print("Extracting SMC structure features...")
+        # print("Extracting SMC structure features...")
         features['swing_trend'] = smc_df['swing_trend']
         features['internal_trend'] = smc_df['internal_trend']
         
@@ -56,7 +56,7 @@ class SMCFeatureGenerator:
         features['choch_count'] = smc_df['swing_choch'].rolling(10).sum()
         
         # ===== 2. ORDER BLOCK & ZONE FEATURES =====
-        print("Processing order blocks and zones...")
+        # print("Processing order blocks and zones...")
         features['swing_ob'] = smc_df['swing_ob']
         features['internal_ob'] = smc_df['internal_ob']
         
@@ -76,7 +76,7 @@ class SMCFeatureGenerator:
         ).astype(int)
         
         # ===== 3. PRICE ACTION FEATURES =====
-        print("Calculating price action features...")
+        # print("Calculating price action features...")
         
         # Returns at multiple timeframes
         for lag in [1, 3, 5, 10, 20, 50]:
@@ -100,7 +100,7 @@ class SMCFeatureGenerator:
             )
         
         # ===== 4. CANDLE PATTERN FEATURES =====
-        print("Analyzing candle patterns...")
+        # print("Analyzing candle patterns...")
         
         body = abs(df['close'] - df['open'])
         total_range = df['high'] - df['low']
@@ -115,7 +115,7 @@ class SMCFeatureGenerator:
         features['is_bullish'] = (df['close'] > df['open']).astype(int)
         
         # ===== 5. TIME FEATURES (SESSION AWARENESS) =====
-        print("Adding time features...")
+        # print("Adding time features...")
         
         features['hour'] = df['timestamp'].dt.hour
         features['day_of_week'] = df['timestamp'].dt.dayofweek
@@ -141,7 +141,7 @@ class SMCFeatureGenerator:
         features['close'] = df['close']
         features['timestamp'] = df['timestamp']
         
-        print(f"Generated {len(features.columns)} features for {len(features)} bars")
+        # print(f"Generated {len(features.columns)} features for {len(features)} bars")
         
         # Add Technical Indicators
         features = self._add_technical_indicators(df, features)

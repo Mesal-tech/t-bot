@@ -130,16 +130,18 @@ class FirebaseJournalLogger:
         entry_id: str,
         result_status: str,
         exit_price: Optional[float] = None,
-        profit_pips: Optional[float] = None
+        profit_pips: Optional[float] = None,
+        profit: Optional[float] = None
     ) -> bool:
         """
         Update trade result when it closes (TP or SL)
         
         Args:
             entry_id: Firebase document ID
-            result_status: 'TP' or 'SL'
+            result_status: 'TP', 'SL', or 'CLOSED'
             exit_price: Actual exit price (optional)
             profit_pips: Profit in pips (optional)
+            profit: Actual profit in currency (optional)
         
         Returns:
             True if successful, False otherwise
@@ -158,6 +160,8 @@ class FirebaseJournalLogger:
                 update_data['exitPrice'] = float(exit_price)
             if profit_pips is not None:
                 update_data['profitPips'] = float(profit_pips)
+            if profit is not None:
+                update_data['profit'] = float(profit)
             
             # Update document
             self.db.collection('journalEntries').document(entry_id).update(update_data)

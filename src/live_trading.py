@@ -227,7 +227,7 @@ class MT5Connector:
             return []
         
         return list(positions)
-    
+        
     def close_position(self, position):
         """Close a position"""
         symbol = position.symbol
@@ -248,7 +248,7 @@ class MT5Connector:
             "position": position.ticket,
             "deviation": 20,
             "magic": 234000,
-            "comment": "Close by ML SMC Bot",
+            "comment": "Close by Bot",
             "type_time": mt5.ORDER_TIME_GTC,
             "type_filling": mt5.ORDER_FILLING_IOC,
         }
@@ -268,7 +268,9 @@ class LiveTradingBot:
     
     def __init__(self, model_path, pairs, tp_pips=40, sl_pips=10, min_prob=0.4, 
                  risk_percent=1.0, max_positions=5, min_prob_increase=0.25,
-                 enable_copy_trading=True, copy_risk_percent=2.0, copy_max_positions=25):
+                 enable_copy_trading=True, copy_risk_percent=2.0, copy_max_positions=25,
+                 max_trades_per_pair=3):
+
         """
         Args:
             model_path: Path to universal model (used as base/fallback)
@@ -282,6 +284,7 @@ class LiveTradingBot:
             enable_copy_trading: Enable Telegram copy trading
             copy_risk_percent: Risk per copy trade as % of balance
             copy_max_positions: Max positions from copy trading
+            max_trades_per_pair: Max concurrent trades per pair for this bot
         """
         self.mt5 = MT5Connector()
         self.pairs = pairs
@@ -294,6 +297,7 @@ class LiveTradingBot:
         self.enable_copy_trading = enable_copy_trading
         self.copy_risk_percent = copy_risk_percent
         self.copy_max_positions = copy_max_positions
+        self.max_trades_per_pair = max_trades_per_pair
         
         self.feature_columns = None
         
@@ -380,20 +384,21 @@ class LiveTradingBot:
         
         try:
             # Start Telegram copy trader first if enabled (wait for authentication)
+            # Start Telegram copy trader first if enabled (wait for authentication)
             if self.enable_copy_trading and self.copy_trader:
-                logger.info("Starting Telegram copy trader (please complete authentication)...")
+                logger.info("Starting Telegram copy trader...")
                 telegram_thread = threading.Thread(target=self._run_telegram_copy_trader, daemon=True)
                 telegram_thread.start()
                 
-                # Wait for Telegram authentication to complete
-                import time
-                logger.info("Waiting 5 minutes for Telegram authentication to complete...")
-                logger.info("Please enter your phone number and verification code when prompted.")
-                time.sleep(300)  # Wait 5 minutes for user authentication
-                logger.info("Telegram copy trader running in background")
-                logger.info("Starting ML SMC market monitoring...")
+                # Check for existing session/auth
+                logger.info("Checking for Telegram authentication...")
+                logger.info("NOTE: On first run, check the console for phone number prompt.")
+                logger.info("Waiting 10 seconds to ensure connection init...")
+                time.sleep(10)  # Reduced from 300s
+                logger.info("Telegram copy trader initialization proceed.")
             
             # Run main ML trading loop
+            logger.info("Starting ML SMC market monitoring...")
             self.run_loop()
         except KeyboardInterrupt:
             logger.info("Bot stopped by user")
@@ -522,10 +527,47 @@ class LiveTradingBot:
                 bot_positions = [pos for pos in positions if pos.magic == 234000]
                 
                 if len(bot_positions) > 0:
-                    # Get probabilities of existing positions for this symbol
+                    # Check for opposing positions
+                    opposing_positions = []
+                    for pos in bot_positions:
+                        pos_type = 'BUY' if pos.type == 0 else 'SELL'
+                        if pos_type != signal:
+                            opposing_positions.append(pos)
+                    
+                    if opposing_positions:
+                        # Smart Reversal Logic (The Flip)
+                        existing_probs = [
+                            self.position_probabilities.get(pos.ticket, 0.4) # Default to 0.4 (min_prob) if unknown
+                            for pos in opposing_positions
+                        ]
+                        max_existing_prob = max(existing_probs) if existing_probs else 0.4
+                        
+                        prob_difference = confidence - max_existing_prob
+                        
+                        if prob_difference > self.min_prob_increase:
+                            logger.info(
+                                f"FLIP SIGNAL: {symbol} New {signal} ({confidence:.3f}) is significantly stronger "
+                                f"than existing position ({max_existing_prob:.3f}). Difference: {prob_difference:.3f}"
+                            )
+                            logger.info(f"Closing {len(opposing_positions)} opposing position(s) to Reverse.")
+                            
+                            for pos in opposing_positions:
+                                self.close_position(pos)
+                                time.sleep(0.5) # small delay for MT5 processing
+                                
+                            # Proceed to open new trade (fall through)
+                        else:
+                            logger.info(
+                                f"{symbol}: Signal {signal} ({confidence:.3f}) opposes existing position "
+                                f"({max_existing_prob:.3f}). Difference {prob_difference:.3f} < {self.min_prob_increase}. "
+                                f"Holding original position (No Flip)."
+                            )
+                            return
+
+                    # Get probabilities of same-direction positions (adding to position)
                     existing_probs = [
-                        self.position_probabilities.get(pos.ticket, 0) 
-                        for pos in bot_positions
+                        self.position_probabilities.get(pos.ticket, self.min_prob) # Assume at least min_prob for unknown existing trades
+                        for pos in bot_positions if pos not in opposing_positions
                     ]
                     max_existing_prob = max(existing_probs) if existing_probs else 0
                     
@@ -540,12 +582,17 @@ class LiveTradingBot:
                             f"(needs +{self.min_prob_increase:.2f}, got +{prob_difference:.3f}). Skipping."
                         )
                         return
-                    else:
-                        logger.info(
-                            f"{symbol}: New signal prob ({confidence:.3f}) is {prob_difference:.3f} "
-                            f"higher than max existing ({max_existing_prob:.3f}). "
-                            f"Opening additional position."
-                        )
+                    
+                    # Check if max trades per pair reached
+                    if len(bot_positions) >= self.max_trades_per_pair:
+                        logger.info(f"{symbol}: Max trades per pair ({self.max_trades_per_pair}) reached. Skipping.")
+                        return
+
+                    logger.info(
+                        f"{symbol}: New signal prob ({confidence:.3f}) is {prob_difference:.3f} "
+                        f"higher than max existing ({max_existing_prob:.3f}). "
+                        f"Opening additional position."
+                    )
                 
                 # Check max positions
                 all_positions = self.mt5.get_positions()
@@ -559,6 +606,10 @@ class LiveTradingBot:
         except Exception as e:
             logger.error(f"Error processing {symbol}: {e}", exc_info=True)
     
+    def close_position(self, position):
+        """Close a position"""
+        return self.mt5.close_position(position)
+
     def place_trade(self, symbol, signal, confidence):
         """Place a trade"""
         try:
@@ -665,13 +716,52 @@ class LiveTradingBot:
                 journal_id = self.position_journal_ids[ticket]
                 try:
                     # Get position history to determine if TP or SL
-                    # For now, we'll check the last known position state
-                    # In a production system, you'd query MT5 history
-                    logger.info(f"Position {ticket} closed, updating journal {journal_id}")
+                    # Fetch deals for this position
+                    from datetime import datetime, timedelta
+                    today = datetime.now()
+                    from_date = today - timedelta(days=5) # Look back 5 days to be safe
                     
-                    # Since we can't easily determine TP vs SL after closure,
-                    # we'll mark it as closed and let the user update manually if needed
-                    # A better approach would be to track position state before closure
+                    deals = mt5.history_deals_get(position=ticket)
+                    
+                    if deals and len(deals) > 0:
+                        # Find the exit deal (entry = 1 which is DEAL_ENTRY_OUT)
+                        exit_deal = None
+                        for deal in deals:
+                            if deal.entry == mt5.DEAL_ENTRY_OUT:
+                                exit_deal = deal
+                                break
+                        
+                        if exit_deal:
+                            profit = exit_deal.profit
+                            exit_price = exit_deal.price
+                            
+                            # Determine Status
+                            if profit > 0:
+                                status = 'TP'
+                            elif profit < 0:
+                                status = 'SL'
+                            else:
+                                status = 'CLOSED' # Breakeven
+                            
+                            logger.info(f"Position {ticket} closed. Profit: ${profit:.2f}, Status: {status}")
+                            
+                            # Update Journal
+                            if self.journal_logger:
+                                self.journal_logger.update_trade_result(
+                                    entry_id=journal_id,
+                                    result_status=status,
+                                    exit_price=exit_price,
+                                    profit=profit
+                                )
+                        else:
+                            logger.warning(f"No exit deal found for position {ticket}, marking as CLOSED")
+                            if self.journal_logger:
+                                self.journal_logger.update_trade_result(
+                                    entry_id=journal_id,
+                                    result_status='CLOSED'
+                                )
+                    else:
+                        logger.warning(f"No history deals found for position {ticket}")
                     
                     # Remove from tracking
                     del self.position_journal_ids[ticket]
