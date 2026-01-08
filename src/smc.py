@@ -122,6 +122,24 @@ class SmartMoneyConceptsFull:
         # Calculate Premium/Discount Zones
         df = self._calculate_zones(df)
         
+        # Detect Liquidity Sweeps
+        df = self._detect_liquidity_sweeps(df)
+        
+        # Detect Inducement Zones
+        df = self._detect_inducement_zones(df)
+        
+        # Detect Market Maker Patterns
+        df = self._detect_market_maker_patterns(df)
+        
+        # Detect Breaker Blocks
+        df = self._detect_breaker_blocks(df)
+        
+        # Detect Mitigation Blocks
+        df = self._detect_mitigation_blocks(df)
+        
+        # Calculate Volume-Weighted Order Block Strength
+        df = self._calculate_ob_volume_weight(df)
+        
         return df
     
     def _initialize_columns(self, df: pd.DataFrame):
@@ -166,6 +184,37 @@ class SmartMoneyConceptsFull:
         df['equilibrium_bottom'] = float('nan')
         df['discount_top'] = float('nan')
         df['discount_bottom'] = float('nan')
+        
+        # Liquidity Sweeps
+        df['liquidity_sweep'] = 0  # 1 for bullish sweep, -1 for bearish sweep
+        df['sweep_magnitude'] = 0.0  # How far beyond level (in ATR)
+        df['sweep_reversal'] = False  # Did price reverse after sweep
+        
+        # Inducement Zones
+        df['inducement_zone'] = 0  # 1 for bullish trap, -1 for bearish trap
+        df['inducement_top'] = float('nan')
+        df['inducement_bottom'] = float('nan')
+        
+        # Market Maker Models
+        df['mm_phase'] = 0  # 0=none, 1=accumulation, 2=manipulation, 3=distribution
+        df['amd_pattern'] = False  # Accumulation-Manipulation-Distribution
+        df['institutional_candle'] = False  # Large body, small wicks
+        
+        # Breaker Blocks
+        df['breaker_block'] = 0  # 1 for bullish, -1 for bearish
+        df['breaker_top'] = float('nan')
+        df['breaker_bottom'] = float('nan')
+        
+        # Mitigation Blocks
+        df['mitigation_block'] = 0  # 1 for bullish, -1 for bearish
+        df['mitigation_top'] = float('nan')
+        df['mitigation_bottom'] = float('nan')
+        df['mitigation_strength'] = 0.0  # 0-1 score
+        
+        # Volume-Weighted Order Blocks
+        df['ob_volume_weight'] = 0.0  # Volume weight for order blocks
+        df['ob_strength'] = 0.0  # Combined strength score
+        
         
     def _calculate_volatility(self, df: pd.DataFrame) -> pd.DataFrame:
         """Calculate volatility measures for order block filtering"""
@@ -553,6 +602,263 @@ class SmartMoneyConceptsFull:
                 df.at[i, 'discount_bottom'] = window_low
         
         return df
+    
+    def _detect_liquidity_sweeps(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Detect liquidity sweeps - when price sweeps above/below key levels and reverses.
+        A sweep is a false breakout designed to grab liquidity before reversing.
+        """
+        highs = df['high'].values
+        lows = df['low'].values
+        closes = df['close'].values
+        atr = df['atr'].values
+        
+        swing_highs = df['swing_high_level'].values
+        swing_lows = df['swing_low_level'].values
+        
+        n = len(df)
+        lookback = 5  # Bars to check for reversal
+        
+        for i in range(self.swing_length, n - lookback):
+            if np.isnan(swing_highs[i]) or np.isnan(swing_lows[i]):
+                continue
+            
+            # Bearish liquidity sweep (sweep above high, then reverse down)
+            if highs[i] > swing_highs[i]:
+                sweep_distance = (highs[i] - swing_highs[i]) / (atr[i] + 1e-10)
+                
+                # Check if price reversed down after sweep
+                future_lows = lows[i+1:i+lookback+1]
+                if len(future_lows) > 0 and np.min(future_lows) < closes[i]:
+                    df.at[i, 'liquidity_sweep'] = -1  # Bearish sweep
+                    df.at[i, 'sweep_magnitude'] = sweep_distance
+                    df.at[i, 'sweep_reversal'] = True
+            
+            # Bullish liquidity sweep (sweep below low, then reverse up)
+            if lows[i] < swing_lows[i]:
+                sweep_distance = (swing_lows[i] - lows[i]) / (atr[i] + 1e-10)
+                
+                # Check if price reversed up after sweep
+                future_highs = highs[i+1:i+lookback+1]
+                if len(future_highs) > 0 and np.max(future_highs) > closes[i]:
+                    df.at[i, 'liquidity_sweep'] = 1  # Bullish sweep
+                    df.at[i, 'sweep_magnitude'] = sweep_distance
+                    df.at[i, 'sweep_reversal'] = True
+        
+        return df
+    
+    def _detect_inducement_zones(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Detect inducement zones - areas designed to trap retail traders.
+        These are typically small moves against the trend before a strong reversal.
+        """
+        highs = df['high'].values
+        lows = df['low'].values
+        closes = df['close'].values
+        swing_trend = df['swing_trend'].values
+        
+        n = len(df)
+        lookback = 10
+        
+        for i in range(lookback, n - 5):
+            # In bullish trend, look for bearish inducement (fake bearish move)
+            if swing_trend[i] == 1:
+                # Check for small bearish move followed by strong bullish continuation
+                recent_low = np.min(lows[i-lookback:i])
+                if lows[i] <= recent_low:
+                    # Check if price rallies strongly after
+                    future_highs = highs[i+1:i+6]
+                    if len(future_highs) > 0 and np.max(future_highs) > highs[i] * 1.001:
+                        df.at[i, 'inducement_zone'] = 1  # Bullish trap (trapped bears)
+                        df.at[i, 'inducement_top'] = highs[i]
+                        df.at[i, 'inducement_bottom'] = lows[i]
+            
+            # In bearish trend, look for bullish inducement (fake bullish move)
+            elif swing_trend[i] == -1:
+                # Check for small bullish move followed by strong bearish continuation
+                recent_high = np.max(highs[i-lookback:i])
+                if highs[i] >= recent_high:
+                    # Check if price drops strongly after
+                    future_lows = lows[i+1:i+6]
+                    if len(future_lows) > 0 and np.min(future_lows) < lows[i] * 0.999:
+                        df.at[i, 'inducement_zone'] = -1  # Bearish trap (trapped bulls)
+                        df.at[i, 'inducement_top'] = highs[i]
+                        df.at[i, 'inducement_bottom'] = lows[i]
+        
+        return df
+    
+    def _detect_market_maker_patterns(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Detect market maker patterns including AMD (Accumulation-Manipulation-Distribution).
+        Also identify institutional candles (large body, small wicks).
+        """
+        opens = df['open'].values
+        highs = df['high'].values
+        lows = df['low'].values
+        closes = df['close'].values
+        volumes = df['volume'].values if 'volume' in df.columns else np.ones(len(df))
+        
+        n = len(df)
+        
+        for i in range(20, n):
+            # Institutional candle detection
+            body = abs(closes[i] - opens[i])
+            total_range = highs[i] - lows[i]
+            upper_wick = highs[i] - max(opens[i], closes[i])
+            lower_wick = min(opens[i], closes[i]) - lows[i]
+            
+            # Large body (>70% of range), small wicks, above average volume
+            avg_volume = np.mean(volumes[i-20:i])
+            if (body / (total_range + 1e-10) > 0.7 and 
+                upper_wick / (total_range + 1e-10) < 0.15 and
+                lower_wick / (total_range + 1e-10) < 0.15 and
+                volumes[i] > avg_volume * 1.2):
+                df.at[i, 'institutional_candle'] = True
+            
+            # AMD Pattern Detection (simplified)
+            # Look for: consolidation -> spike -> reversal
+            lookback = 15
+            
+            # Accumulation: tight range
+            recent_range = np.max(highs[i-lookback:i]) - np.min(lows[i-lookback:i])
+            avg_range = np.mean(highs[i-lookback:i] - lows[i-lookback:i])
+            
+            if recent_range < avg_range * 3:  # Consolidation
+                df.at[i, 'mm_phase'] = 1  # Accumulation
+                
+                # Check for manipulation (spike out of range)
+                if i < n - 5:
+                    next_5_high = np.max(highs[i:i+5])
+                    next_5_low = np.min(lows[i:i+5])
+                    
+                    if next_5_high > np.max(highs[i-lookback:i]) * 1.002:
+                        df.at[i+1, 'mm_phase'] = 2  # Manipulation
+                        df.at[i+1, 'amd_pattern'] = True
+                    elif next_5_low < np.min(lows[i-lookback:i]) * 0.998:
+                        df.at[i+1, 'mm_phase'] = 2  # Manipulation
+                        df.at[i+1, 'amd_pattern'] = True
+        
+        return df
+    
+    def _detect_breaker_blocks(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Detect breaker blocks - order blocks that have been broken and flip polarity.
+        A bullish OB that gets broken becomes a bearish breaker block and vice versa.
+        """
+        highs = df['high'].values
+        lows = df['low'].values
+        closes = df['close'].values
+        
+        swing_ob = df['swing_ob'].values
+        swing_ob_top = df['swing_ob_top'].values
+        swing_ob_bottom = df['swing_ob_bottom'].values
+        
+        n = len(df)
+        
+        # Track order blocks and check if they get broken
+        for i in range(n):
+            if swing_ob[i] != 0:  # Found an order block
+                ob_top = swing_ob_top[i]
+                ob_bottom = swing_ob_bottom[i]
+                ob_type = swing_ob[i]  # 1 = bullish, -1 = bearish
+                
+                # Look forward to see if it gets broken
+                for j in range(i+1, min(i+100, n)):
+                    # Bullish OB broken to downside = bearish breaker
+                    if ob_type == 1 and closes[j] < ob_bottom:
+                        df.at[j, 'breaker_block'] = -1
+                        df.at[j, 'breaker_top'] = ob_top
+                        df.at[j, 'breaker_bottom'] = ob_bottom
+                        break
+                    
+                    # Bearish OB broken to upside = bullish breaker
+                    elif ob_type == -1 and closes[j] > ob_top:
+                        df.at[j, 'breaker_block'] = 1
+                        df.at[j, 'breaker_top'] = ob_top
+                        df.at[j, 'breaker_bottom'] = ob_bottom
+                        break
+        
+        return df
+    
+    def _detect_mitigation_blocks(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Detect mitigation blocks - when price returns to an order block to mitigate unfilled orders.
+        These are high-probability entry zones.
+        """
+        highs = df['high'].values
+        lows = df['low'].values
+        closes = df['close'].values
+        
+        swing_ob = df['swing_ob'].values
+        swing_ob_top = df['swing_ob_top'].values
+        swing_ob_bottom = df['swing_ob_bottom'].values
+        swing_trend = df['swing_trend'].values
+        
+        n = len(df)
+        
+        for i in range(n):
+            if swing_ob[i] != 0:  # Found an order block
+                ob_top = swing_ob_top[i]
+                ob_bottom = swing_ob_bottom[i]
+                ob_type = swing_ob[i]
+                
+                # Look forward for price returning to mitigate
+                for j in range(i+1, min(i+50, n)):
+                    # Bullish OB mitigation (price returns to test from above)
+                    if ob_type == 1 and swing_trend[j] == 1:
+                        # Price touches OB zone
+                        if lows[j] <= ob_top and lows[j] >= ob_bottom:
+                            # Calculate mitigation strength
+                            penetration = (ob_top - lows[j]) / (ob_top - ob_bottom + 1e-10)
+                            df.at[j, 'mitigation_block'] = 1
+                            df.at[j, 'mitigation_top'] = ob_top
+                            df.at[j, 'mitigation_bottom'] = ob_bottom
+                            df.at[j, 'mitigation_strength'] = penetration
+                            break
+                    
+                    # Bearish OB mitigation (price returns to test from below)
+                    elif ob_type == -1 and swing_trend[j] == -1:
+                        # Price touches OB zone
+                        if highs[j] >= ob_bottom and highs[j] <= ob_top:
+                            # Calculate mitigation strength
+                            penetration = (highs[j] - ob_bottom) / (ob_top - ob_bottom + 1e-10)
+                            df.at[j, 'mitigation_block'] = -1
+                            df.at[j, 'mitigation_top'] = ob_top
+                            df.at[j, 'mitigation_bottom'] = ob_bottom
+                            df.at[j, 'mitigation_strength'] = penetration
+                            break
+        
+        return df
+    
+    def _calculate_ob_volume_weight(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Calculate volume-weighted strength for order blocks.
+        Higher volume = stronger order block.
+        """
+        volumes = df['volume'].values if 'volume' in df.columns else np.ones(len(df))
+        swing_ob = df['swing_ob'].values
+        
+        n = len(df)
+        
+        # Calculate rolling average volume
+        avg_volume = pd.Series(volumes).rolling(window=50, min_periods=1).mean().values
+        
+        for i in range(n):
+            if swing_ob[i] != 0:
+                # Volume weight: current volume / average volume
+                vol_weight = volumes[i] / (avg_volume[i] + 1e-10)
+                df.at[i, 'ob_volume_weight'] = min(vol_weight, 5.0)  # Cap at 5x
+                
+                # Combined strength score (volume + position in range)
+                body = abs(df.at[i, 'close'] - df.at[i, 'open'])
+                total_range = df.at[i, 'high'] - df.at[i, 'low']
+                body_ratio = body / (total_range + 1e-10)
+                
+                # Strength = volume weight * body ratio
+                df.at[i, 'ob_strength'] = vol_weight * body_ratio
+        
+        return df
+
 
 
 # Example usage and helper functions

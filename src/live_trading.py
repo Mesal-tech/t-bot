@@ -15,13 +15,11 @@ import threading
 try:
     from features import SMCFeatureGenerator
     from firebase_logger import get_firebase_logger
-    from telegram_copy_trader import TelegramCopyTrader
 except ImportError:
     # If running from parent directory
     sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
     from features import SMCFeatureGenerator
     from firebase_logger import get_firebase_logger
-    from telegram_copy_trader import TelegramCopyTrader
 
 # Setup logging
 log_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'logs')
@@ -39,7 +37,7 @@ file_handler.setFormatter(detailed_formatter)
 
 # Console handler - only logs WARNING and above (for trade events)
 console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.WARNING)
+console_handler.setLevel(logging.INFO)
 console_handler.setFormatter(simple_formatter)
 
 # Configure root logger
@@ -268,7 +266,6 @@ class LiveTradingBot:
     
     def __init__(self, model_path, pairs, tp_pips=40, sl_pips=10, min_prob=0.4, 
                  risk_percent=1.0, max_positions=5, min_prob_increase=0.25,
-                 enable_copy_trading=True, copy_risk_percent=2.0, copy_max_positions=25,
                  max_trades_per_pair=3):
 
         """
@@ -281,9 +278,6 @@ class LiveTradingBot:
             risk_percent: Risk per trade as % of balance
             max_positions: Maximum concurrent positions
             min_prob_increase: Minimum probability increase for additional positions on same pair
-            enable_copy_trading: Enable Telegram copy trading
-            copy_risk_percent: Risk per copy trade as % of balance
-            copy_max_positions: Max positions from copy trading
             max_trades_per_pair: Max concurrent trades per pair for this bot
         """
         self.mt5 = MT5Connector()
@@ -294,9 +288,6 @@ class LiveTradingBot:
         self.risk_percent = risk_percent
         self.max_positions = max_positions
         self.min_prob_increase = min_prob_increase
-        self.enable_copy_trading = enable_copy_trading
-        self.copy_risk_percent = copy_risk_percent
-        self.copy_max_positions = copy_max_positions
         self.max_trades_per_pair = max_trades_per_pair
         
         self.feature_columns = None
@@ -351,14 +342,7 @@ class LiveTradingBot:
         self.position_probabilities = {}  # Maps MT5 ticket to confidence probability
         self.position_sources = {}  # Maps MT5 ticket to source ('ML' or 'COPY')
         
-        # Telegram copy trader
-        self.copy_trader = None
-        if self.enable_copy_trading:
-            self.copy_trader = TelegramCopyTrader(
-                mt5_connector=self.mt5,
-                risk_percent=self.copy_risk_percent,
-                max_positions=self.copy_max_positions
-            )
+
     
     def start(self):
         """Start the trading bot"""
@@ -367,36 +351,18 @@ class LiveTradingBot:
             return
         
         self.running = True
-        logger.info("="*70)
         logger.info("ML SMC LIVE TRADING BOT STARTED")
         logger.info("="*70)
+        logger.info("Corrected SMC Logic: ACTIVE (Look-ahead bias removed)")
         logger.info(f"Pairs: {', '.join(self.pairs)}")
         logger.info(f"TP/SL: {self.tp_pips}/{self.sl_pips} pips")
         logger.info(f"Min Probability: {self.min_prob}")
         logger.info(f"Risk per Trade: {self.risk_percent}%")
         logger.info(f"Max Positions: {self.max_positions}")
         logger.info(f"Min Prob Increase for Multi-Position: {self.min_prob_increase*100:.0f}%")
-        if self.enable_copy_trading:
-            logger.info(f"Copy Trading: ENABLED (Risk: {self.copy_risk_percent}%, Max: {self.copy_max_positions})")
-        else:
-            logger.info("Copy Trading: DISABLED")
         logger.info("="*70)
         
         try:
-            # Start Telegram copy trader first if enabled (wait for authentication)
-            # Start Telegram copy trader first if enabled (wait for authentication)
-            if self.enable_copy_trading and self.copy_trader:
-                logger.info("Starting Telegram copy trader...")
-                telegram_thread = threading.Thread(target=self._run_telegram_copy_trader, daemon=True)
-                telegram_thread.start()
-                
-                # Check for existing session/auth
-                logger.info("Checking for Telegram authentication...")
-                logger.info("NOTE: On first run, check the console for phone number prompt.")
-                logger.info("Waiting 10 seconds to ensure connection init...")
-                time.sleep(10)  # Reduced from 300s
-                logger.info("Telegram copy trader initialization proceed.")
-            
             # Run main ML trading loop
             logger.info("Starting ML SMC market monitoring...")
             self.run_loop()
@@ -407,26 +373,11 @@ class LiveTradingBot:
         finally:
             self.stop()
     
-    def _run_telegram_copy_trader(self):
-        """Run Telegram copy trader in async event loop"""
-        try:
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
-            loop.run_until_complete(self.copy_trader.start())
-        except Exception as e:
-            logger.error(f"Telegram copy trader error: {e}", exc_info=True)
+
     
     def stop(self):
         """Stop the trading bot"""
         self.running = False
-        
-        # Stop Telegram copy trader
-        if self.enable_copy_trading and self.copy_trader:
-            try:
-                asyncio.run(self.copy_trader.stop())
-            except Exception as e:
-                logger.error(f"Error stopping copy trader: {e}")
-        
         self.mt5.disconnect()
         logger.info("Bot stopped")
     
@@ -601,7 +552,8 @@ class LiveTradingBot:
                     return
                 
                 # Place trade
-                self.place_trade(symbol, signal, confidence)
+                atr_value = latest.get('atr', 0)
+                self.place_trade(symbol, signal, confidence, atr=atr_value)
             
         except Exception as e:
             logger.error(f"Error processing {symbol}: {e}", exc_info=True)
@@ -610,8 +562,8 @@ class LiveTradingBot:
         """Close a position"""
         return self.mt5.close_position(position)
 
-    def place_trade(self, symbol, signal, confidence):
-        """Place a trade"""
+    def place_trade(self, symbol, signal, confidence, atr=None):
+        """Place a trade with dynamic sizing"""
         try:
             # Get symbol info
             symbol_info = self.mt5.get_symbol_info(symbol)
@@ -629,36 +581,56 @@ class LiveTradingBot:
             balance = account_info.balance
             risk_amount = balance * (self.risk_percent / 100)
             
-            # Pip value calculation
-            point = symbol_info['point']
-            pip_size = point * 10 if symbol_info['digits'] == 5 or symbol_info['digits'] == 3 else point
+            # Determine SL/TP distance
+            if atr is not None and atr > 0:
+                # Use ATR-based stops (Adaptive)
+                # Default: SL = 1.0 ATR, TP = 4.0 ATR (based on 40/10 ratio)
+                ratio = self.tp_pips / self.sl_pips if self.sl_pips > 0 else 2.0
+                sl_dist = atr * 1.5  # 1.5 ATR buffer for SL
+                tp_dist = sl_dist * ratio
+            else:
+                # Fallback to fixed pips (Legacy)
+                point = symbol_info['point']
+                # Auto-adjust pip size for non-forex
+                is_yen_or_gold = 'JPY' in symbol or 'XAU' in symbol
+                pip_size = point * 100 if is_yen_or_gold else point * 10
+                if symbol_info['digits'] <= 2: # Crypto/Indices
+                     pip_size = point * 100 if point < 1 else 1.0 # Crude approximation
+                
+                sl_dist = self.sl_pips * pip_size
+                tp_dist = self.tp_pips * pip_size
+
+            # Calculate Lot Size accurately
+            # Risk = Lot_Size * Contract_Size * SL_Distance
+            contract_size = symbol_info['trade_contract_size']
+            if contract_size <= 0: contract_size = 1.0
             
-            # Calculate lot size
-            # Risk = Lot Size * SL in pips * Pip Value
-            # For forex: Pip Value = Lot Size * Contract Size * Pip Size
-            sl_pips_value = self.sl_pips * pip_size
-            lot_size = risk_amount / (self.sl_pips * 10)  # Simplified calculation
+            # Avoid division by zero
+            if sl_dist <= 0: sl_dist = 0.0001
+            
+            raw_lot_size = risk_amount / (contract_size * sl_dist)
             
             # Round to volume step
             volume_step = symbol_info['volume_step']
-            lot_size = round(lot_size / volume_step) * volume_step
+            lot_size = round(raw_lot_size / volume_step) * volume_step
             
             # Ensure within limits
             lot_size = max(symbol_info['volume_min'], min(lot_size, symbol_info['volume_max']))
             
-            # Calculate SL/TP
+            # Calculate Price Levels
             if signal == 'BUY':
                 entry_price = tick.ask
-                sl = entry_price - (self.sl_pips * pip_size)
-                tp = entry_price + (self.tp_pips * pip_size)
+                sl = entry_price - sl_dist
+                tp = entry_price + tp_dist
                 order_type = mt5.ORDER_TYPE_BUY
             else:  # SELL
                 entry_price = tick.bid
-                sl = entry_price + (self.sl_pips * pip_size)
-                tp = entry_price - (self.tp_pips * pip_size)
+                sl = entry_price + sl_dist
+                tp = entry_price - tp_dist
                 order_type = mt5.ORDER_TYPE_SELL
             
             # Place order
+            logger.info(f"CALC: Risk ${risk_amount:.2f} | SL Dist {sl_dist:.5f} | ATR used: {atr is not None}")
             logger.warning(f"PLACING {signal} ORDER: {symbol} {lot_size} lots @ {entry_price:.5f}, SL: {sl:.5f}, TP: {tp:.5f}")
             
             result = self.mt5.place_order(
@@ -832,10 +804,7 @@ if __name__ == "__main__":
         min_prob=config_live.MIN_PROBABILITY,
         risk_percent=config_live.RISK_PERCENT,
         max_positions=config_live.MAX_POSITIONS,
-        min_prob_increase=config_live.MIN_PROB_INCREASE,
-        enable_copy_trading=config_live.ENABLE_COPY_TRADING,
-        copy_risk_percent=config_live.COPY_TRADING_RISK_PERCENT,
-        copy_max_positions=config_live.COPY_TRADING_MAX_POSITIONS
+        min_prob_increase=config_live.MIN_PROB_INCREASE
     )
     
     bot.start()

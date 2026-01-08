@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from xgboost import XGBClassifier
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.metrics import classification_report, confusion_matrix
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, RobustScaler
 from imblearn.over_sampling import SMOTE
 import joblib
 import warnings
@@ -15,17 +15,32 @@ class SMCModelTrainer:
     Train ML models optimized for small datasets with overfitting prevention.
     """
     
-    def __init__(self, model_type='rf', use_smote=True):
+    def __init__(self, model_type='rf', use_smote=True, scaler_type='robust', 
+                 selected_features=None):
         """
         Args:
             model_type: 'rf' (Random Forest), 'gbc' (Gradient Boosting), or 'xgb' (XGBoost)
             use_smote: Whether to apply SMOTE for class balancing
+            scaler_type: 'robust' (default), 'standard', or 'minmax'
+            selected_features: Optional list of features to use (for feature selection)
         """
         self.model_type = model_type
         self.use_smote = use_smote
         self.model = None
-        self.scaler = StandardScaler()  # Feature standardization
+        
+        # Use RobustScaler by default (better for outliers)
+        if scaler_type == 'robust':
+            self.scaler = RobustScaler()  # Robust to outliers
+        elif scaler_type == 'minmax':
+            from sklearn.preprocessing import MinMaxScaler
+            self.scaler = MinMaxScaler()
+        else:
+            self.scaler = StandardScaler()
+        
+        self.scaler_type = scaler_type
         self.feature_columns = None
+        self.selected_features = selected_features
+        self.feature_importance_df = None
         
     def train(self, df, validation_split=0.15):
         """
@@ -154,7 +169,15 @@ class SMCModelTrainer:
         ]
         
         # Get feature columns
-        self.feature_columns = [c for c in df.columns if c not in drop_cols]
+        all_feature_columns = [c for c in df.columns if c not in drop_cols]
+        
+        # Use selected features if provided
+        if self.selected_features is not None:
+            self.feature_columns = [f for f in self.selected_features 
+                                   if f in all_feature_columns]
+            print(f"Using {len(self.feature_columns)} selected features")
+        else:
+            self.feature_columns = all_feature_columns
         
         X = df[self.feature_columns].values
         y = df['label'].values
@@ -206,7 +229,7 @@ class SMCModelTrainer:
     def _print_feature_importance(self):
         """Display top features"""
         if hasattr(self.model, 'feature_importances_'):
-            importances = pd.DataFrame({
+            self.feature_importance_df = pd.DataFrame({
                 'feature': self.feature_columns,
                 'importance': self.model.feature_importances_
             }).sort_values('importance', ascending=False)
@@ -214,26 +237,53 @@ class SMCModelTrainer:
             print("\n" + "="*60)
             print("TOP 15 FEATURES")
             print("="*60)
-            print(importances.head(15).to_string(index=False))
+            print(self.feature_importance_df.head(15).to_string(index=False))
+            
+            # Show statistics
+            print(f"\nFeature Importance Statistics:")
+            print(f"  Mean:   {self.feature_importance_df['importance'].mean():.6f}")
+            print(f"  Median: {self.feature_importance_df['importance'].median():.6f}")
+            print(f"  Max:    {self.feature_importance_df['importance'].max():.6f}")
+            print(f"  Features > 0.01: {(self.feature_importance_df['importance'] > 0.01).sum()}")
+            print(f"  Features > 0.001: {(self.feature_importance_df['importance'] > 0.001).sum()}")
     
     def save_model(self, filepath):
         """Save model and metadata"""
-        joblib.dump({
+        model_data = {
             'model': self.model,
             'feature_columns': self.feature_columns,
             'model_type': self.model_type,
-            'scaler': self.scaler  # Save scaler for live trading
-        }, filepath)
+            'scaler': self.scaler,
+            'scaler_type': self.scaler_type,
+            'selected_features': self.selected_features
+        }
+        
+        # Save feature importance if available
+        if self.feature_importance_df is not None:
+            model_data['feature_importance'] = self.feature_importance_df
+        
+        joblib.dump(model_data, filepath)
         print(f"\nModel saved: {filepath}")
+        
+        # Save feature importance to CSV
+        if self.feature_importance_df is not None:
+            importance_file = str(filepath).replace('.pkl', '_feature_importance.csv')
+            self.feature_importance_df.to_csv(importance_file, index=False)
+            print(f"Feature importance saved: {importance_file}")
     
     @staticmethod
     def load_model(filepath):
         """Load saved model"""
         data = joblib.load(filepath)
-        trainer = SMCModelTrainer(model_type=data['model_type'])
+        trainer = SMCModelTrainer(
+            model_type=data['model_type'],
+            scaler_type=data.get('scaler_type', 'robust'),
+            selected_features=data.get('selected_features')
+        )
         trainer.model = data['model']
         trainer.feature_columns = data['feature_columns']
-        trainer.scaler = data.get('scaler', StandardScaler())  # Load scaler
+        trainer.scaler = data.get('scaler', RobustScaler())
+        trainer.feature_importance_df = data.get('feature_importance')
         return trainer
 
 

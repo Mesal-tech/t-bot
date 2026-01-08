@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
-from smc import SmartMoneyConceptsFull
+from smc_corrected import SmartMoneyConceptsFull
+from sessions import add_session_features
 
 class SMCFeatureGenerator:
     """
@@ -31,46 +32,50 @@ class SMCFeatureGenerator:
         # print("Analyzing SMC structure...")
         smc_df = self.smc.analyze(df)
         
-        # Initialize features DataFrame
-        features = pd.DataFrame(index=df.index)
+        # Add Session Features
+        # print("Adding session features...")
+        session_df = add_session_features(df[['timestamp', 'open', 'high', 'low', 'close', 'volume']].copy(), time_zone="UTC")
+        
+        # Dictionary to collect all features (prevents fragmentation)
+        feature_dict = {}
         
         # ===== 1. SMC STRUCTURE FEATURES =====
         # print("Extracting SMC structure features...")
-        features['swing_trend'] = smc_df['swing_trend']
-        features['internal_trend'] = smc_df['internal_trend']
+        feature_dict['swing_trend'] = smc_df['swing_trend']
+        feature_dict['internal_trend'] = smc_df['internal_trend']
         
         # Structure alignment (both trends agree)
-        features['structure_aligned'] = (
+        feature_dict['structure_aligned'] = (
             (smc_df['swing_trend'] == smc_df['internal_trend']) & 
             (smc_df['swing_trend'] != 0)
         ).astype(int)
         
         # Structure breaks (momentum indicators)
-        features['swing_bos'] = smc_df['swing_bos'].astype(int)
-        features['swing_choch'] = smc_df['swing_choch'].astype(int)
-        features['internal_bos'] = smc_df['internal_bos'].astype(int)
-        features['internal_choch'] = smc_df['internal_choch'].astype(int)
+        feature_dict['swing_bos'] = smc_df['swing_bos'].astype(int)
+        feature_dict['swing_choch'] = smc_df['swing_choch'].astype(int)
+        feature_dict['internal_bos'] = smc_df['internal_bos'].astype(int)
+        feature_dict['internal_choch'] = smc_df['internal_choch'].astype(int)
         
         # BOS momentum (rolling count)
-        features['bos_momentum'] = smc_df['swing_bos'].rolling(10).sum()
-        features['choch_count'] = smc_df['swing_choch'].rolling(10).sum()
+        feature_dict['bos_momentum'] = smc_df['swing_bos'].rolling(10).sum()
+        feature_dict['choch_count'] = smc_df['swing_choch'].rolling(10).sum()
         
         # ===== 2. ORDER BLOCK & ZONE FEATURES =====
         # print("Processing order blocks and zones...")
-        features['swing_ob'] = smc_df['swing_ob']
-        features['internal_ob'] = smc_df['internal_ob']
+        feature_dict['swing_ob'] = smc_df['swing_ob']
+        feature_dict['internal_ob'] = smc_df['internal_ob']
         
         # Distance to structure levels (normalized by ATR)
         atr = self._calculate_atr(df)
-        features['dist_to_swing_high'] = (smc_df['swing_high_level'] - df['close']) / (atr + 1e-10)
-        features['dist_to_swing_low'] = (df['close'] - smc_df['swing_low_level']) / (atr + 1e-10)
-        features['dist_to_internal_high'] = (smc_df['internal_high_level'] - df['close']) / (atr + 1e-10)
-        features['dist_to_internal_low'] = (df['close'] - smc_df['internal_low_level']) / (atr + 1e-10)
+        feature_dict['dist_to_swing_high'] = (smc_df['swing_high_level'] - df['close']) / (atr + 1e-10)
+        feature_dict['dist_to_swing_low'] = (df['close'] - smc_df['swing_low_level']) / (atr + 1e-10)
+        feature_dict['dist_to_internal_high'] = (smc_df['internal_high_level'] - df['close']) / (atr + 1e-10)
+        feature_dict['dist_to_internal_low'] = (df['close'] - smc_df['internal_low_level']) / (atr + 1e-10)
         
         # Premium/Discount/Equilibrium zones
-        features['in_premium'] = (df['close'] > smc_df['premium_bottom']).astype(int)
-        features['in_discount'] = (df['close'] < smc_df['discount_top']).astype(int)
-        features['in_equilibrium'] = (
+        feature_dict['in_premium'] = (df['close'] > smc_df['premium_bottom']).astype(int)
+        feature_dict['in_discount'] = (df['close'] < smc_df['discount_top']).astype(int)
+        feature_dict['in_equilibrium'] = (
             (df['close'] >= smc_df['equilibrium_bottom']) & 
             (df['close'] <= smc_df['equilibrium_top'])
         ).astype(int)
@@ -80,22 +85,22 @@ class SMCFeatureGenerator:
         
         # Returns at multiple timeframes
         for lag in [1, 3, 5, 10, 20, 50]:
-            features[f'return_{lag}'] = df['close'].pct_change(lag)
+            feature_dict[f'return_{lag}'] = df['close'].pct_change(lag)
         
         # Volatility (rolling std of returns)
         returns = df['close'].pct_change()
         for window in [10, 20, 50]:
-            features[f'volatility_{window}'] = returns.rolling(window).std()
+            feature_dict[f'volatility_{window}'] = returns.rolling(window).std()
         
         # ATR-based features
-        features['atr'] = atr
-        features['atr_ratio'] = atr / (atr.rolling(50).mean() + 1e-10)
+        feature_dict['atr'] = atr
+        feature_dict['atr_ratio'] = atr / (atr.rolling(50).mean() + 1e-10)
         
         # Price position in recent range
         for window in [20, 50, 100]:
             rolling_high = df['high'].rolling(window).max()
             rolling_low = df['low'].rolling(window).min()
-            features[f'price_position_{window}'] = (
+            feature_dict[f'price_position_{window}'] = (
                 (df['close'] - rolling_low) / (rolling_high - rolling_low + 1e-10)
             )
         
@@ -104,97 +109,243 @@ class SMCFeatureGenerator:
         
         body = abs(df['close'] - df['open'])
         total_range = df['high'] - df['low']
-        features['body_ratio'] = body / (total_range + 1e-10)
+        feature_dict['body_ratio'] = body / (total_range + 1e-10)
         
         upper_wick = df['high'] - df[['open', 'close']].max(axis=1)
         lower_wick = df[['open', 'close']].min(axis=1) - df['low']
-        features['upper_wick_ratio'] = upper_wick / (total_range + 1e-10)
-        features['lower_wick_ratio'] = lower_wick / (total_range + 1e-10)
+        feature_dict['upper_wick_ratio'] = upper_wick / (total_range + 1e-10)
+        feature_dict['lower_wick_ratio'] = lower_wick / (total_range + 1e-10)
         
         # Bullish/Bearish candle
-        features['is_bullish'] = (df['close'] > df['open']).astype(int)
+        feature_dict['is_bullish'] = (df['close'] > df['open']).astype(int)
         
         # ===== 5. TIME FEATURES (SESSION AWARENESS) =====
         # print("Adding time features...")
         
-        features['hour'] = df['timestamp'].dt.hour
-        features['day_of_week'] = df['timestamp'].dt.dayofweek
+        feature_dict['hour'] = df['timestamp'].dt.hour
+        feature_dict['day_of_week'] = df['timestamp'].dt.dayofweek
         
         # Cyclical encoding
-        features['hour_sin'] = np.sin(2 * np.pi * features['hour'] / 24)
-        features['hour_cos'] = np.cos(2 * np.pi * features['hour'] / 24)
-        features['dow_sin'] = np.sin(2 * np.pi * features['day_of_week'] / 7)
-        features['dow_cos'] = np.cos(2 * np.pi * features['day_of_week'] / 7)
+        feature_dict['hour_sin'] = np.sin(2 * np.pi * feature_dict['hour'] / 24)
+        feature_dict['hour_cos'] = np.cos(2 * np.pi * feature_dict['hour'] / 24)
+        feature_dict['dow_sin'] = np.sin(2 * np.pi * feature_dict['day_of_week'] / 7)
+        feature_dict['dow_cos'] = np.cos(2 * np.pi * feature_dict['day_of_week'] / 7)
+        
+        # Session Features
+        for col in session_df.columns:
+            if '_active' in col:
+                feature_dict[col] = session_df[col]
         
         # ===== 6. FVG FEATURES =====
-        features['has_fvg'] = (smc_df['fvg'] != 0).astype(int)
-        features['fvg_direction'] = smc_df['fvg']
+        feature_dict['has_fvg'] = (smc_df['fvg'] != 0).astype(int)
+        feature_dict['fvg_direction'] = smc_df['fvg']
         
         # ===== 7. EQUAL HIGHS/LOWS =====
-        features['has_eqh'] = smc_df['eqh'].astype(int)
-        features['has_eql'] = smc_df['eql'].astype(int)
+        feature_dict['has_eqh'] = smc_df['eqh'].astype(int)
+        feature_dict['has_eql'] = smc_df['eql'].astype(int)
+        
+        # ===== 8. LIQUIDITY SWEEP FEATURES =====
+        feature_dict['liquidity_sweep'] = smc_df['liquidity_sweep']
+        feature_dict['sweep_magnitude'] = smc_df['sweep_magnitude']
+        # 'sweep_reversal' removed from smc_corrected as detection is now integrated into liquidity_sweep
+        
+        # Sweep momentum (rolling count)
+        feature_dict['bullish_sweeps_recent'] = (smc_df['liquidity_sweep'] == 1).rolling(20).sum()
+        feature_dict['bearish_sweeps_recent'] = (smc_df['liquidity_sweep'] == -1).rolling(20).sum()
+        
+        # ===== 9. INDUCEMENT ZONE FEATURES =====
+        feature_dict['inducement_zone'] = smc_df['inducement_zone']
+        feature_dict['in_inducement'] = (smc_df['inducement_zone'] != 0).astype(int)
+        
+        # Distance to inducement zones
+        feature_dict['dist_to_inducement'] = np.where(
+            ~smc_df['inducement_top'].isna(),
+            (smc_df['inducement_top'] - df['close']) / (atr + 1e-10),
+            0
+        )
+        
+        # ===== 10. MARKET MAKER FEATURES =====
+        feature_dict['mm_phase'] = smc_df['mm_phase']
+        feature_dict['amd_pattern'] = smc_df['amd_pattern'].astype(int)
+        feature_dict['institutional_candle'] = smc_df['institutional_candle'].astype(int)
+        
+        # Market maker phase indicators
+        feature_dict['mm_accumulation'] = (smc_df['mm_phase'] == 1).astype(int)
+        feature_dict['mm_manipulation'] = (smc_df['mm_phase'] == 2).astype(int)
+        feature_dict['mm_distribution'] = (smc_df['mm_phase'] == 3).astype(int)
+        
+        # Count of institutional candles in recent period
+        feature_dict['institutional_candles_recent'] = smc_df['institutional_candle'].rolling(10).sum()
+        
+        # ===== 11. BREAKER BLOCK FEATURES =====
+        feature_dict['breaker_block'] = smc_df['swing_ob_breaker'].astype(int) # Updated naming in corrected
+        feature_dict['has_breaker'] = (smc_df['swing_ob_breaker']).astype(int)
+        
+        # ===== 12. MITIGATION BLOCK FEATURES =====
+        feature_dict['mitigation_block'] = smc_df['swing_ob_mitigated'].astype(int) # Updated naming
+        feature_dict['has_mitigation'] = (smc_df['swing_ob_mitigated']).astype(int)
+        
+        # ===== 13. VOLUME-WEIGHTED ORDER BLOCK FEATURES =====
+        feature_dict['ob_volume_weight'] = smc_df['ob_volume_weight']
+        feature_dict['ob_strength'] = smc_df['ob_strength']
+        
+        # High-strength order blocks
+        feature_dict['high_strength_ob'] = (smc_df['ob_strength'] > 2.0).astype(int)
+        
+        # ===== 14. NEW FEATURES FROM CORRECTED SMC =====
+        
+        # Retracements
+        feature_dict['retracement_direction'] = smc_df['retracement_direction']
+        feature_dict['current_retracement_pct'] = smc_df['current_retracement_pct']
+        feature_dict['deepest_retracement_pct'] = smc_df['deepest_retracement_pct']
+        
+        # Previous High/Low
+        feature_dict['above_previous_high'] = (df['close'] > smc_df['previous_high']).astype(int)
+        feature_dict['below_previous_low'] = (df['close'] < smc_df['previous_low']).astype(int)
+        feature_dict['dist_vs_prev_high'] = (df['close'] - smc_df['previous_high']) / (atr + 1e-10) # Normalized
+        
+        # ===== 15. INTERACTION FEATURES (POWERFUL COMBINATIONS) =====
+        # Trend + Zone alignment
+        feature_dict['bullish_trend_discount'] = (
+            (smc_df['swing_trend'] == 1) & feature_dict['in_discount']
+        ).astype(int)
+        feature_dict['bearish_trend_premium'] = (
+            (smc_df['swing_trend'] == -1) & feature_dict['in_premium']
+        ).astype(int)
+        
+        # Structure + Order Block confluence
+        feature_dict['bos_with_ob'] = (
+            smc_df['swing_bos'] & (smc_df['swing_ob'] != 0)
+        ).astype(int)
+        feature_dict['choch_with_ob'] = (
+            smc_df['swing_choch'] & (smc_df['swing_ob'] != 0)
+        ).astype(int)
+        
+        # FVG + Trend alignment
+        feature_dict['bullish_fvg_trend'] = (
+            (smc_df['fvg'] == 1) & (smc_df['swing_trend'] == 1)
+        ).astype(int)
+        feature_dict['bearish_fvg_trend'] = (
+            (smc_df['fvg'] == -1) & (smc_df['swing_trend'] == -1)
+        ).astype(int)
+        
+        # Liquidity sweep + Setup
+        # Note: Reversal is now implicit in sweep detection in corrected SMC
+        feature_dict['sweep_reversal_setup'] = (
+            (feature_dict['liquidity_sweep'] != 0) & (feature_dict['structure_aligned'])
+        ).astype(int)
+        
+        # Mitigation + Trend alignment
+        feature_dict['bullish_mitigation_trend'] = (
+            (feature_dict['mitigation_block'] == 1) & (smc_df['swing_trend'] == 1)
+        ).astype(int)
+        feature_dict['bearish_mitigation_trend'] = (
+            (feature_dict['mitigation_block'] == 1) & (smc_df['swing_trend'] == -1) 
+        ).astype(int)
+        
+        # Premium rejection / Discount acceptance
+        feature_dict['premium_rejection'] = (
+            feature_dict['in_premium'] & (df['close'] < df['open'])
+        ).astype(int)
+        feature_dict['discount_acceptance'] = (
+            feature_dict['in_discount'] & (df['close'] > df['open'])
+        ).astype(int)
+        
+        # Multi-confluence score
+        feature_dict['bullish_confluence'] = (
+            feature_dict['bullish_trend_discount'] +
+            feature_dict['bullish_fvg_trend'] +
+            feature_dict['bullish_mitigation_trend'] +
+            (smc_df['liquidity_sweep'] == 1).astype(int) +
+            (smc_df['swing_ob'] == 1).astype(int)
+        )
+        feature_dict['bearish_confluence'] = (
+            feature_dict['bearish_trend_premium'] +
+            feature_dict['bearish_fvg_trend'] +
+            feature_dict['bearish_mitigation_trend'] +
+            (smc_df['liquidity_sweep'] == -1).astype(int) +
+            (smc_df['swing_ob'] == -1).astype(int)
+        )
+        
+        # Institutional activity indicator
+        feature_dict['institutional_activity'] = (
+            feature_dict['institutional_candle'] +
+            feature_dict['amd_pattern'] +
+            feature_dict['high_strength_ob']
+        )
         
         # ===== ADD ORIGINAL PRICE DATA FOR LABELING =====
-        features['open'] = df['open']
-        features['high'] = df['high']
-        features['low'] = df['low']
-        features['close'] = df['close']
-        features['timestamp'] = df['timestamp']
+        feature_dict['open'] = df['open']
+        feature_dict['high'] = df['high']
+        feature_dict['low'] = df['low']
+        feature_dict['close'] = df['close']
+        feature_dict['timestamp'] = df['timestamp']
         
-        # print(f"Generated {len(features.columns)} features for {len(features)} bars")
+        # Create features DataFrame at once to prevent fragmentation
+        features = pd.DataFrame(feature_dict, index=df.index)
         
-        # Add Technical Indicators
-        features = self._add_technical_indicators(df, features)
+        # Add Technical Indicators (this returns a new DF, need to ensure it's also optimized)
+        # We can actually just merge the dict from _add_technical_indicators
+        # But for now let's use the optimized _add_technical_indicators which returns a DF
+        # and concat it.
         
-        return features
+        tech_features = self._calculate_technical_indicators(df)
+        features = pd.concat([features, tech_features], axis=1)
+        
+        return features.fillna(0) # Handle NaN
     
-    def _add_technical_indicators(self, df, features):
-        """Add technical indicators to features DataFrame"""
+    def _calculate_technical_indicators(self, df):
+        """
+        Calculate technical indicators and return a DataFrame.
+        Used to be _add_technical_indicators but renamed to calculate to imply returning new data.
+        """
         close = df['close']
         high = df['high']
         low = df['low']
+        
+        tech_dict = {}
         
         # 1. RSI (Relative Strength Index)
         delta = close.diff()
         gain = (delta.where(delta > 0, 0)).ewm(alpha=1/14, adjust=False).mean()
         loss = (-delta.where(delta < 0, 0)).ewm(alpha=1/14, adjust=False).mean()
         rs = gain / loss
-        features['rsi_14'] = 100 - (100 / (1 + rs))
-        features['rsi_overbought'] = (features['rsi_14'] > 70).astype(int)
-        features['rsi_oversold'] = (features['rsi_14'] < 30).astype(int)
+        tech_dict['rsi_14'] = 100 - (100 / (1 + rs))
+        tech_dict['rsi_overbought'] = (tech_dict['rsi_14'] > 70).astype(int)
+        tech_dict['rsi_oversold'] = (tech_dict['rsi_14'] < 30).astype(int)
         
         # 2. MACD (Moving Average Convergence Divergence)
         exp12 = close.ewm(span=12, adjust=False).mean()
         exp26 = close.ewm(span=26, adjust=False).mean()
-        features['macd'] = exp12 - exp26
-        features['macd_signal'] = features['macd'].ewm(span=9, adjust=False).mean()
-        features['macd_hist'] = features['macd'] - features['macd_signal']
+        tech_dict['macd'] = exp12 - exp26
+        tech_dict['macd_signal'] = tech_dict['macd'].ewm(span=9, adjust=False).mean()
+        tech_dict['macd_hist'] = tech_dict['macd'] - tech_dict['macd_signal']
         
         # 3. Bollinger Bands
         bb_window = 20
         bb_ma = close.rolling(bb_window).mean()
         bb_std = close.rolling(bb_window).std()
-        features['bb_upper'] = bb_ma + (bb_std * 2)
-        features['bb_lower'] = bb_ma - (bb_std * 2)
+        tech_dict['bb_upper'] = bb_ma + (bb_std * 2)
+        tech_dict['bb_lower'] = bb_ma - (bb_std * 2)
         # %B Indicator (position within bands)
-        features['bb_position'] = (close - features['bb_lower']) / (features['bb_upper'] - features['bb_lower'] + 1e-10)
+        tech_dict['bb_position'] = (close - tech_dict['bb_lower']) / (tech_dict['bb_upper'] - tech_dict['bb_lower'] + 1e-10)
         # Band Width (volatility)
-        features['bb_width'] = (features['bb_upper'] - features['bb_lower']) / bb_ma
+        tech_dict['bb_width'] = (tech_dict['bb_upper'] - tech_dict['bb_lower']) / bb_ma
         
         # 4. Stochastic Oscillator
         stoch_k = 14
         low_min = low.rolling(stoch_k).min()
         high_max = high.rolling(stoch_k).max()
-        features['stoch_k'] = 100 * ((close - low_min) / (high_max - low_min + 1e-10))
-        features['stoch_d'] = features['stoch_k'].rolling(3).mean()
+        tech_dict['stoch_k'] = 100 * ((close - low_min) / (high_max - low_min + 1e-10))
+        tech_dict['stoch_d'] = tech_dict['stoch_k'].rolling(3).mean()
         
         # 5. Simple Moving Averages & Trends
-        features['sma_50'] = close.rolling(50).mean()
-        features['sma_200'] = close.rolling(200).mean()
-        features['above_sma200'] = (close > features['sma_200']).astype(int)
-        features['sma_cross'] = (features['sma_50'] > features['sma_200']).astype(int)
+        tech_dict['sma_50'] = close.rolling(50).mean()
+        tech_dict['sma_200'] = close.rolling(200).mean()
+        tech_dict['above_sma200'] = (close > tech_dict['sma_200']).astype(int)
+        tech_dict['sma_cross'] = (tech_dict['sma_50'] > tech_dict['sma_200']).astype(int)
         
-        return features.fillna(0)  # Handle initial NaNs for technicals
+        return pd.DataFrame(tech_dict, index=df.index)
     
     def _calculate_atr(self, df, period=14):
         """Calculate Average True Range"""
